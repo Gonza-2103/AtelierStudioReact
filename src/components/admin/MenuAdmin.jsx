@@ -1,4 +1,5 @@
 import logo from '../../assets/atelierstudiologo.png'
+import { Link } from 'react-router-dom'
 
 function MenuAdmin() {
     return (
@@ -10,21 +11,39 @@ function MenuAdmin() {
             </div>
 
             <nav className="navegacion_admin">
-                <a href="/admin" className="enlace_admin enlace_activo">
+
+                <NavLink
+                    to="/admin"
+                    end
+                    className={({ isActive }) =>
+                        isActive ? "enlace_admin enlace_activo" : "enlace_admin"
+                    }
+                >
                     Inicio
-                </a>
+                </NavLink>
 
-                <a href="/admin/productos" className="enlace_admin">
+                <NavLink
+                    to="/admin/productos"
+                    className={({ isActive }) =>
+                        isActive ? "enlace_admin enlace_activo" : "enlace_admin"
+                    }
+                >
                     Productos
-                </a>
+                </NavLink>
 
-                <a href="/admin/usuarios" className="enlace_admin">
+                <NavLink
+                    to="/admin/usuarios"
+                    className={({ isActive }) =>
+                        isActive ? "enlace_admin enlace_activo" : "enlace_admin"
+                    }
+                >
                     Usuarios
-                </a>
+                </NavLink>
 
-                <a href="/" className="enlace_admin volver_tienda">
+                <Link to="/" className="enlace_admin volver_tienda">
                     Volver a la tienda
-                </a>
+                </Link>
+
             </nav>
         </aside>
     )
