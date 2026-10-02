@@ -1,6 +1,6 @@
 import EncabezadoAdmin from "../../components/admin/EncabezadoAdmin"
 import '../../styles/admin.css'
-import MenuAdmin from "../../components/admin/MenuAdmin"
+import EstructuraAdmin from "../../components/admin/EstructuraAdmin"
 import TarjetaAdmin from "../../components/admin/TarjetaAdmin"
 
 function InicioAdmin() {
