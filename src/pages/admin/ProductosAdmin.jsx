@@ -1,4 +1,5 @@
 import TablaProductos from "../../components/admin/TablaProductos";
+import EstructuraAdmin from "../../components/admin/EstructuraAdmin";
 
 function ProductosAdmin() {
     return (

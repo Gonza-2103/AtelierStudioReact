@@ -1,9 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 
-function TablaProductos() {
-    
-    const [productos, setProductos] = useState([
+// Productos que aparecerán si todavía no tenemos datos guardados
+const productosIniciales = [
     {
         id: 1,
         codigo: "ART001",
@@ -20,29 +19,64 @@ function TablaProductos() {
         precio: 55000,
         stock: 5
     }
-])
+]
 
-function agregarProducto() {
+function TablaProductos() {
+
+    // Recuperamos los productos guardados o usamos los iniciales
+    const [productos, setProductos] = useState(() => {
+
+        const productosGuardados = localStorage.getItem('productos')
+
+        if (productosGuardados !== null) {
+            return JSON.parse(productosGuardados)
+        }
+
+        return productosIniciales
+
+    })
+
+    // Guardamos los productos cuando cambian
+    useEffect(() => {
+
+        localStorage.setItem(
+            'productos',
+            JSON.stringify(productos)
+        )
+
+    }, [productos])
+
+
+    // Agregar un producto de prueba
+    function agregarProducto(datosFormulario) {
 
     const nuevoProducto = {
-        id: 3,
-        codigo: "ART003",
-        nombre: "Paisaje de Viña",
-        categoria: "Pintura",
-        precio: 35000,
-        stock: 8
+        ...datosFormulario,
+        id: Date.now(),
+        precio: Number(datosFormulario.precio),
+        stock: Number(datosFormulario.stock)
     }
 
     setProductos([...productos, nuevoProducto])
-
 }
+
+
+    // Eliminar un producto según su ID
+    function eliminarProducto(id) {
+
+        const productosActualizados = productos.filter(
+            producto => producto.id !== id
+        )
+
+        setProductos(productosActualizados)
+
+    }
+
 
     return (
         <>
-            <button onClick={agregarProducto}>
-                Agregar producto de prueba
-            </button>
             
+
             <table className="tabla_admin">
                 <thead>
                     <tr>
@@ -63,7 +97,16 @@ function agregarProducto() {
                             <td>{producto.categoria}</td>
                             <td>${producto.precio}</td>
                             <td>{producto.stock}</td>
-                            <td>Editar | Eliminar</td>
+
+                            <td>
+                                <button>Editar</button>
+
+                                <button
+                                    onClick={() => eliminarProducto(producto.id)}
+                                >
+                                    Eliminar
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
