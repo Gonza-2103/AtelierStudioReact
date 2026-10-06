@@ -5,6 +5,6 @@ function InicioTienda() {
             <p>Página de inicio de la tienda pendiente de desarrollar.</p>
         </main>
     )
-}
+}``
 
 export default InicioTienda
