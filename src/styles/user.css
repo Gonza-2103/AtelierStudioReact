@@ -1,0 +1,233 @@
+/* ==========================================================================
+   1. ESTILOS GENERALES (Estandarización del proyecto con Bootstrap)
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+/* MODIFICACIÓN: Eliminación de fondogeneral.jpg en todos los contenedores de vista.
+   Se utiliza la paleta sobria de fondo oscuro de Bootstrap (#212529) para todo el cuerpo del sitio */
+body,
+#port,
+.nos,
+#prod,
+#det_prod,
+#car,
+.busq,
+.foro,
+.blog,
+.det_blog1,
+.det_blog2,
+.ayuda {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #212529 !important; /* Bootstrap $dark */
+    background-image: none !important;    /* MODIFICACIÓN: Quita fondogeneral.jpg */
+    color: #f8f9fa;                       /* Bootstrap $light */
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   2. ENCABEZADO Y NAVEGACIÓN ESTANDARIZADA (Reemplazo de fondos por Bootstrap)
+   ========================================================================== */
+
+/* MODIFICACIÓN: Unificación de todos los encabezados existentes.
+   Se eliminan fondoportada.jpg, fondonosotros.jpg, fondoturquesa.jpg, fondobusqueda.jpg, etc.
+   Se aplica el estilo Navbar Dark de Bootstrap (#1a1d20 con borde inferior sutil) */
+#titulo_port,
+.titulo_nos,
+#titulo_prod,
+#titulo_det_prod,
+#titulo_car,
+.titulo_busq,
+.titulo_foro,
+.titulo_blog,
+.titulo_det_blog1,
+.titulo_det_blog2,
+.titulo_ayuda {
+    width: 100%;
+    min-height: 110px;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    
+    /* MODIFICACIÓN BOOTSTRAP: Fondo sólido oscuro con borde inferior institucional */
+    background-image: none !important;
+    background-color: #111418 !important; /* Tono barra superior */
+    border-bottom: 2px solid #343a40;    /* Separador Bootstrap */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* MODIFICACIÓN: Contenedor de Logo y Título unificado */
+#titulo_port #titlogo,
+.titulo_nos .titlogo,
+#titulo_prod #titlogo,
+#titulo_det_prod #titlogo,
+#titulo_car #titlogo,
+.titulo_busq .titlogo,
+.titulo_foro .titlogo,
+.titulo_blog .titlogo,
+.titulo_det_blog1 .titlogo,
+.titulo_det_blog2 .titlogo,
+.titulo_ayuda .titlogo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 0 0 15px 0;
+}
+
+/* Tamaño estándar para el logo de AtelierStudio en todos los encabezados */
+#titulo_port img,
+.titulo_nos .titlogo img,
+#titulo_prod img,
+#titulo_det_prod img,
+#titulo_car img,
+.titulo_busq img,
+.titulo_foro img,
+.titulo_blog img,
+.titulo_det_blog1 img,
+.titulo_det_blog2 img,
+.titulo_ayuda .titlogo img {
+    width: 65px;
+    height: auto;
+    display: block;
+    flex-shrink: 0;
+}
+
+/* MODIFICACIÓN: Color de título de cabecera estandarizado a dorado/blanco */
+#titulo_port h2,
+.titulo_nos .titlogo h2,
+#titulo_prod h2,
+#titulo_det_prod h2,
+#titulo_car h2,
+.titulo_busq h2,
+.titulo_foro h2,
+.titulo_blog h2,
+.titulo_det_blog1 h2,
+.titulo_det_blog2 h2,
+.titulo_ayuda .titlogo h2 {
+    margin: 0;
+    color: #e0a96d; /* Acento dorado institucional de AtelierStudio */
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+/* MODIFICACIÓN: Barra contenedora de los botones de navegación */
+#btns_navegacion_port,
+.btns_nav_nos,
+#btns_navegacion_prod,
+#btns_nav_det_prod,
+#btns_navegacion_car,
+.btns_navegacion_busq,
+.btns_navegacion_foro,
+.btns_navegacion_blog,
+.btns_nav_det_blog1,
+.btns_nav_det_blog2,
+.btns_navegacion_ayuda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* MODIFICACIÓN: Estilo de los botones de navegación (aspecto Nav Link de Bootstrap) */
+#btns_navegacion_port #nav_btn,
+.btns_nav_nos .nav_btn,
+#btns_navegacion_prod #nav_btn,
+#btns_nav_det_prod #nav_btn,
+#btns_navegacion_car #nav_btn,
+.btns_navegacion_busq .nav_btn,
+.btns_navegacion_foro .nav_btn,
+.btns_navegacion_blog .nav_btn,
+.btns_nav_det_blog1 .nav_btn,
+.btns_nav_det_blog2 .nav_btn,
+.btns_navegacion_ayuda .nav_btn {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: #ced4da !important; /* Bootstrap $gray-400 */
+    padding: 6px 14px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none !important;
+    white-space: nowrap;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Efecto hover interactivo estilo Bootstrap */
+#btns_navegacion_port #nav_btn:hover,
+.btns_nav_nos .nav_btn:hover,
+#btns_navegacion_prod #nav_btn:hover,
+#btns_nav_det_prod #nav_btn:hover,
+#btns_navegacion_car #nav_btn:hover,
+.btns_navegacion_busq .nav_btn:hover,
+.btns_navegacion_foro .nav_btn:hover,
+.btns_navegacion_blog .nav_btn:hover,
+.btns_nav_det_blog1 .nav_btn:hover,
+.btns_nav_det_blog2 .nav_btn:hover,
+.btns_navegacion_ayuda .nav_btn:hover {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ==========================================================================
+   3. PIE DE PÁGINA ESTANDARIZADO (Eliminación de fondopiedepagina.jpg)
+   ========================================================================== */
+
+/* MODIFICACIÓN: Reemplazo del fondo con imagen por pie de página limpio estilo Bootstrap */
+#pie_pag_port,
+.pie_pag_nos,
+#pie_pag_prod,
+#pie_pag_det_prod,
+#pie_pag_car,
+.pie_pag_busq,
+.pie_pag_foro,
+.pie_pag_blog,
+.pie_pag_det_blog1,
+.pie_pag_det_blog2,
+.pie_pag_ayuda {
+    width: 100%;
+    min-height: 90px;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: none !important; /* Quita fondopiedepagina.jpg */
+    background-color: #0f1115 !important;
+    border-top: 1px solid #343a40;
+    color: #adb5bd;
+    margin-top: auto;
+}
+
+#pie_pag_port p,
+.pie_pag_nos p,
+#pie_pag_prod p,
+#pie_pag_det_prod p,
+#pie_pag_car p,
+.pie_pag_busq p,
+.pie_pag_foro p,
+.pie_pag_blog p,
+.pie_pag_det_blog1 p,
+.pie_pag_det_blog2 p,
+.pie_pag_ayuda p {
+    margin: 2px 0;
+    font-size: 13px;
+    line-height: 1.5;
+}
