@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-
+import AccionesProducto from './AccionesProducto'
 
 // Productos que aparecerán si todavía no tenemos datos guardados
 const productosIniciales = [
@@ -72,11 +72,8 @@ function TablaProductos() {
 
     }
 
-
     return (
-        <>
-            
-
+        <>           
             <table className="tabla_admin">
                 <thead>
                     <tr>
@@ -99,13 +96,10 @@ function TablaProductos() {
                             <td>{producto.stock}</td>
 
                             <td>
-                                <button>Editar</button>
-
-                                <button
-                                    onClick={() => eliminarProducto(producto.id)}
-                                >
-                                    Eliminar
-                                </button>
+                                <AccionesProducto
+                                    id={producto.id}
+                                    alEliminar={eliminarProducto}
+                                />
                             </td>
                         </tr>
                     ))}

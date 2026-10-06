@@ -1,15 +1,15 @@
 import TablaProductos from "../../components/admin/TablaProductos";
 import EstructuraAdmin from "../../components/admin/EstructuraAdmin";
+import EncabezadoProductos from '../../components/admin/EncabezadoProductos'
 
 function ProductosAdmin() {
     return (
        <EstructuraAdmin>
 
-            <h1>Gestión de productos</h1>
-
-            <p>Aquí podrás administrar los productos de AtelierStudio.</p>
-
-            <TablaProductos />
+            <section className="seccion_admin">
+                <EncabezadoProductos />
+                <TablaProductos />
+            </section>
 
         </EstructuraAdmin>
     )

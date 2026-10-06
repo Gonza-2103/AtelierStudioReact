@@ -1,4 +1,5 @@
 import EstructuraAdmin from '../../components/admin/EstructuraAdmin'
+import TablaUsuarios from '../../components/admin/TablaUsuarios'
 
 function UsuariosAdmin() {
 
@@ -7,15 +8,10 @@ function UsuariosAdmin() {
 
             <section className="seccion_admin">
 
-                <h1>Gestión de usuarios</h1>
-
-                <p>
-                    Administración de usuarios registrados
-                    en AtelierStudio.
-                </p>
+                <EncabezadoUsuarios />
 
                 <div className="contenedor_usuarios">
-                    {/* Aquí incorporaremos los componentes de usuarios */}
+                    <TablaUsuarios />
                 </div>
 
             </section>
