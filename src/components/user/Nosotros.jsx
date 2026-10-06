@@ -1,60 +1,60 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/user.css';
 import logo from '../../assets/atelierstudiologo.png';
 
 function Nosotros() {
+    const navigate = useNavigate();
+
     return (
         <div id="nosotros_page">
 
-            {/* Encabezado y barra de navegación */}
+            {/* Título de 'nosotros', logo y botones */}
             <header id="titulo_port">
+                
+                {/* Título y logo */}
                 <figure id="titlogo">
                     <img src={logo} alt="Logo AtelierStudio" />
                     <h2>Nosotros</h2>
                 </figure>
 
+                {/* Botones de navegación */}
                 <figure id="btns_navegacion_port">
-                    <Link to="/" className="nav_btn"><strong>Inicio</strong></Link>
-                    <Link to="/nosotros" className="nav_btn"><strong>Nosotros</strong></Link>
-                    <Link to="/productos" className="nav_btn"><strong>Productos</strong></Link>
-                    <Link to="/carrito" className="nav_btn"><strong>Carrito</strong></Link>
-                    <Link to="/busqueda" className="nav_btn"><strong>Búsqueda</strong></Link>
-                    <Link to="/foro" className="nav_btn"><strong>Foro</strong></Link>
-                    <Link to="/blogs" className="nav_btn"><strong>Blogs</strong></Link>
-                    <Link to="/contacto" className="nav_btn"><strong>Contacto</strong></Link>
+                    <button id="nav_btn" onClick={() => navigate('/')}><strong>Portada</strong></button>
+                    <button id="nav_btn" onClick={() => navigate('/productos')}><strong>Productos</strong></button>
+                    <button id="nav_btn" onClick={() => navigate('/carrito')}><strong>Carrito</strong></button>
+                    <button id="nav_btn" onClick={() => navigate('/busqueda')}><strong>Búsqueda</strong></button>
+                    <button id="nav_btn" onClick={() => navigate('/foro')}><strong>Foro</strong></button>
+                    <button id="nav_btn" onClick={() => navigate('/blogs')}><strong>Blogs</strong></button>
+                    <button id="nav_btn" onClick={() => navigate('/contacto')}><strong>Contacto</strong></button>
                 </figure>
             </header>
 
-            {/* Contenido principal sobre la identidad de AtelierStudio */}
-            <main id="contenido_port" className="container my-4">
-                <h3 id="titulo_cont_port">Sobre AtelierStudio</h3>
-                <hr style={{ borderColor: 'white' }} />
-
-                <section className="nosotros_descripcion">
-                    <p>
-                        En <strong>AtelierStudio</strong> creemos firmemente que el arte auténtico nace de manos independientes. 
-                        Nuestra misión es conectar a artistas visuales emergentes con coleccionistas y apasionados del arte que 
-                        buscan piezas originales, con identidad y carácter único.
-                    </p>
-                    <p>
-                        Promovemos un comercio justo y transparente donde cada obra cuenta una historia viva y respalda 
-                        directamente el trabajo manual, desde técnicas tradicionales de óleo y acuarela hasta ilustraciones 
-                        y técnicas contemporáneas.
-                    </p>
-                </section>
-
+            {/* Contenido principal */}
+            <main id="contenido_port">
+                <h3 id="titulo_cont_port">Sobre Nosotros</h3>
                 <br />
                 <hr style={{ borderColor: 'white' }} />
-
-                <div className="text-center my-3">
-                    <Link to="/login" style={{ color: 'goldenrod', textDecoration: 'underline' }}>
-                        <strong>Iniciar sesión &#x23FB;</strong>
-                    </Link>
-                </div>
+                <p>
+                En AtelierStudio creemos que el arte auténtico nace de manos independientes. Nuestra plataforma busca visibilizar a artistas visuales emergentes conectándolos directamente con coleccionistas y entusiastas.
+                </p>
+                <p>
+                Cada pieza cuenta una historia viva y rescata el oficio artesanal libre de producciones masivas.
+                </p>
+                <br />
+                <hr style={{ borderColor: 'white' }} />
+                <footer className="btn_cerrar_sesion">
+                    <p>
+                        <strong>
+                            <a href="#" id="btnCerrarSesion" onClick={(e) => { e.preventDefault(); navigate('/login'); }} style={{ color: 'goldenrod', textDecoration: 'underline' }}>
+                                Iniciar sesión &#x23FB;
+                            </a>
+                        </strong>
+                    </p>
+                </footer>
             </main>
 
-            {/* Pie de página */}
+            {/* Pie de página informativo */}
             <footer id="pie_pag_port">
                 <p>Viña del Mar, Chile.</p>
                 <p><strong>&copy; 2026 AtelierStudio - Galería y Plataforma de Arte Independiente.</strong></p>

@@ -1,57 +1,40 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/user.css';
 import logo from '../../assets/atelierstudiologo.png';
 
 function Contacto() {
-    const [formData, setFormData] = useState({
-        nombreAyuda: '',
-        correoAyuda: '',
-        comentarioAyuda: '',
-    });
-
-    const [errores, setErrores] = useState({});
-
-    const handleChange = (e) => {
-        setFormData({
-        ...formData,
-        [e.target.name]: e.target.value,
-        });
-    };
+    const navigate = useNavigate();
+    const [nombre, setNombre] = useState('');
+    const [correo, setCorreo] = useState('');
+    const [comentario, setComentario] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const nuevosErrores = {};
-        if (!formData.nombreAyuda.trim()) nuevosErrores.nombre = 'El nombre es obligatorio';
-        if (!formData.correoAyuda.includes('@')) nuevosErrores.correo = 'Ingrese un correo válido';
-        if (!formData.comentarioAyuda.trim()) nuevosErrores.comentario = 'El comentario no puede estar vacío';
-
-        if (Object.keys(nuevosErrores).length > 0) {
-        setErrores(nuevosErrores);
-        } else {
-        setErrores({});
-        alert('Mensaje enviado con éxito');
-        }
+        alert('Mensaje enviado exitosamente');
     };
 
     return (
         <div className="ayuda">
+
+            {/* Encabezado de la página */}
             <header className="titulo_ayuda">
                 <figure className="titlogo">
                     <img src={logo} alt="Logo de AtelierStudio" />
                     <h2>Contacto</h2>
                 </figure>
                 <figure className="btns_navegacion_ayuda">
-                    <Link to="/" className="nav_btn"><strong>Portada</strong></Link>
-                    <Link to="/nosotros" className="nav_btn"><strong>Nosotros</strong></Link>
-                    <Link to="/productos" className="nav_btn"><strong>Productos</strong></Link>
-                    <Link to="/carrito" className="nav_btn"><strong>Carrito</strong></Link>
-                    <Link to="/busqueda" className="nav_btn"><strong>Búsqueda</strong></Link>
-                    <Link to="/foro" className="nav_btn"><strong>Foro</strong></Link>
-                    <Link to="/blogs" className="nav_btn"><strong>Blogs</strong></Link>
+                    <button className="nav_btn" onClick={() => navigate('/')}><strong>Portada</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/nosotros')}><strong>Nosotros</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/productos')}><strong>Productos</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/carrito')}><strong>Carrito</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/busqueda')}><strong>Búsqueda</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/foro')}><strong>Foro</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/blogs')}><strong>Blogs</strong></button>
                 </figure>
             </header>
 
+            {/* Contenido principal */}
             <main className="contenido_ayuda">
                 <section className="presentacion_ayuda">
                     <img src={logo} alt="Logo de AtelierStudio" className="logo_ayuda" />
@@ -61,56 +44,38 @@ function Contacto() {
                     <p>Envíanos tu consulta y te responderemos a la brevedad.</p>
                 </div>
 
+                {/* Formulario de contacto */}
                 <section className="contenedor_formulario_ayuda">
                     <p className="tit_form_ayuda">Formulario</p>
                     <br />
                     <hr style={{ borderColor: 'black' }} />
 
                     <form id="formAyuda" className="formulario_ayuda" onSubmit={handleSubmit} noValidate>
-                        <p className="aviso_obligatorio" style={{ color: 'black' }}>
-                            <span className="obligatorio">*</span>Campos obligatorios
-                        </p>
+                        <p className="aviso_obligatorio" style={{ color: 'black' }}><span className="obligatorio">*</span>Campos obligatorios</p>
 
+                        {/* Nombre */}
                         <div className="campo_ayuda">
                             <label htmlFor="nombreAyuda"><strong>Nombre completo:<span className="obligatorio">*</span></strong></label>
-                            <input 
-                                type="text" 
-                                id="nombreAyuda" 
-                                name="nombreAyuda" 
-                                placeholder="Ingresa su nombre"
-                                value={formData.nombreAyuda}
-                                onChange={handleChange} />
-
-                            {errores.nombre && <small style={{ color: 'red' }}>{errores.nombre}</small>}
+                            <input type="text" id="nombreAyuda" name="nombreAyuda" placeholder="Ingresa su nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
+                            <small id="errorNombreAyuda"></small>
                         </div>
 
+                        {/* Correo */}
                         <div className="campo_ayuda">
-                            <label htmlFor="correoAyuda"><strong>Correo electrónico:<span className="obligatorio">*</span></strong></label>
-                            <input 
-                                type="text" 
-                                id="correoAyuda" 
-                                className="correo_ayuda" 
-                                name="correoAyuda" 
-                                placeholder="ejemplo@gmail.com"
-                                value={formData.correoAyuda}
-                                onChange={handleChange} />
-
+                            <label htmlFor="correo_ayuda"><strong>Correo electrónico:<span className="obligatorio">*</span></strong></label>
+                            <input type="text" id="correoAyuda" className="correo_ayuda" name="correoAyuda" placeholder="ejemplo@gmail.com" value={correo} onChange={(e) => setCorreo(e.target.value)} />
                             <small className="texto_ayuda">Dominios permitidos: @duocuc.cl, @profesor.duocuc.cl y @gmail.com</small>
-                            {errores.correo && <small style={{ color: 'red' }}>{errores.correo}</small>}
+                            <small id="errorCorreoAyuda"></small>
                         </div>
 
+                        {/* Comentario */}
                         <div className="campo_ayuda">
                             <label htmlFor="comentarioAyuda"><strong>Comentario:<span className="obligatorio">*</span></strong></label>
-                            <textarea 
-                                id="comentarioAyuda" 
-                                name="comentarioAyuda" 
-                                rows="6" 
-                                placeholder="Ingresa aquí su consulta"
-                                value={formData.comentarioAyuda}
-                                onChange={handleChange} />
-                            {errores.comentario && <small style={{ color: 'red' }}>{errores.comentario}</small>}
+                            <textarea id="comentarioAyuda" name="comentarioAyuda" rows="6" placeholder="Ingresa aquí su consulta" value={comentario} onChange={(e) => setComentario(e.target.value)} />
+                            <small id="errorComentarioAyuda"></small>
                         </div>
 
+                        {/* Botón */}
                         <div className="boton_ayuda">
                             <button type="submit"><strong>ENVIAR MENSAJE</strong></button>
                         </div>
@@ -118,6 +83,7 @@ function Contacto() {
                 </section>
             </main>
 
+            {/* Pie de página informativo */}
             <footer className="pie_pag_ayuda">
                 <p>Viña del Mar, Chile.</p>
                 <p><strong>&copy; 2026 AtelierStudio - Galería y Plataforma de Arte Independiente.</strong></p>
