@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+
 //Importación de todas las vistas de usuario
 import Portada from './components/user/Portada';
 import Nosotros from './components/user/Nosotros';
@@ -19,6 +20,9 @@ import Registro_Usuario from './components/user/Registro_Usuario';
 //Rutas de administración existentes 
 import InicioAdmin from './pages/admin/InicioAdmin';
 import ProductosAdmin from './pages/admin/ProductosAdmin';
+import UsuariosAdmin from './pages/admin/UsuariosAdmin';
+import EditarProducto from './pages/admin/EditarProducto';
+import NuevoProducto from './pages/admin/NuevoProducto';
 
 function App() {
     return (
@@ -40,9 +44,12 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/registro_usuario" element={<Registro_Usuario />} />
 
-            {/* Rutas de administración intactas */}
+            {/* Rutas de administración */}
             <Route path="/admin" element={<InicioAdmin />} />
             <Route path="/admin/productos" element={<ProductosAdmin />} />
+            <Route path="/admin/usuarios" element={<UsuariosAdmin />} />
+            <Route path="/admin/productos/nuevo" element={<NuevoProducto />} />
+            <Route path="/admin/productos/editar/:id" element={<EditarProducto />} />
         </Routes>
     );
 }
