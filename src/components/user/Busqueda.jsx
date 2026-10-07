@@ -70,7 +70,11 @@ function Busqueda() {
                     </section>
 
                     <br />
-                    <h3 className="titulo_res_busq">Resultados encontrados</h3>
+                    <h3 
+                        className="titulo_res_busq d-block w-100 text-start" 
+                        style={{ textAlign: 'justify', textAlignLast: 'justify', width: '100%', display: 'block' }}>
+                        Resultados encontrados
+                    </h3>
                     <hr style={{ borderColor: 'white' }} />
 
                     {/* Tarjetas de resultados adaptadas con la misma estructura visual de productos */}
