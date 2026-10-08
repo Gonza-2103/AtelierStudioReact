@@ -11,6 +11,7 @@ import ProductosAdmin from './pages/admin/ProductosAdmin'
 import UsuariosAdmin from './pages/admin/UsuariosAdmin'
 import NuevoProducto from './pages/admin/NuevoProducto'
 import EditarProducto from './pages/admin/EditarProducto'
+import DetalleProducto from './pages/admin/DetalleProducto'
 
 function App() {
     return (
@@ -26,7 +27,7 @@ function App() {
             <Route path="/admin/usuarios" element={<UsuariosAdmin />} />
             <Route path="/admin/productos/nuevo" element={<NuevoProducto />} />
             <Route path="/admin/productos/editar/:id" element={<EditarProducto />} />
-
+            <Route path="/admin/productos/detalle/:id" element={<DetalleProducto />} />
         </Routes>
     )
 }

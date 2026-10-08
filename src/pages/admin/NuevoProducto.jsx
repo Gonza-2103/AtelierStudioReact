@@ -1,8 +1,44 @@
 import EstructuraAdmin from '../../components/admin/EstructuraAdmin'
 import FormularioProducto from '../../components/admin/FormularioProducto'
+import { useNavigate } from 'react-router-dom'
 
 function NuevoProducto() {
+    const navigate = useNavigate()
 
+    function guardarProducto(datosFormulario) {
+
+        const productosGuardados = localStorage.getItem('productos')
+
+        const productos = productosGuardados
+            ? JSON.parse(productosGuardados)
+            : []
+    
+
+        const nuevoProducto = {
+            ...datosFormulario,
+            id: Date.now(),
+            precio: Number(datosFormulario.precio),
+            stock: Number(datosFormulario.stock)
+        }
+
+        const productosActualizados = [...productos, nuevoProducto]
+
+        const codigoRepetido = productos.some(
+            producto => producto.codigo === datosFormulario.codigo
+        )
+
+        if (codigoRepetido) {
+            alert('Ya existe un producto con ese código')
+            return
+}
+
+        localStorage.setItem(
+            'productos',
+            JSON.stringify(productosActualizados)
+        )
+
+        navigate('/admin/productos')
+    }
     return (
         <EstructuraAdmin>
 
@@ -16,7 +52,7 @@ function NuevoProducto() {
                 </p>
 
                 <div className="contenedor_formulario">
-                    <FormularioProducto alGuardar={() => {}} />
+                    <FormularioProducto alGuardar={guardarProducto} />
                 </div>
 
             </section>

@@ -1,5 +1,6 @@
 import EstructuraAdmin from '../../components/admin/EstructuraAdmin'
 import TablaUsuarios from '../../components/admin/TablaUsuarios'
+import EncabezadoUsuarios from '../../components/admin/EncabezadoUsuarios'
 
 function UsuariosAdmin() {
 

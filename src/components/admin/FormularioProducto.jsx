@@ -1,14 +1,16 @@
 import { useState } from 'react'
 
-function FormularioProducto({ alGuardar }) {
+function FormularioProducto({ alGuardar, productoInicial = null }) {
 
-    const [formulario, setFormulario] = useState({
+    const [formulario, setFormulario] = useState(() =>
+    productoInicial ?? {
         codigo: '',
         nombre: '',
         categoria: '',
         precio: '',
         stock: ''
-    })
+    }
+)
 
     function manejarCambio(e) {
 
