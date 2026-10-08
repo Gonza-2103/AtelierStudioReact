@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 function NuevoProducto() {
     const navigate = useNavigate()
 
+<<<<<<< HEAD
     function guardarProducto(datosFormulario) {
 
         const productosGuardados = localStorage.getItem('productos')
@@ -39,6 +40,34 @@ function NuevoProducto() {
 
         navigate('/admin/productos')
     }
+=======
+    const navigate = useNavigate()
+
+    function guardarProducto(datosFormulario) {
+
+    const productosGuardados = localStorage.getItem('productos')
+    const productos = productosGuardados
+        ? JSON.parse(productosGuardados)
+        : []
+
+    const nuevoProducto = {
+        ...datosFormulario,
+        id: Date.now(),
+        precio: Number(datosFormulario.precio),
+        stock: Number(datosFormulario.stock)
+    }
+
+    productos.push(nuevoProducto)
+
+    localStorage.setItem(
+        'productos',
+        JSON.stringify(productos)
+    )
+
+    navigate('/admin/productos')
+}
+
+>>>>>>> 51355f5f9874c4190f96cdd1337e72bdffab737a
     return (
         <EstructuraAdmin>
 

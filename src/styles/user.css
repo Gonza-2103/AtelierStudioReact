@@ -1,0 +1,2291 @@
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* ESTILOS GENERALES */
+
+* {
+    box-sizing: border-box;
+}
+
+body,
+#port,
+.nos,
+#prod,
+#det_prod,
+#car,
+.busq,
+.foro,
+.blog,
+.det_blog1,
+.det_blog2,
+.ayuda {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #212529 !important; 
+    background-image: none !important;      
+    color: #f8f9fa;                       
+    min-height: 100vh;
+}
+
+
+/* ENCABEZADO Y NAVEGACIÓN ESTANDARIZADA */
+
+#titulo_port,
+.titulo_nos,
+#titulo_prod,
+#titulo_det_prod,
+#titulo_car,
+.titulo_busq,
+.titulo_foro,
+.titulo_blog,
+.titulo_det_blog1,
+.titulo_det_blog2,
+.titulo_ayuda {
+    width: 100%;
+    min-height: 110px;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-image: none !important;
+    background-color: #111418 !important; /* Tono barra superior */
+    border-bottom: 2px solid #343a40;    /* Separador Bootstrap */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Contenedor de logo y título unificado */
+#titulo_port #titlogo,
+.titulo_nos .titlogo,
+#titulo_prod #titlogo,
+#titulo_det_prod #titlogo,
+#titulo_car #titlogo,
+.titulo_busq .titlogo,
+.titulo_foro .titlogo,
+.titulo_blog .titlogo,
+.titulo_det_blog1 .titlogo,
+.titulo_det_blog2 .titlogo,
+.titulo_ayuda .titlogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 0 0 15px 0;
+    padding: 0;
+}
+
+/* Tamaño estándar para el logo en todos los encabezados */
+#titulo_port img,
+.titulo_nos .titlogo img,
+#titulo_prod img,
+#titulo_det_prod img,
+#titulo_car img,
+.titulo_busq img,
+.titulo_foro img,
+.titulo_blog img,
+.titulo_det_blog1 img,
+.titulo_det_blog2 img,
+.titulo_ayuda .titlogo img {
+    width: 65px;
+    height: auto;
+    display: block;
+    flex-shrink: 0;
+}
+
+/* Color de título de cabecera estandarizado a dorado/blanco */
+#titulo_port h2,
+.titulo_nos .titlogo h2,
+#titulo_prod h2,
+#titulo_det_prod h2,
+#titulo_car h2,
+.titulo_busq h2,
+.titulo_foro h2,
+.titulo_blog h2,
+.titulo_det_blog1 h2,
+.titulo_det_blog2 h2,
+.titulo_ayuda .titlogo h2 {
+    margin: 0;
+    color: #e0a96d; /* Acento dorado institucional de AtelierStudio */
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+/* Barra contenedora de los botones de navegación */
+#btns_navegacion_port,
+.btns_nav_nos,
+#btns_navegacion_prod,
+#btns_nav_det_prod,
+#btns_navegacion_car,
+.btns_navegacion_busq,
+.btns_navegacion_foro,
+.btns_navegacion_blog,
+.btns_nav_det_blog1,
+.btns_nav_det_blog2,
+.btns_navegacion_ayuda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo de los botones de navegación */
+#btns_navegacion_port #nav_btn,
+.btns_nav_nos .nav_btn,
+#btns_navegacion_prod #nav_btn,
+#btns_nav_det_prod #nav_btn,
+#btns_navegacion_car #nav_btn,
+.btns_navegacion_busq .nav_btn,
+.btns_navegacion_foro .nav_btn,
+.btns_navegacion_blog .nav_btn,
+.btns_nav_det_blog1 .nav_btn,
+.btns_nav_det_blog2 .nav_btn,
+.btns_navegacion_ayuda .nav_btn {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: #ced4da !important; 
+    padding: 6px 14px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none !important;
+    white-space: nowrap;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Efecto hover interactivo */
+#btns_navegacion_port #nav_btn:hover,
+.btns_nav_nos .nav_btn:hover,
+#btns_navegacion_prod #nav_btn:hover,
+#btns_nav_det_prod #nav_btn:hover,
+#btns_navegacion_car #nav_btn:hover,
+.btns_navegacion_busq .nav_btn:hover,
+.btns_navegacion_foro .nav_btn:hover,
+.btns_navegacion_blog .nav_btn:hover,
+.btns_nav_det_blog1 .nav_btn:hover,
+.btns_nav_det_blog2 .nav_btn:hover,
+.btns_navegacion_ayuda .nav_btn:hover {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+
+/* PIE DE PÁGINA ESTANDARIZADO */
+
+/* Reemplazo del fondo con imagen por pie de página */
+#pie_pag_port,
+.pie_pag_nos,
+#pie_pag_prod,
+#pie_pag_det_prod,
+#pie_pag_car,
+.pie_pag_busq,
+.pie_pag_foro,
+.pie_pag_blog,
+.pie_pag_det_blog1,
+.pie_pag_det_blog2,
+.pie_pag_ayuda {
+    width: 100%;
+    min-height: 90px;
+    padding: 35px 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: none !important; 
+    background-color: #0f1115 !important;
+    border-top: 1px solid #343a40;
+    color: #adb5bd;
+    margin-top: auto;
+}
+
+#pie_pag_port p,
+.pie_pag_nos p,
+#pie_pag_prod p,
+#pie_pag_det_prod p,
+#pie_pag_car p,
+.pie_pag_busq p,
+.pie_pag_foro p,
+.pie_pag_blog p,
+.pie_pag_det_blog1 p,
+.pie_pag_det_blog2 p,
+.pie_pag_ayuda p {
+    margin: 2px 0;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* PORTADA */
+
+/* Contenedor principal de 'portada' */
+#contenido_port {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    color: white;
+    text-align: justify !important;
+}
+
+/* Título centrado para que no se justifique de forma extraña */
+#contenido_port #titulo_cont_port {
+    text-align: left;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+/* Ajuste de imágenes para que NUNCA desborden por la derecha */
+#contenido_port img {
+    width: 100%;                                  
+    max-width: 100%;                              
+    height: auto;                                 
+    display: block;                               
+    margin: 25px auto;                            
+    border-radius: 8px;                           
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
+}
+
+/* Párrafos justificados con buen interlineado */
+#contenido_port p {
+    text-align: justify !important;
+    text-justify: inter-word;
+    line-height: 1.7;
+}
+
+/* Botón de cerrar sesión */
+.btn_cerrar_sesion {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0px 0 0px 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.btn_cerrar_sesion p {
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+
+.btn_cerrar_sesion a,
+#btnCerrarSesion {
+    display: inline-block;
+    padding: 6px 6px;
+    color: goldenrod !important;
+    text-decoration: underline;
+    font-size: 15px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.btn_cerrar_sesion a:hover,
+#btnCerrarSesion:hover {
+    opacity: 0.8;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* NOSOTROS */
+
+/* Contenedor general de 'nosotros' */
+.nos {
+    font-family: inherit;
+    margin: 0;
+    padding: 0;
+    background-color: #212529 !important; 
+    background-image: none !important;   
+    color: #f8f9fa;                       
+    min-height: 100vh;
+}
+
+/* Encabezado */
+.titulo_nos {
+    width: 100%;
+    min-height: 110px;
+    padding: 20px 30px;
+    background-image: none !important;    
+    background-color: #111418 !important; 
+    border-bottom: 2px solid #343a40;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.titulo_nos .titlogo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 0 0 15px 0;
+}
+
+.titulo_nos .titlogo img {
+    display: block;
+    width: 65px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.titulo_nos .titlogo h2 {
+    margin: 0;
+    color: #e0a96d; /* Acento dorado AtelierStudio */
+    font-size: 26px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Navegación */
+.btns_nav_nos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 !important;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.btns_nav_nos .nav_btn {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: #ced4da !important;
+    padding: 6px 14px;
+    font-size: 14px;
+    border-radius: 6px;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.btns_nav_nos .nav_btn:hover {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Contenido principal */
+.contenido_nos {
+    width: 100%;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #f8f9fa;
+}
+
+.titulo_sobre_nos,
+.titulo_mision_nos,
+.titulo_equipo_nos {
+    text-align: justify;
+    font-size: 25px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+/* Estructura sobre la galería y misión */
+.logo_sobre_nos,
+.img_mision_nos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.img_sobre,
+.img_mision {
+    display: block;
+    width: 60%;
+    max-width: 420px;
+    height: auto;
+    margin: 15px auto;
+    border-radius: 8px;
+    border: 1px solid #495057;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.info_sobre_nos p,
+.info_mision_nos p {
+    text-align: justify !important;
+    text-justify: inter-word;
+    line-height: 1.7;
+    font-size: 15px;
+    color: #dee2e6;
+    margin-bottom: 16px;
+}
+
+.intro_equipo_nos {
+    text-align: justify;
+    font-size: 15px;
+    color: #adb5bd;
+    margin-bottom: 30px;
+}
+
+/* Contenedor del equipo desarrollador */
+.equipo_desa_nos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+/* Tarjetas individuales de los integrantes */
+.equipo_nos_int1,
+.equipo_nos_int2 {
+    background-image: none !important;
+    background-color: #2b3035 !important;
+    border: 1px solid #495057;
+    border-radius: 10px;
+    color: #f8f9fa;
+    flex: 1 1 280px;
+    max-width: 340px;
+    padding: 25px 20px;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.equipo_nos_int1:hover,
+.equipo_nos_int2:hover {
+    transform: translateY(-4px);
+    border-color: #e0a96d;
+}
+
+.nom_int1,
+.nom_int2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 19px;
+    font-weight: 600;
+    color: #e0a96d; 
+    text-decoration: underline;
+}
+
+.equipo_nos_int1 img,
+.equipo_nos_int2 img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto 15px auto;
+    display: block;
+    border: 3px solid #e0a96d; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.resp_int1,
+.resp_int2 {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+    color: #ced4da;
+    text-align: center;
+}
+
+/* Pie de página */
+.pie_pag_nos {
+    width: 100%;
+    min-height: 90px;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: none !important;    
+    background-color: #0f1115 !important;
+    border-top: 1px solid #343a40;
+    color: #adb5bd;
+    margin-top: auto;
+}
+
+.pie_pag_nos p {
+    margin: 2px 0;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* PRODUCTOS */
+
+/* Fondo general de la vista 'productos' */
+#prod {
+    margin: 0;
+    padding: 0;
+    background-color: #212529 !important; 
+    background-image: none !important;    
+    color: #f8f9fa;
+    min-height: 100vh;
+    font-family: inherit;
+}
+
+/* Contenedor principal de tarjetas */
+#contenedor_prod {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 24px;                           
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Tarjetas individuales */
+#contenedor_prod > section[id^="contenedor_prod_"] {
+    background-image: none !important;
+    background-color: #2b3035 !important; 
+    border: 1px solid #495057;           
+    border-radius: 10px;                 
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    
+    color: #f8f9fa;
+    flex: 1 1 260px;
+    max-width: 280px;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    padding: 18px;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efecto hover suave en las tarjetas */
+#contenedor_prod > section[id^="contenedor_prod_"]:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
+    border-color: #6c757d;
+}
+
+#contador_prod {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Título de la obra */
+#contenedor_prod h3 {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 4px 0;
+}
+
+/* Categoría */
+#contenedor_prod [id^="categ_prod"] {
+    text-align: center;
+    color: #adb5bd;
+    font-size: 13px;
+    font-style: italic;
+    margin-bottom: 8px;
+}
+
+/* Imagen del producto adaptada al contenedor */
+#contenedor_prod img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+    border: 1px solid #343a40;
+    margin: 6px 0 12px 0;
+}
+
+/* Descripción del producto */
+#contenedor_prod h5:not([id^="categ_prod"]):not([id^="precio_prod"]) {
+    font-weight: normal;
+    text-align: justify;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #dee2e6;
+    margin: 0 0 12px 0;
+    flex-grow: 1;                        
+}
+
+/* Precio destacado en dorado */
+#contenedor_prod [id^="precio_prod"] {
+    text-align: center !important;
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    color: #e0a96d !important;          
+    margin: 6px 0 12px 0;
+    display: block;
+    width: 100%;
+}
+
+/* Bloque del contador (+/-) */
+#btns_cont_prod {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 10px auto;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Botones redondos de sumar y restar */
+#btn_restar, 
+#btn_sumar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #495057;
+    transition: background-color 0.2s ease;
+}
+
+#btn_restar:hover, 
+#btn_sumar:hover {
+    background-color: #6c757d;
+}
+
+#numero_prod {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Contenedor del botón agregar */
+#btn_agr_car_det {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Botón 'agregar al carrito' */
+#btn_car_comp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px 14px;
+    background-color: #198754;         
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease, filter 0.2s ease;
+    margin: 8px 0 0 0;
+}
+
+#btn_car_comp:hover {
+    background-color: #157347;        
+}
+
+#btn_car_comp p {
+    margin: 0;
+    white-space: nowrap;
+}
+
+#btn_car_comp svg {
+    flex-shrink: 0;
+}
+
+/* Enlace a 'detalle de productos' */
+#btn_ver_det {
+    background: none;
+    border: none;
+    color: #e0a96d;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    display: block;
+    width: fit-content;
+    margin: 20px 40px 30px auto;        
+    transition: color 0.2s ease;
+}
+
+#btn_ver_det:hover {
+    color: #f3c28c;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* DETALLE PRODUCTO */
+
+#det_prod {
+    font-family: inherit;
+    margin: 0;
+    padding: 0;
+    background-color: #212529 !important; /* Bootstrap $dark */
+    background-image: none !important;    /* MODIFICACIÓN: Quita fondogeneral.jpg */
+    color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Contenedor principal */
+#contenedor_det_prod {
+    width: 100%;
+    max-width: 1100px;
+    margin: 35px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    flex: 1;                              /* Empuja el pie de página hacia el fondo */
+    color: #f8f9fa;
+}
+
+/* Estructura del detalle de los productos (Card contenedora estilo Bootstrap) */
+#detalle_prod1, 
+#detalle_prod2,
+#detalle_prod3, 
+#detalle_prod4,
+section[id^="detalle_prod"] {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+    background-color: #2b3035;            /* Superficie oscura tipo tarjeta */
+    border: 1px solid #495057;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    box-sizing: border-box;
+}
+
+/* Galería de imágenes (columna izquierda) */
+#galeria_producto {
+    flex: 1 1 450px;
+}
+
+#imagen_principal img {
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #495057;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    display: block;
+}
+
+/* Fila de miniaturas */
+#miniaturas {
+    display: flex;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+#miniaturas .thumb,
+#miniaturas img {
+    width: 80px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #495057;
+    cursor: pointer;
+    opacity: 0.65;
+    transition: opacity 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+#miniaturas .thumb:hover,
+#miniaturas .thumb.activa,
+#miniaturas img:hover {
+    opacity: 1;
+    border-color: #e0a96d;                /* Borde dorado de selección */
+    transform: scale(1.05);
+}
+
+/* Columna de información y compra (columna derecha) */
+#info_compra {
+    flex: 1 1 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#info_compra h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+/* Precio de la obra en dorado AtelierStudio */
+#info_compra .precio {
+    font-size: 26px;
+    font-weight: 700;
+    color: #e0a96d;                       /* Acento dorado institucional */
+    margin-bottom: 20px;
+}
+
+/* Descripción de la obra */
+#descripcion_extensa p {
+    line-height: 1.7;
+    color: #ced4da;
+    margin-bottom: 16px;
+    font-size: 15px;
+    text-align: justify;
+}
+
+/* --- Formulario de Carrito --- */
+#acciones_carrito {
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+#acciones_carrito label {
+    font-weight: 600;
+    color: #f8f9fa;
+    font-size: 14px;
+}
+
+/* Control numérico de cantidad */
+#acciones_carrito input[type="number"] {
+    width: 70px;
+    padding: 8px 10px;
+    background-color: #212529;            /* Fondo control Bootstrap Dark */
+    border: 1px solid #495057;
+    color: #ffffff;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#acciones_carrito input[type="number"]:focus {
+    border-color: #e0a96d;
+    box-shadow: 0 0 0 0.2rem rgba(224, 169, 109, 0.25);
+}
+
+/* Botón Añadir al Carrito (Aspecto btn-success Bootstrap) */
+#btn_agregar_carrito {
+    background-color: #198754;            /* Bootstrap $success */
+    color: #ffffff;
+    border: none;
+    padding: 10px 22px;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#btn_agregar_carrito:hover {
+    background-color: #157347;
+}
+
+#btn_agregar_carrito:active {
+    transform: scale(0.98);
+}
+
+/* --- Productos relacionados --- */
+#productos_relacionados {
+    border-top: 1px solid #495057;
+    padding-top: 30px;
+    margin-top: 20px;
+}
+
+#productos_relacionados h3 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: left;
+}
+
+#rejilla_relacionados {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+/* Tarjetas de obras relacionadas (Estilo Card Dark) */
+#tarjeta_relacionada,
+.tarjeta_relacionada {
+    flex: 1 1 200px;
+    max-width: 250px;
+    min-width: 190px;
+    background-color: #2b3035;
+    border: 1px solid #495057;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    box-sizing: border-box;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+#tarjeta_relacionada:hover,
+.tarjeta_relacionada:hover {
+    transform: translateY(-4px);
+    border-color: #e0a96d;
+}
+
+#tarjeta_relacionada img,
+.tarjeta_relacionada img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #343a40;
+    margin-bottom: 10px;
+    display: block;
+}
+
+#tarjeta_relacionada h4,
+.tarjeta_relacionada h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+#tarjeta_relacionada p,
+.tarjeta_relacionada p {
+    color: #e0a96d;                       /* Precio de obras relacionadas en dorado */
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+#btn_ver_relacionado,
+.btn_ver_relacionado {
+    background: none;
+    border: none;
+    color: #ced4da;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+#btn_ver_relacionado:hover,
+.btn_ver_relacionado:hover {
+    color: #e0a96d;
+}
+
+/* Enlace/Pie interno alineado a la derecha */
+#foot_det_prod {
+    text-align: right !important;
+    margin-top: 20px;
+}
+
+/* Responsividad para pantallas móviles */
+@media (max-width: 768px) {
+    #detalle_prod1, 
+    #detalle_prod2,
+    #detalle_prod3, 
+    #detalle_prod4,
+    section[id^="detalle_prod"] {
+        padding: 20px 15px;
+        gap: 25px;
+    }
+
+    #rejilla_relacionados {
+        justify-content: center;
+    }
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* CARRITO */
+
+#car {
+    font-family: inherit;
+    margin: 0;
+    padding: 0;
+    background-color: #212529 !important;
+    background-image: none !important;
+    color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Contenedor central del carrito */
+#contenido_car {
+    width: 100%;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#titulo_seccion_car {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* Tarjetas individuales de productos en el carrito */
+section[id^="contenedor_prod_car"] {
+    background-image: none !important;
+    background-color: #2b3035 !important;
+    border: 1px solid #495057;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    color: #f8f9fa;
+    width: 340px;
+    max-width: 100%;
+    height: auto;
+    margin: 15px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+section[id^="contenedor_prod_car"]:hover {
+    border-color: #6c757d;
+}
+
+section[id^="contenedor_prod_car"] #contador_prod {
+    margin: 0;
+    padding: 0;
+}
+
+section[id^="contenedor_prod_car"] img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+    border: 1px solid #343a40;
+    margin: 12px 0;
+}
+
+section[id^="contenedor_prod_car"] h3 {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 6px 0;
+}
+
+section[id^="contenedor_prod_car"] h5[id^="precio_prod"] {
+    font-weight: 700 !important;
+    text-align: center !important;
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    color: #e0a96d !important; /* Resalte dorado */
+    margin: 4px 0;
+}
+
+/* Controles de incremento y decremento */
+section[id^="contenedor_prod_car"] #btns_cont_prod {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 14px auto;
+    justify-content: center;
+    width: 100%;
+}
+
+section[id^="contenedor_prod_car"] #btn_restar, 
+section[id^="contenedor_prod_car"] #btn_sumar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #495057;
+    transition: background-color 0.2s ease;
+}
+
+section[id^="contenedor_prod_car"] #btn_restar:hover, 
+section[id^="contenedor_prod_car"] #btn_sumar:hover {
+    background-color: #6c757d;
+}
+
+section[id^="contenedor_prod_car"] #numero_prod {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Enlace para quitar del carrito */
+#quitar_del_car {
+    text-align: right;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#quitar_del_car p {
+    margin: 0;
+}
+
+#quitar_del_car a {
+    color: #ea868f !important; 
+    text-decoration: underline;
+    font-size: 13px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+#quitar_del_car a:hover {
+    color: #dc3545 !important;
+}
+
+/* Bloque resumen y liquidación de compra */
+#bloque_pago_car {
+    width: 100%;
+    max-width: 340px;
+    margin: 20px 0 10px 0;
+    background-color: #1c1f23;
+    border: 1px solid #495057;
+    padding: 22px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+#bloque_pago_car #fila_subtotal,
+#bloque_pago_car #fila_envio,
+#bloque_pago_car #fila_total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 15px;
+    color: #dee2e6;
+}
+
+#bloque_pago_car #fila_total {
+    font-size: 17px;
+    font-weight: bold;
+    color: #ffffff;
+    padding-top: 6px;
+}
+
+/* Input y botón de cupón */
+#bloque_cupon {
+    display: flex;
+    gap: 8px;
+    margin: 15px 0;
+}
+
+#input_cupon {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #495057;
+    background-color: #2b3035;
+    color: #ffffff;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#input_cupon:focus {
+    border-color: #e0a96d;
+    box-shadow: 0 0 0 0.2rem rgba(224, 169, 109, 0.25);
+}
+
+#input_cupon::placeholder {
+    color: #6c757d;
+}
+
+#btn_aplicar_cupon {
+    background-color: #495057;
+    color: #ffffff;
+    border: 1px solid #6c757d;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+#btn_aplicar_cupon:hover {
+    background-color: #6c757d;
+}
+
+/* Botón 'finalizar compra' */
+#bloque_pago_car #btn_confirmar_compra {
+    width: 100%;
+    padding: 12px 16px;
+    margin-top: 15px;
+    background-color: #e0a96d; /* Dorado AtelierStudio */
+    color: #111418;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    display: block;
+}
+
+#bloque_pago_car #btn_confirmar_compra:hover {
+    background-color: #d49857;
+}
+
+#bloque_pago_car #btn_confirmar_compra:active {
+    transform: scale(0.98);
+}
+
+/* Enlace inferior de volver al catálogo */
+#volver_catalogo_car {
+    width: 100%;
+    max-width: 340px;
+    text-align: right;
+    margin: 15px 0 0 0;
+}
+
+#volver_catalogo_car a {
+    color: #e0a96d;
+    text-decoration: underline;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+#volver_catalogo_car a:hover {
+    color: #f3c28c;
+}
+
+/* Pie de página */
+#pie_pag_car {
+    width: 100%;
+    min-height: 90px;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* MODIFICACIÓN BOOTSTRAP: Quita fondopiedepagina.jpg */
+    background-image: none !important;
+    background-color: #0f1115 !important;
+    border-top: 1px solid #343a40;
+    color: #adb5bd;
+    margin-top: auto;
+}
+
+#pie_pag_car p {
+    margin: 2px 0;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* BÚSQUEDA */
+
+.busq {
+    font-family: inherit;
+    margin: 0;
+    padding: 0;
+    background-color: #212529 !important; 
+    background-image: none !important;    
+    color: #f8f9fa;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Layout general de búsqueda */
+.contenedor_busq_layout {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1300px;
+    margin: 30px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    gap: 25px;
+    flex: 1;                              
+}
+
+/* Barra lateral izquierda */
+.sidebar_busq {
+    width: 250px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #2b3035 !important;
+    border: 1px solid #495057;
+    border-radius: 10px;
+    padding: 20px 15px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    box-sizing: border-box;
+}
+
+/* Enlaces y botones del menú lateral */
+.sidebar_busq .item_menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ced4da;
+    text-decoration: none;
+    padding: 10px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+.sidebar_busq .item_menu:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+}
+
+/* Elemento de filtro activo */
+.sidebar_busq .item_menu.activo {
+    background-color: rgba(224, 169, 109, 0.15);
+    border-left: 3px solid #e0a96d;       
+    color: #e0a96d;                        
+    font-weight: 600;
+}
+
+/* Botón Ver Detalles dentro del sidebar */
+.btn_det_busq {
+    background-color: #e0a96d;
+    color: #111418;
+    
+    border: none;
+    border-radius: 6px;
+    width: 160px;
+    max-width: 85%;
+    padding: 8px 16px;
+    margin: 15px auto 20px auto;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color 0.2s ease;
+    text-align: center;
+    display: block;
+    
+}
+
+.btn_det_busq:hover {
+    background-color: #d49857;
+}
+
+.link_det_busq {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+
+/* Área de resultados */
+.contenido_principal_busq {
+    flex-grow: 1;
+    min-width: 0;
+    background-color: #1c1f23;
+    border: 1px solid #343a40;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    color: #f8f9fa;
+    box-sizing: border-box;
+    text-align: left !important;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch !important;
+}
+
+/* Campo de entrada y botón de búsqueda */
+.barra_input_busqueda {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.input_busq_texto {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid #495057;
+    background-color: #2b3035;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input_busq_texto:focus {
+    border-color: #e0a96d;
+    box-shadow: 0 0 0 0.2rem rgba(224, 169, 109, 0.25);
+}
+
+.input_busq_texto::placeholder {
+    color: #6c757d;
+}
+
+.btn_ejecutar_busq {
+    background-color: #e0a96d;
+    color: #111418;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 22px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.btn_ejecutar_busq:hover {
+    background-color: #d49857;
+}
+
+.titulo_res_busq {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 8px;
+    text-align: justify;
+}
+
+/* Grilla y tarjetas de resultados */
+.grilla_resultados_busq {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.tarjeta_res_busq {
+    background-image: none !important;
+    background-color: #2b3035 !important;
+    border: 1px solid #495057;
+    color: #f8f9fa;
+    flex: 0 0 200px;
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+    padding: 14px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.tarjeta_res_busq:hover {
+    transform: translateY(-4px);
+    border-color: #e0a96d;
+}
+
+.tarjeta_res_busq img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #343a40;
+    margin-bottom: 10px;
+}
+
+.tarjeta_res_busq h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 4px 0;
+    text-align: center;
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+    .contenedor_busq_layout {
+        flex-direction: column;
+    }
+
+    .sidebar_busq {
+        width: 100%;
+    }
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* FORO */
+
+.foro {
+    font-family: inherit;
+    margin: 0;
+    padding: 0;
+    background-color: #212529 !important;
+    background-image: none !important;  
+    color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Contenedor principal de 'foro' */
+.contenido_foro {
+    width: 100%;
+    max-width: 950px;
+    margin: 30px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    flex: 1;                            
+}
+
+/* Caja para crear nuevo tema */
+.caja_nuevo_tema {
+    background-color: #2b3035 !important;
+    border: 1px solid #495057;
+    border-radius: 10px;
+    padding: 25px 30px;
+    margin-bottom: 35px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.caja_nuevo_tema h3 {
+    margin-top: 0;
+    color: #e0a96d;                      
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.caja_nuevo_tema p {
+    font-size: 14px;
+    color: #ced4da;
+    margin-bottom: 20px;
+    text-align: justify;
+    line-height: 1.6;
+}
+
+/* Formulario de nuevo tema */
+.form_nuevo_post div {
+    margin-bottom: 16px;
+}
+
+.form_nuevo_post label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #dee2e6;
+}
+
+/* Inputs, selects y textareas estilizados en modo oscuro */
+.form_nuevo_post input,
+.form_nuevo_post select,
+.form_nuevo_post textarea {
+    width: 100%;
+    padding: 10px 14px;
+    background-color: #212529;           
+    color: #ffffff;
+    border: 1px solid #495057;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form_nuevo_post input:focus,
+.form_nuevo_post select:focus,
+.form_nuevo_post textarea:focus {
+    border-color: #e0a96d;
+    box-shadow: 0 0 0 0.2rem rgba(224, 169, 109, 0.25);
+}
+
+.form_nuevo_post textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Botón 'publicar tema' */
+.btn_publicar_foro {
+    padding: 10px 28px;
+    background-color: #e0a96d;          
+    color: #111418;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    font-family: inherit;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn_publicar_foro:hover {
+    background-color: #d49857;
+}
+
+.btn_publicar_foro:active {
+    transform: scale(0.98);
+}
+
+/* Lista de debates */
+.subtitulo_debates {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #495057;     /* Línea divisoria sobria */
+    padding-bottom: 8px;
+    color: #ffffff;
+}
+
+/* Tarjeta individual de cada debate */
+.tarjeta_debate {
+    background-image: none !important;
+    background-color: #2b3035 !important;
+    border: 1px solid #495057;
+    border-radius: 10px;
+    color: #f8f9fa;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    transition: border-color 0.2s ease;
+}
+
+.tarjeta_debate:hover {
+    border-color: #6c757d;
+}
+
+/* Columna del autor */
+.autor_debate {
+    margin: 0;
+    text-align: center;
+    flex-shrink: 0;
+    width: 90px;
+}
+
+.autor_debate img {
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #e0a96d;            
+    display: block;
+    margin: 0 auto 6px auto;
+}
+
+.autor_debate figcaption {
+    font-size: 12px;
+    color: #ced4da;
+}
+
+/* Contenido del debate */
+.cuerpo_debate {
+    flex-grow: 1;
+}
+
+.cuerpo_debate h4 {
+    margin: 0 0 6px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* Badge de categoría */
+.badge_categoria {
+    display: inline-block;
+    background-color: rgba(224, 169, 109, 0.15);
+    border: 1px solid rgba(224, 169, 109, 0.4);
+    color: #e0a96d;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.cuerpo_debate p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 0 14px 0;
+    text-align: justify;
+    color: #dee2e6;
+}
+
+/* Pie de cada debate */
+.pie_debate {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #343a40;
+    padding-top: 10px;
+}
+
+.pie_debate small {
+    color: #adb5bd;
+    font-size: 12px;
+}
+
+.enlace_responder {
+    color: #e0a96d;                   
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.enlace_responder:hover {
+    color: #f3c28c;
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 600px) {
+    .tarjeta_debate {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .autor_debate {
+        width: 100%;
+    }
+
+    .cuerpo_debate {
+        width: 100%;
+        text-align: center;
+    }
+
+    .cuerpo_debate p {
+        text-align: justify;
+    }
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* BLOGS */
+
+.blog {
+    font-family: inherit;
+    margin: 0;
+    padding: 0;
+    background-color: #212529 !important; 
+    background-image: none !important;   
+    color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+}
+
+/* Contenedor principal de Blogs */
+.contenido_blog {
+    width: 100%;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    flex: 1;                           
+}
+
+/* Encabezado o títulos de cada caso del blog */
+.contenido_blog h2,
+.contenido_blog h3 {
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Párrafos del blog bien justificados con interlineado de lectura */
+.contenido_blog p {
+    text-align: justify !important;
+    text-justify: inter-word;
+    line-height: 1.7;
+    font-size: 15px;
+    color: #dee2e6;
+    margin-bottom: 16px;
+}
+
+/* Estructura de cada artículo o caso */
+.caso {
+    background-color: #2b3035;
+    border: 1px solid #495057;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 35px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    box-sizing: border-box;
+}
+
+/* Imágenes dentro de cada caso de blog */
+.caso .img1,
+.caso .img2 {
+    width: 100%;
+    max-width: 600px;                    
+    height: auto;
+    display: block;
+    margin: 20px auto;                   
+    border-radius: 8px;
+    border: 1px solid #343a40;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    object-fit: cover;
+}
+
+/* Botones para ingresar a cada caso */
+.btn_caso1,
+.btn_caso2 {
+    display: flex;
+    justify-content: flex-end;          
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn_caso1 a,
+.btn_caso2 a {
+    color: #e0a96d !important;       
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.btn_caso1 a:hover,
+.btn_caso2 a:hover {
+    color: #f3c28c !important;
+}
+
+/* Separadores entre publicaciones */
+.contenido_blog hr {
+    border-color: rgba(255, 255, 255, 0.15);
+    margin: 30px 0;
+}
+
+.titulo_caso {
+    font-size: 18px;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* DETALLE CASO #1 y CASO #2 */
+
+/* ==========================================================================
+   DETALLE DEL BLOG #1 & #2 (Estandarizado con componentes y estilo Bootstrap)
+   ========================================================================== */
+
+/* MODIFICACIÓN: Contenedores generales que respetan el fondo oscuro del bloque general */
+.det_blog1,
+.det_blog2 {
+    font-family: inherit;
+    margin: 0;
+    padding: 0;
+    background-color: #212529 !important; /* Bootstrap $dark */
+    background-image: none !important;    /* MODIFICACIÓN: Quita fondogeneral.jpg */
+    color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* NOTA: .titulo_det_blog1, .titulo_det_blog2, .pie_pag_det_blog1 y .pie_pag_det_blog2
+   se controlan de forma centralizada desde el bloque general unificado superior */
+
+/* Contenedores principales de lectura */
+.cont_det_blog1,
+.cont_det_blog2 {
+    width: 100%;
+    max-width: 900px;
+    margin: 35px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    flex: 1;                              /* Empuja el pie de página hacia el fondo */
+}
+
+/* Tarjeta estructurada para cada caso de blog (Estilo Card Dark de Bootstrap) */
+.det_caso1,
+.det_caso2 {
+    background-color: #2b3035;            /* Fondo de tarjeta oscura Bootstrap */
+    border: 1px solid #495057;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    box-sizing: border-box;
+    margin-bottom: 30px;
+}
+
+/* Títulos de los casos */
+.info_det_blog1 .titulo_det_caso1,
+.info_det_blog2 .titulo_det_caso2 {
+    margin: 0 0 20px 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.4;
+    text-align: left;
+}
+
+/* Subtítulos o acápites secundarios */
+.info_det_blog1 h4,
+.info_det_blog2 h4 {
+    color: #e0a96d;                       /* Acento dorado institucional */
+    font-size: 18px;
+    font-weight: 600;
+    margin: 25px 0 12px 0;
+}
+
+/* Párrafos de lectura justificados con interlineado cómodo */
+.info_det_blog1 p,
+.info_det_blog2 p {
+    text-align: justify !important;
+    text-justify: inter-word;
+    line-height: 1.7;
+    font-size: 15px;
+    color: #dee2e6;
+    margin-bottom: 16px;
+}
+
+/* Imágenes dentro del detalle del artículo */
+.det_caso1 .img1,
+.det_caso2 .img2 {
+    width: 100%;
+    max-width: 650px;
+    height: auto;
+    max-height: 420px;
+    object-fit: cover;
+    display: block;
+    margin: 25px auto;                    /* Centradas horizontalmente */
+    border-radius: 8px;
+    border: 1px solid #495057;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Separadores internos sutiles */
+.det_caso1 hr,
+.det_caso2 hr {
+    border-color: rgba(255, 255, 255, 0.15);
+    margin: 25px 0;
+}
+
+/* Enlaces inferiores / pies del caso (Volver a blogs o cerrar sesión alineados a la derecha) */
+.foot_det_caso1,
+.foot_det_caso2 {
+    text-align: right !important;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.foot_det_caso1 a,
+.foot_det_caso2 a {
+    color: #e0a96d !important;            /* Dorado AtelierStudio */
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.foot_det_caso1 a:hover,
+.foot_det_caso2 a:hover {
+    color: #f3c28c !important;
+}
+
+/* Responsividad para pantallas móviles */
+@media (max-width: 768px) {
+    .det_caso1,
+    .det_caso2 {
+        padding: 20px 15px;
+    }
+
+    .info_det_blog1 .titulo_det_caso1,
+    .info_det_blog2 .titulo_det_caso2 {
+        font-size: 20px;
+    }
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* CONTACTO */
+
+.ayuda {
+    font-family: inherit;
+    margin: 0;
+    padding: 0;
+    background-color: #212529 !important; 
+    background-image: none !important;    
+    color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Contenedor principal de Contacto */
+.contenido_ayuda {
+    width: 90%;
+    max-width: 850px;
+    margin: 35px auto;
+    box-sizing: border-box;
+    flex: 1;                             
+}
+
+/* Presentación y bienvenida superior */
+.presentacion_ayuda {
+    margin-bottom: 30px;
+    text-align: center;
+    color: #f8f9fa;
+}
+
+.logo_ayuda {
+    width: 160px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 15px auto;
+}
+
+.presentacion_ayuda h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    color: #ffffff;
+    text-shadow: none;            
+}
+
+.presentacion_ayuda p {
+    font-size: 16px;
+    color: #ced4da;
+    text-shadow: none;
+    margin-bottom: 10px;
+}
+
+.descr_ayuda {
+    font-size: 14px;
+    color: #adb5bd;
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Tarjeta del formulario */
+.contenedor_formulario_ayuda {
+    max-width: 650px;
+    margin: 30px auto;
+    padding: 30px 25px;
+    background-color: #2b3035 !important;
+    border: 1px solid #495057;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    box-sizing: border-box;
+}
+
+/* Título de cabecera del formulario */
+.contenedor_formulario_ayuda h2,
+.contenedor_formulario_ayuda .tit_form_ayuda {
+    margin: -30px -25px 25px -25px;
+    padding: 14px 20px;
+    color: #e0a96d;                       
+    background-color: #1c1f23;            
+    border-bottom: 1px solid #495057;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Aviso de campos obligatorios */
+.aviso_obligatorio {
+    color: #adb5bd;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #343a40;
+    padding-bottom: 8px;
+}
+
+/* Campos del formulario */
+.campo_ayuda {
+    margin-bottom: 20px;
+}
+
+.campo_ayuda label {
+    display: block;
+    margin-bottom: 7px;
+    color: #dee2e6;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+}
+
+/* Inputs y textarea adaptados al tema oscuro */
+.campo_ayuda input,
+.campo_ayuda textarea {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 10px 14px;
+    background-color: #212529;           
+    color: #ffffff;
+    border: 1px solid #495057;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campo_ayuda input:focus,
+.campo_ayuda textarea:focus {
+    border-color: #e0a96d;
+    box-shadow: 0 0 0 0.2rem rgba(224, 169, 109, 0.25);
+}
+
+.campo_ayuda textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+/* Texto explicativo / ayuda */
+.texto_ayuda {
+    display: block;
+    margin-top: 6px;
+    color: #adb5bd;
+    text-align: left;
+    font-size: 12px;
+}
+
+/* Asterisco de campos obligatorios */
+.obligatorio {
+    color: #ea868f;                       
+    background-color: transparent;
+    padding: 0 3px;
+    font-weight: bold;
+}
+
+/* Mensajes de error de validación */
+.formulario_ayuda small[id="error"]:not(:empty) {
+    display: block;
+    margin-top: 6px;
+    padding: 6px 10px;
+    color: #ea868f;
+    background-color: rgba(220, 53, 69, 0.15);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: left;
+}
+
+/* Botón para enviar el mensaje */
+.boton_ayuda {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.boton_ayuda button {
+    padding: 11px 36px;
+    color: #111418;
+    background-color: #e0a96d;          
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.boton_ayuda button:hover {
+    background-color: #d49857;
+}
+
+.boton_ayuda button:active {
+    transform: scale(0.98);
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    .contenido_ayuda {
+        width: 95%;
+        margin-top: 20px;
+    }
+
+    .contenedor_formulario_ayuda {
+        padding: 20px 15px;
+    }
+
+    .contenedor_formulario_ayuda h2,
+    .contenedor_formulario_ayuda .tit_form_ayuda {
+        margin: -20px -15px 20px -15px;
+    }
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/*  */
+

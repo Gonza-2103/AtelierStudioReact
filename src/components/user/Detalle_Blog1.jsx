@@ -1,28 +1,30 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/user.css';
 import logo from '../../assets/atelierstudiologo.png';
 import pigmentos from '../../assets/pigmentos.jpeg';
 
 function Detalle_Blog1() {
+    const navigate = useNavigate();
+
     return (
         <div className="det_blog1">
 
             {/* Título de 'detalle de blog #1', logo y botones */}
             <header className="titulo_det_blog1">
                 <figure className="titlogo">
-                    <img src={logo} alt="Logo AtelierStudio" />
+                    <img src={logo} alt="AtelierStudio Logo" />
                     <h2>Blogs</h2>
                 </figure>
 
                 <figure className="btns_nav_det_blog1">
-                    <Link to="/" className="nav_btn"><strong>Portada</strong></Link>
-                    <Link to="/nosotros" className="nav_btn"><strong>Nosotros</strong></Link>
-                    <Link to="/productos" className="nav_btn"><strong>Productos</strong></Link>
-                    <Link to="/carrito" className="nav_btn"><strong>Carrito</strong></Link>
-                    <Link to="/busqueda" className="nav_btn"><strong>Búsqueda</strong></Link>
-                    <Link to="/foro" className="nav_btn"><strong>Foro</strong></Link>
-                    <Link to="/contacto" className="nav_btn"><strong>Contacto</strong></Link>
+                    <button className="nav_btn" onClick={() => navigate('/')}><strong>Portada</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/nosotros')}><strong>Nosotros</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/productos')}><strong>Productos</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/carrito')}><strong>Carrito</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/busqueda')}><strong>Búsqueda</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/foro')}><strong>Foro</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/contacto')}><strong>Contacto</strong></button>
                 </figure>
             </header>
 
@@ -36,7 +38,7 @@ function Detalle_Blog1() {
 
                         <br />
                         <div className="img_det_caso1">
-                            <img src={pigmentos} alt="Pigmentos naturales" className="img1" style={{ width: '50%' }} />
+                            <img src={pigmentos} className="img1" style={{ width: '50%' }} alt="Pigmentos" />
                         </div>
 
                         <section className="cont_det_caso1">
@@ -65,13 +67,7 @@ function Detalle_Blog1() {
                         <br />
                         <hr style={{ borderColor: 'white' }} />
                         <footer className="foot_det_caso1">
-                            <p>
-                                <strong>
-                                    <Link to="/blogs" style={{ color: 'goldenrod', textDecoration: 'underline' }}>
-                                        Volver &#x21A9;
-                                    </Link>
-                                </strong>
-                            </p>
+                            <p><strong><a href="#" onClick={(e) => { e.preventDefault(); navigate('/blogs'); }} style={{ color: 'goldenrod', textDecoration: 'underline' }}>Volver &hookleftarrow;</a></strong></p>
                         </footer>
                     </article>
                 </section>

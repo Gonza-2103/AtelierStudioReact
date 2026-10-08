@@ -1,61 +1,104 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/user.css';
 import logo from '../../assets/atelierstudiologo.png';
+import imgMision from '../../assets/mision.jpg';
+import imgGeraldinne from '../../assets/geraldinne.jpg';
+import imgGonza from '../../assets/gonza.jpg';
 
 function Nosotros() {
-    return (
-        <div id="nosotros_page">
+    const navigate = useNavigate();
 
-            {/* Encabezado y barra de navegación */}
-            <header id="titulo_port">
-                <figure id="titlogo">
-                    <img src={logo} alt="Logo AtelierStudio" />
+    return (
+        <div className="nos">
+
+            {/* Título de 'nosotros', logo y botones */}
+            <header className="titulo_nos">
+
+                {/* Título y logo */}
+                <figure className="titlogo">
+                    <img src={logo} alt="Logo de AtelierStudio" />
                     <h2>Nosotros</h2>
                 </figure>
 
-                <figure id="btns_navegacion_port">
-                    <Link to="/" className="nav_btn"><strong>Inicio</strong></Link>
-                    <Link to="/nosotros" className="nav_btn"><strong>Nosotros</strong></Link>
-                    <Link to="/productos" className="nav_btn"><strong>Productos</strong></Link>
-                    <Link to="/carrito" className="nav_btn"><strong>Carrito</strong></Link>
-                    <Link to="/busqueda" className="nav_btn"><strong>Búsqueda</strong></Link>
-                    <Link to="/foro" className="nav_btn"><strong>Foro</strong></Link>
-                    <Link to="/blogs" className="nav_btn"><strong>Blogs</strong></Link>
-                    <Link to="/contacto" className="nav_btn"><strong>Contacto</strong></Link>
+                {/* Botones de navegación enlazados */}
+                <figure className="btns_nav_nos">
+                    <button className="nav_btn" onClick={() => navigate('/')}><strong>Portada</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/productos')}><strong>Productos</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/carrito')}><strong>Carrito</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/busqueda')}><strong>Búsqueda</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/foro')}><strong>Foro</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/blogs')}><strong>Blogs</strong></button>
+                    <button className="nav_btn" onClick={() => navigate('/contacto')}><strong>Contacto</strong></button>
                 </figure>
             </header>
 
-            {/* Contenido principal sobre la identidad de AtelierStudio */}
-            <main id="contenido_port" className="container my-4">
-                <h3 id="titulo_cont_port">Sobre AtelierStudio</h3>
-                <hr style={{ borderColor: 'white' }} />
+            {/* Contenido principal */}
+            <main className="contenido_nos container">
 
-                <section className="nosotros_descripcion">
-                    <p>
-                        En <strong>AtelierStudio</strong> creemos firmemente que el arte auténtico nace de manos independientes. 
-                        Nuestra misión es conectar a artistas visuales emergentes con coleccionistas y apasionados del arte que 
-                        buscan piezas originales, con identidad y carácter único.
-                    </p>
-                    <p>
-                        Promovemos un comercio justo y transparente donde cada obra cuenta una historia viva y respalda 
-                        directamente el trabajo manual, desde técnicas tradicionales de óleo y acuarela hasta ilustraciones 
-                        y técnicas contemporáneas.
-                    </p>
+                {/* Sección sobre la galería */}
+                <section className="sobre_nos">
+                    <div className="logo_sobre_nos">
+                        <img src={logo} alt="Logo de AtelierStudio" className="img_sobre img-fluid" />
+                        <div className="info_sobre_nos">
+                            <p>
+                                Nacemos de la convicción de que el arte transforma espacios y conecta historias. <strong>AtelierStudio</strong> funciona como un puente digital entre artistas independientes contemporáneos y coleccionistas o entusiastas del arte visual.
+                            </p>
+                            <p>
+                                Inspirados en la esencia del <em>Atelier</em>, el taller artesanal donde habita la técnica, y el <em>Studio</em>, el espacio de creación contemporánea, creamos una galería en línea para acceder a obras originales, esculturas y grabados con sello de autenticidad.
+                            </p>
+                        </div>
+                    </div>
                 </section>
 
-                <br />
-                <hr style={{ borderColor: 'white' }} />
+                {/* Sección de misión */}
+                <section className="mision_nos">
+                    <br />
+                    <br />
+                    <hr style={{ borderColor: 'white' }} />
+                    <h3 className="titulo_mision_nos">Nuestra Misión</h3>
+                    <div className="img_mision_nos">
+                        {/* Imagen real de misión */}
+                        <img src={imgMision} alt="Representación de la misión de AtelierStudio" className="img_mision img-fluid" />
+                        <div className="info_mision_nos">
+                            <br />
+                            <p>
+                                Buscamos democratizar el acceso al arte independiente de alta calidad, derribando las barreras tradicionales del mercado cultural. Nuestro propósito es brindar una plataforma justa, visible y transparente tanto a talentos emergentes como a creadores consolidados, reconociendo el valor de su trabajo y conectándolos de manera directa con una comunidad abierta y entusiasta. Creemos firmemente en el poder transformador de la creatividad y trabajamos para que cada obra trascienda, encontrando un espacio significativo donde inspire, comunique y sea verdaderamente apreciada.
+                            </p>
+                        </div>
+                    </div>
+                </section>
 
-                <div className="text-center my-3">
-                    <Link to="/login" style={{ color: 'goldenrod', textDecoration: 'underline' }}>
-                        <strong>Iniciar sesión &#x23FB;</strong>
-                    </Link>
-                </div>
+                {/* Sección del equipo desarrollador */}
+                <section className="equipo_nos">
+                    <br />
+                    <br />
+                    <hr style={{ borderColor: 'white' }} />
+                    <h3 className="titulo_equipo_nos">Equipo Desarrollador</h3>
+                    <p className="intro_equipo_nos">Detrás de este trabajo hay un equipo comprometido y multidisciplinario que unió su talento para darle forma a este proyecto desde cero:</p>
+                    
+                    <div className="equipo_desa_nos row justify-content-center gap-4">
+
+                        {/* Integrante #1: Geraldinne */}
+                        <article className="equipo_nos_int1 col-12 col-md-5">
+                            <h4 className="nom_int1">Geraldinne González</h4>
+                            <img src={imgGeraldinne} alt="Geraldinne González" />
+                            <p className="resp_int1">Responsable de la maquetación y arquitectura semántica en HTML5.</p>
+                        </article>
+
+                        {/* Integrante #2: Gonzalo */}
+                        <article className="equipo_nos_int2 col-12 col-md-5">
+                            <h4 className="nom_int2">Gonzalo Hormazábal</h4>
+                            <img src={imgGonza} alt="Gonzalo Hormazábal" />
+                            <p className="resp_int2">Encargado de la lógica interactiva, validaciones de formularios y persistencia de datos.</p>
+                        </article>
+
+                    </div>
+                </section>
             </main>
 
-            {/* Pie de página */}
-            <footer id="pie_pag_port">
+            {/* Pie de página informativo */}
+            <footer className="pie_pag_nos">
                 <p>Viña del Mar, Chile.</p>
                 <p><strong>&copy; 2026 AtelierStudio - Galería y Plataforma de Arte Independiente.</strong></p>
                 <br />
