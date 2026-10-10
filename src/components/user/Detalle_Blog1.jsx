@@ -14,7 +14,7 @@ function Detalle_Blog1() {
             <header className="titulo_det_blog1">
                 <figure className="titlogo">
                     <img src={logo} alt="AtelierStudio Logo" />
-                    <h2>Blogs</h2>
+                    <h2>BLOGS</h2>
                 </figure>
 
                 <figure className="btns_nav_det_blog1">
@@ -33,7 +33,7 @@ function Detalle_Blog1() {
                     <article className="det_caso1">
                         <header className="info_det_blog1">
                             <h3 className="titulo_det_caso1">CASO CURIOSO #1:</h3>
-                            <h3 className="titulo_det_caso1">El Secreto de los Pigmentos Naturales</h3>
+                            <h3 className="subtitulo_det_caso1">El Secreto de los Pigmentos Naturales</h3>
                         </header>
 
                         <br />
@@ -43,12 +43,15 @@ function Detalle_Blog1() {
 
                         <section className="cont_det_caso1">
                             <br />
-                            <br />
                             <hr style={{ borderColor: 'white' }} />
                             <h3>¿Por qué las pinturas del renacimiento cambiaban de color?</h3>
+                            <br />
                             <p>
                                 Durante los siglos XV y XVI, los grandes maestros de la pintura no contaban con pigmentos sintéticos ni tubos de pintura industriales. Cada artista o su aprendiz debía moler minerales, piedras semipreciosas como el lapislázuli, y resinas vegetales en el propio taller para mezclar con aceite de linaza.
                             </p>
+
+                            <br />
+
                             <p>
                                 Con el paso de las décadas, la reacción química del aceite expuesto al aire y a la luz UV provocaba que colores como el azul ultramar o los verdes resinosos mutaran gradualmente, otorgándole a las obras una pátina única y viva que evolucionaba con el tiempo.
                             </p>
@@ -56,9 +59,13 @@ function Detalle_Blog1() {
                             <br />
                             <hr style={{ borderColor: 'white' }} />
                             <h3>Rescate de la técnica en los talleres contemporáneos</h3>
+                            <br />
                             <p>
                                 En la actualidad, diversos artistas independientes que colaboran con <b>AtelierStudio</b> han vuelto a elaborar sus propios óleos a partir de tierras naturales y pigmentos orgánicos no tóxicos. Esta búsqueda busca recuperar la textura, la durabilidad y el alma artesanal que la producción masiva ha perdido.
                             </p>
+
+                            <br />
+
                             <p>
                                 Adquirir una obra elaborada con pigmentos orgánicos no es solo comprar una pieza decorativa; es llevar a tu hogar una pieza viva que continuará madurando con el paso de los años.
                             </p>
@@ -67,7 +74,7 @@ function Detalle_Blog1() {
                         <br />
                         <hr style={{ borderColor: 'white' }} />
                         <footer className="foot_det_caso1">
-                            <p><strong><a href="#" onClick={(e) => { e.preventDefault(); navigate('/blogs'); }} style={{ color: 'goldenrod', textDecoration: 'underline' }}>Volver &hookleftarrow;</a></strong></p>
+                            <p><strong><a href="#" onClick={(e) => { e.preventDefault(); navigate('/blogs'); }} style={{ color: 'goldenrod', textDecoration: 'underline' }}>Volver &#x21A9;</a></strong></p>
                         </footer>
                     </article>
                 </section>

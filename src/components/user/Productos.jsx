@@ -23,7 +23,7 @@ function Productos() {
                 {/* Título y logo */}
                 <figure id="titlogo">
                     <img src={logo} alt="AtelierStudio Logo" />
-                    <h2>Productos</h2>
+                    <h2>PRODUCTOS</h2>
                 </figure>
 
                 {/* Botones de navegación */}

@@ -17,22 +17,12 @@ import Detalle_Producto from './components/user/Detalle_Producto';
 import Login from './components/user/Login';
 import Registro_Usuario from './components/user/Registro_Usuario';
 
-<<<<<<< HEAD
-// Componentes de administración
-import InicioAdmin from './pages/admin/InicioAdmin'
-import ProductosAdmin from './pages/admin/ProductosAdmin'
-import UsuariosAdmin from './pages/admin/UsuariosAdmin'
-import NuevoProducto from './pages/admin/NuevoProducto'
-import EditarProducto from './pages/admin/EditarProducto'
-import DetalleProducto from './pages/admin/DetalleProducto'
-=======
 //Rutas de administración existentes 
 import InicioAdmin from './pages/admin/InicioAdmin';
 import ProductosAdmin from './pages/admin/ProductosAdmin';
 import UsuariosAdmin from './pages/admin/UsuariosAdmin';
 import EditarProducto from './pages/admin/EditarProducto';
 import NuevoProducto from './pages/admin/NuevoProducto';
->>>>>>> 51355f5f9874c4190f96cdd1337e72bdffab737a
 
 function App() {
     return (
@@ -60,10 +50,6 @@ function App() {
             <Route path="/admin/usuarios" element={<UsuariosAdmin />} />
             <Route path="/admin/productos/nuevo" element={<NuevoProducto />} />
             <Route path="/admin/productos/editar/:id" element={<EditarProducto />} />
-<<<<<<< HEAD
-            <Route path="/admin/productos/detalle/:id" element={<DetalleProducto />} />
-=======
->>>>>>> 51355f5f9874c4190f96cdd1337e72bdffab737a
         </Routes>
     );
 }

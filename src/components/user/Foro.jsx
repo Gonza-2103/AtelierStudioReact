@@ -20,7 +20,7 @@ function Foro() {
                 {/* Título y logo */}
                 <figure className="titlogo">
                     <img src={logo} alt="AtelierStudio Logo" />
-                    <h2>Foro</h2>
+                    <h2>FORO</h2>
                 </figure>
 
                 {/* Botones de navegación */}
@@ -48,7 +48,7 @@ function Foro() {
                         <div>
                             <br />
                             <label htmlFor="titulo_tema"><strong>Título del tema:</strong></label>
-                            <input type="text" id="titulo_tema" name="titulo_tema" placeholder="Comparte tu idea: Propone un título a la conversación." value={titulo} onChange={(e) => setTitulo(e.target.value)} />
+                            <input type="text" id="titulo_tema" name="titulo_tema" placeholder="Ingrese un título a la conversación." value={titulo} onChange={(e) => setTitulo(e.target.value)} />
                         </div>
 
                         <div>
@@ -71,6 +71,8 @@ function Foro() {
                     </form>
                 </section>
 
+                <hr />
+                <br />
                 {/* Lista de debates y opiniones comunitarias */}
                 <section className="lista_temas_foro">
                     <h3 className="subtitulo_debates">Opiniones Recientes</h3>

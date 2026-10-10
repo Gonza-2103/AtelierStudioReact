@@ -21,7 +21,7 @@ function Contacto() {
             <header className="titulo_ayuda">
                 <figure className="titlogo">
                     <img src={logo} alt="Logo de AtelierStudio" />
-                    <h2>Contacto</h2>
+                    <h2>CONTACTO</h2>
                 </figure>
                 <figure className="btns_navegacion_ayuda">
                     <button className="nav_btn" onClick={() => navigate('/')}><strong>Portada</strong></button>
@@ -36,22 +36,14 @@ function Contacto() {
 
             {/* Contenido principal */}
             <main className="contenido_ayuda">
-                <section className="presentacion_ayuda">
-                    <img src={logo} alt="Logo de AtelierStudio" className="logo_ayuda" />
-                </section>
-
-                <div className="descr_ayuda">
-                    <p>Envíanos tu consulta y te responderemos a la brevedad.</p>
-                </div>
-
+                
                 {/* Formulario de contacto */}
                 <section className="contenedor_formulario_ayuda">
                     <p className="tit_form_ayuda">Formulario</p>
-                    <br />
-                    <hr style={{ borderColor: 'black' }} />
 
                     <form id="formAyuda" className="formulario_ayuda" onSubmit={handleSubmit} noValidate>
-                        <p className="aviso_obligatorio" style={{ color: 'black' }}><span className="obligatorio">*</span>Campos obligatorios</p>
+                        <p className="aviso_obligatorio" style={{ color: 'white' }}><span className="obligatorio">*</span>Campos obligatorios</p>
+                        <br />
 
                         {/* Nombre */}
                         <div className="campo_ayuda">

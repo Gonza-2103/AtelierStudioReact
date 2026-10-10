@@ -14,7 +14,7 @@ function Detalle_Blog2() {
             <header className="titulo_det_blog2">
                 <figure className="titlogo">
                     <img src={logo} alt="AtelierStudio Logo" />
-                    <h2>Blogs</h2>
+                    <h2>BLOGS</h2>
                 </figure>
 
                 <figure className="btns_nav_det_blog2">
@@ -33,7 +33,7 @@ function Detalle_Blog2() {
                     <article className="det_caso2">
                         <header className="info_det_blog2">
                             <h3 className="titulo_det_caso2">CASO CURIOSO #2:</h3>
-                            <h3 className="titulo_det_caso2">El Impacto de la Luz Solar Natural en las Acuarelas</h3>
+                            <h3 className="subtitulo_det_caso2">El Impacto de la Luz Solar Natural en las Acuarelas</h3>
                         </header>
 
                         <br />
@@ -43,9 +43,9 @@ function Detalle_Blog2() {
 
                         <section className="cont_det_caso2">
                             <br />
-                            <br />
                             <hr style={{ borderColor: 'white' }} />
                             <h3>Un secreto guardado por siglos en el arte en papel</h3>
+                            <br />
                             <p>
                                 A diferencia de la pintura al óleo, la acuarela y los grabados
                                 sobre papel absorben el pigmento directamente en sus fibras de
@@ -53,6 +53,9 @@ function Detalle_Blog2() {
                                 extraordinarias, pero también muy sensibles a la luz solar
                                 directa.
                             </p>
+
+                            <br />
+
                             <p>
                                 Durante siglos, los coleccionistas guardaban sus manuscritos e
                                 ilustraciones en carpetas de cuero que solo se abrían en
@@ -64,27 +67,39 @@ function Detalle_Blog2() {
                             <br />
                             <hr style={{ borderColor: 'white' }} />
                             <h3>¿Cómo proteger tus obras en el hogar?</h3>
+                            <br />
                             <p>
                                 Como personal de <strong>AtelierStudio</strong> nos 
                                 aseguramos de que cada obra en papel y grabado original 
                                 mantenga su identidad y brillo, exactamente tal como 
                                 nuevo desde el primer día.
                             </p>
+
+                            <br />
+
                             <p>
                                 Por lo tanto, como expertos en la industria artística 
                                 recomendamos siempre a nuestros coleccionistas de arte 
                                 seguir los siguientes tres útiles consejos:
                             </p>
+
+                            <br />
                             
                             <ul>
                                 <li>
                                     <strong>Uso de cristal con filtro UV:</strong>
                                     <p>Al enmarcar tu obra, utiliza vidrios con protección contra radiación ultravioleta.</p>
                                 </li>
+
+                                <br />
+
                                 <li>
                                     <strong>Ubicación estratégica:</strong>
                                     <p>Evita colgar piezas en papel directamente frente a ventanas orientadas al sol directo de la tarde.</p>
                                 </li>
+
+                                <br />
+                                
                                 <li>
                                     <strong>Paspartú libre de ácido:</strong>
                                     <p>Utiliza marialuisas de calidad de museo que eviten el contacto directo entre el papel y el vidrio.</p>
@@ -95,7 +110,7 @@ function Detalle_Blog2() {
                         <br />
                         <hr style={{ borderColor: 'white' }} />
                         <footer className="foot_det_caso2">
-                        <p><strong><a href="#" onClick={(e) => { e.preventDefault(); navigate('/blogs'); }} style={{ color: 'goldenrod', textDecoration: 'underline' }}>Volver &hookleftarrow;</a></strong></p>
+                        <p><strong><a href="#" onClick={(e) => { e.preventDefault(); navigate('/blogs'); }} style={{ color: 'goldenrod', textDecoration: 'underline' }}>Volver &#x21A9;</a></strong></p>
                         </footer>
                     </article>
                 </section>

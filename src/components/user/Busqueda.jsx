@@ -20,7 +20,7 @@ function Busqueda() {
                 {/* Título y logo */}
                 <figure className="titlogo">
                     <img src={logo} alt="AtelierStudio Logo" />
-                    <h2>Búsqueda</h2>
+                    <h2>BÚSQUEDA</h2>
                 </figure>
 
                 {/* Botones de navegación enlazados */}

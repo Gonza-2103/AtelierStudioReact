@@ -23,7 +23,7 @@ function Portada() {
               {/* Título y logo */}
                 <figure id="titlogo">
                     <img src={logo} alt="Logo AtelierStudio" />
-                    <h2>Portada</h2>
+                    <h2>PORTADA</h2>
                 </figure>
 
                 {/* Botones de navegación */}

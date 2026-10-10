@@ -23,7 +23,7 @@ function Detalle_Producto() {
                 {/* Título y logo */}
                 <figure id="titlogo">
                     <img src={logo} alt="AtelierStudio Logo" />
-                    <h2>Producto</h2>
+                    <h2>PRODUCTOS</h2>
                 </figure>
 
                 {/* Botones de navegación */}
@@ -57,7 +57,7 @@ function Detalle_Producto() {
                     {/* Información, compra y especificaciones extensas */}
                     <article id="info_compra">
                         <h3 id="prod_nombre">Cuadro 'Mar y Playa'</h3>
-                        <p id="precio">&Leftarrow; $45.000</p>
+                        <p id="precio">&#x21D0; $45.000</p>
                         
                         <div id="descripcion_extensa">
                             <p>Fotografía artística de alta resolución capturada en plano cenital sobre papel de algodón de grado galería. La composición plasma la fuerza visual del litoral costero, donde las aguas en tonos turquesa profundo se funden con la espuma blanca al romper contra una orilla de arena prístina.</p>
@@ -92,23 +92,23 @@ function Detalle_Producto() {
                     {/* Información, compra y especificaciones extensas */}
                     <article id="info_compra">
                         <h3 id="prod_nombre">Retrato 'Caballero con Pipa'</h3>
-                        <p id="precio">&Leftarrow; $60.000</p>
+                        <p id="precio">&#x21D0; $60.000</p>
                         
                         <div id="descripcion_extensa">
-                        <p>Retrato figurativo elaborado al óleo mediante pinceladas densas y expresivas sobre tela de cáñamo rústico. La obra captura la estampa serena de un curtido hombre de mar que sostiene su pipa humeante, recortado frente a una suave línea costera y el horizonte marino.</p>
-                        <p>El tratamiento cromático enfatiza los tonos tierra y el azul pálido del cielo, transmitiendo el carácter, la memoria y el sosiego propios de la vida marinera. Dispone de un marco artesanal de madera oscura envejecida y un barniz protector satinado que resalta el relieve de la pintura sin alterar sus matices.</p>
+                            <p>Retrato figurativo elaborado al óleo mediante pinceladas densas y expresivas sobre tela de cáñamo rústico. La obra captura la estampa serena de un curtido hombre de mar que sostiene su pipa humeante, recortado frente a una suave línea costera y el horizonte marino.</p>
+                            <p>El tratamiento cromático enfatiza los tonos tierra y el azul pálido del cielo, transmitiendo el carácter, la memoria y el sosiego propios de la vida marinera. Dispone de un marco artesanal de madera oscura envejecida y un barniz protector satinado que resalta el relieve de la pintura sin alterar sus matices.</p>
                         </div>
 
                         {/* Formulario de compra (cantidad y carrito) */}
                         <form id="acciones_carrito" onSubmit={(e) => { e.preventDefault(); navigate('/carrito'); }}>
-                        <label htmlFor="cantidad2">Cantidad:</label>
-                        <input type="number" id="cantidad2" name="cantidad" value={c2} min="1" max="10" onChange={(e) => setC2(e.target.value)} />
-                        <figure id="btn_agr_car_det">
-                            <button id="btn_car_comp" title="Añadir al carrito" type="submit">
-                            <p>AGREGAR AL CARRITO</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shopping-cart-icon lucide-shopping-cart"><path d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18" /><path d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25" /><circle cx="18" cy="20" r="2" /><circle cx="8" cy="20" r="2" /></svg>
-                            </button>
-                        </figure>
+                            <label htmlFor="cantidad2">Cantidad:</label>
+                            <input type="number" id="cantidad2" name="cantidad" value={c2} min="1" max="10" onChange={(e) => setC2(e.target.value)} />
+                            <figure id="btn_agr_car_det">
+                                <button id="btn_car_comp" title="Añadir al carrito" type="submit">
+                                    <p>AGREGAR AL CARRITO</p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shopping-cart-icon lucide-shopping-cart"><path d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18" /><path d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25" /><circle cx="18" cy="20" r="2" /><circle cx="8" cy="20" r="2" /></svg>
+                                </button>
+                            </figure>
                         </form>
                     </article>
                 </section>
@@ -127,7 +127,7 @@ function Detalle_Producto() {
                     {/* Información, compra y especificaciones extensas */}
                     <article id="info_compra">
                         <h3 id="prod_nombre">Cuadro 'Paisaje de Montaña'</h3>
-                        <p id="precio">&Leftarrow; $48.000</p>
+                        <p id="precio">&#x21D0; $48.000</p>
                         
                         <div id="descripcion_extensa">
                         <p>
@@ -144,14 +144,14 @@ function Detalle_Producto() {
 
                         {/* Formulario de compra (cantidad y carrito) */}
                         <form id="acciones_carrito" onSubmit={(e) => { e.preventDefault(); navigate('/carrito'); }}>
-                        <label htmlFor="cantidad3">Cantidad:</label>
-                        <input type="number" id="cantidad3" name="cantidad" value={c3} min="1" max="10" onChange={(e) => setC3(e.target.value)} />
-                        <figure id="btn_agr_car_det">
-                            <button id="btn_car_comp" title="Añadir al carrito" type="submit">
-                            <p>AGREGAR AL CARRITO</p>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shopping-cart-icon lucide-shopping-cart"><path d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18" /><path d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25" /><circle cx="18" cy="20" r="2" /><circle cx="8" cy="20" r="2" /></svg>
-                            </button>
-                        </figure>
+                            <label htmlFor="cantidad3">Cantidad:</label>
+                            <input type="number" id="cantidad3" name="cantidad" value={c3} min="1" max="10" onChange={(e) => setC3(e.target.value)} />
+                            <figure id="btn_agr_car_det">
+                                <button id="btn_car_comp" title="Añadir al carrito" type="submit">
+                                    <p>AGREGAR AL CARRITO</p>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shopping-cart-icon lucide-shopping-cart"><path d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18" /><path d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25" /><circle cx="18" cy="20" r="2" /><circle cx="8" cy="20" r="2" /></svg>
+                                </button>
+                            </figure>
                         </form>
                     </article>
                 </section>
@@ -170,7 +170,7 @@ function Detalle_Producto() {
                     {/* Información, compra y especificaciones extensas */}
                     <article id="info_compra">
                         <h3 id="prod_nombre">Retrato 'Gato entre Sombras'</h3>
-                        <p id="precio">&Leftarrow; $72.000</p>
+                        <p id="precio">&#x21D0; $72.000</p>
                         
                         <div id="descripcion_extensa">
                             <p>Pintura a la acuarela y técnicas mixtas trabajada sobre papel Arches de grano fino y alto gramaje. Ilustra la figura atenta de un felino de pelaje cobrizo y blanco posado en el umbral de piedra de un portal antiguo, envuelto en un sutil juego de sombras violáceas y destellos de luz solar filtrada.</p>
@@ -194,7 +194,7 @@ function Detalle_Producto() {
                 <hr style={{ borderColor: 'white' }} />
 
                 <footer className="foot_det_prod" style={{ textAlign: 'right' }}>
-                    <p><strong><a href="#" onClick={(e) => { e.preventDefault(); navigate('/productos'); }} style={{ color: 'goldenrod', textDecoration: 'underline' }}>Volver &hookleftarrow;</a></strong></p>
+                    <p><strong><a href="#" onClick={(e) => { e.preventDefault(); navigate('/productos'); }} style={{ color: 'goldenrod', textDecoration: 'underline' }}>Volver &#x21A9;</a></strong></p>
                 </footer>
             </main>
 

@@ -15,7 +15,7 @@ function Blogs() {
             <header className="titulo_blog">
                 <figure className="titlogo">
                     <img src={logo} alt="AtelierStudio Logo" />
-                    <h2>Blogs</h2>
+                    <h2>BLOGS</h2>
                 </figure>
 
                 {/* Botones de navegación */}
@@ -32,11 +32,12 @@ function Blogs() {
 
             <main className="contenido_blog">
                 <section className="casos_contenido_blog">
+                    <h2 className="titulo_casos_contenido_blog">Noticias Importantes</h2>
+                    <hr style={{ borderColor: 'white' }} />
+                    <br />
                     <article className="caso">
+                        
                         <figure className="info_caso">
-                            <h2 className="titulo_casos_contenido_blog"><strong>NOTICIAS IMPORTANTES</strong></h2>
-                            <br />
-                            <hr style={{ borderColor: 'white' }} />
                             <h3 className="titulo_caso">CASO CURIOSO #1</h3>
                             <br />
                             <img src={pigmentos} className="img1" style={{ width: '50%' }} alt="Pigmentos" />
@@ -48,11 +49,9 @@ function Blogs() {
                         </figure>
                     </article>
 
-                    <br />
-
                     <article className="caso">
                         <figure className="info_caso">
-                            <hr style={{ borderColor: 'white' }} />
+                            
                             <h3 className="titulo_caso">CASO CURIOSO #2</h3>
                             <br />
                             <img src={luznatural} className="img2" style={{ width: '50%' }} alt="Luz natural" />

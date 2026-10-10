@@ -5,44 +5,6 @@ import { useNavigate } from 'react-router-dom'
 function NuevoProducto() {
     const navigate = useNavigate()
 
-<<<<<<< HEAD
-    function guardarProducto(datosFormulario) {
-
-        const productosGuardados = localStorage.getItem('productos')
-
-        const productos = productosGuardados
-            ? JSON.parse(productosGuardados)
-            : []
-    
-
-        const nuevoProducto = {
-            ...datosFormulario,
-            id: Date.now(),
-            precio: Number(datosFormulario.precio),
-            stock: Number(datosFormulario.stock)
-        }
-
-        const productosActualizados = [...productos, nuevoProducto]
-
-        const codigoRepetido = productos.some(
-            producto => producto.codigo === datosFormulario.codigo
-        )
-
-        if (codigoRepetido) {
-            alert('Ya existe un producto con ese código')
-            return
-}
-
-        localStorage.setItem(
-            'productos',
-            JSON.stringify(productosActualizados)
-        )
-
-        navigate('/admin/productos')
-    }
-=======
-    const navigate = useNavigate()
-
     function guardarProducto(datosFormulario) {
 
     const productosGuardados = localStorage.getItem('productos')
@@ -67,7 +29,6 @@ function NuevoProducto() {
     navigate('/admin/productos')
 }
 
->>>>>>> 51355f5f9874c4190f96cdd1337e72bdffab737a
     return (
         <EstructuraAdmin>
 

@@ -225,6 +225,132 @@ body,
 }
 
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* LOGIN */
+
+.pagina_login {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    display: flex;  
+    flex-direction: column;  
+    align-items: center;  
+    justify-content: center;  
+    text-align: center;  
+    
+    background-image: url('../assets/fondomadera.jpg');
+    background-position: center;  /* Centra la imagen de fondo vertical y horizontalmente */
+    background-repeat: no-repeat;  /* Evita que el fondo se repita */
+    background-size: cover;  /* Ajusta la imagen a toda la pantalla manteniendo proporción*/
+    background-attachment: fixed;  /* Deja la imagen fija al hacer scroll */
+    
+    padding: 0;  /* Elimina rellenos por defecto */
+    width: 100%;  /* Ocupa el 100% del ancho de la pantalla */
+    height: 100vh;  /* Fija la altura exactamente al 100% de la ventana */
+    overflow: hidden;  /* Oculta barras de desplazamiento y bloquea el scroll */ 
+}
+
+.pagina_login img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.adm button {
+    background-color: black;
+    color: gold;
+    padding: 0;  
+    border: none;  
+
+    width: 50px;  
+    height: 50px;  
+    border-radius: 50%;  /* Hace la forma completamente redonda */
+    position: fixed;  
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+
+    display: inline-flex;  /* Centra el icono o texto adentro */
+    cursor: pointer;  /* Cursor de mano al pasar por encima */
+    align-items: center;  
+    justify-content: center;  
+}
+
+.adm svg {
+    width: 28px;
+    height: 28px;
+}
+
+.logo {
+    width: 250px;  /*  */
+    height: auto;  /* Mantiene la proporción original */
+    display: block;  /* Permite centrar mediante márgenes */
+    margin: 0 auto;  /* Centra horizontalmente */
+    flex-shrink: 0;  /* Evita que se encoja si está dentro de un contenedor flex */
+}
+
+.infologin {
+    margin-top: 3%;
+    width: 300px;
+    max-width: 85%;  
+    margin: 0 auto;  /* Centra los objetos y el texto horizontalmente */
+    text-align: center;
+}
+
+.campos_login .correo,
+.campos_login .clave {
+    padding: 6px;
+    border-radius: 12px;
+    width: 100%;  /* Ocupa el 100% del contenedor padre */
+    box-sizing: border-box;  /* Incluye el padding sin desbordarse */
+    font-size: 14px;
+}
+
+.botones_login {
+    display: flex;  /* Coloca los botones uno al lado del otro */  
+    gap: 10px;  /* Espacio de separación entre los botones */
+    width: 100%;  /* El conjunto mide lo mismo que campos de escritura (inputs) */
+    justify-content: center;  /* Centra ambos botones al medio */
+}
+
+.botones_login button:hover {
+    color: gold !important;
+    transition: background-color 0.5s ease, color 0.5s ease; 
+}
+
+.botones_login button {
+    flex: 1; 
+    padding: 6px 0;  
+    background-color: black;
+    color: white;
+    border-radius: 18px;
+    font-size: 12px;
+}
+
+.btn_admin:hover {
+    background-color: gold !important; 
+    color: black !important;  
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.forgot {
+    background: none;  
+    border: none;  
+    padding: 4px 8px;  
+    color: black; 
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 14px;
+    border-radius: 18px; 
+    transition: background-color 0.5s ease, color 0.5s ease; 
+}
+
+.forgot:hover {
+    background-color: black !important;  /* Fondo negro */
+    color: gold !important;               /* Letras en dorado */
+    text-decoration: underline;               /* Quita el subrayado al estar activo (opcional) */
+}
+
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* PORTADA */
 
@@ -242,7 +368,7 @@ body,
 /* Título centrado para que no se justifique de forma extraña */
 #contenido_port #titulo_cont_port {
     text-align: left;
-    font-size: 25px;
+    font-size: 22px;
     margin-bottom: 20px;
 }
 
@@ -259,6 +385,7 @@ body,
 
 /* Párrafos justificados con buen interlineado */
 #contenido_port p {
+    font-size: 15px;
     text-align: justify !important;
     text-justify: inter-word;
     line-height: 1.7;
@@ -751,8 +878,8 @@ body,
     font-family: inherit;
     margin: 0;
     padding: 0;
-    background-color: #212529 !important; /* Bootstrap $dark */
-    background-image: none !important;    /* MODIFICACIÓN: Quita fondogeneral.jpg */
+    background-color: #212529 !important; 
+    background-image: none !important;  
     color: #f8f9fa;
     min-height: 100vh;
     display: flex;
@@ -766,11 +893,17 @@ body,
     margin: 35px auto;
     padding: 0 20px;
     box-sizing: border-box;
-    flex: 1;                              /* Empuja el pie de página hacia el fondo */
+    flex: 1;              
     color: #f8f9fa;
 }
 
-/* Estructura del detalle de los productos (Card contenedora estilo Bootstrap) */
+#contenedor_det_prod h2{
+    font-size: 22px;
+    text-align: left;
+    color: white;
+}
+
+/* Estructura del detalle de los productos */
 #detalle_prod1, 
 #detalle_prod2,
 #detalle_prod3, 
@@ -780,7 +913,7 @@ section[id^="detalle_prod"] {
     gap: 40px;
     margin-bottom: 50px;
     flex-wrap: wrap;
-    background-color: #2b3035;            /* Superficie oscura tipo tarjeta */
+    background-color: #2b3035;        
     border: 1px solid #495057;
     border-radius: 10px;
     padding: 30px;
@@ -827,7 +960,7 @@ section[id^="detalle_prod"] {
 #miniaturas .thumb.activa,
 #miniaturas img:hover {
     opacity: 1;
-    border-color: #e0a96d;                /* Borde dorado de selección */
+    border-color: #e0a96d;   
     transform: scale(1.05);
 }
 
@@ -848,11 +981,15 @@ section[id^="detalle_prod"] {
 }
 
 /* Precio de la obra en dorado AtelierStudio */
-#info_compra .precio {
-    font-size: 26px;
+#info_compra #precio {
+    font-size: 15px;
     font-weight: 700;
-    color: #e0a96d;                       /* Acento dorado institucional */
+    color: #e0a96d;                   
     margin-bottom: 20px;
+}
+
+#info_compra #prod_nombre {
+    font-size: 16px;
 }
 
 /* Descripción de la obra */
@@ -864,26 +1001,32 @@ section[id^="detalle_prod"] {
     text-align: justify;
 }
 
-/* --- Formulario de Carrito --- */
+/* Formulario de 'carrito' */
 #acciones_carrito {
     margin-top: 25px;
     display: flex;
-    align-items: center;
-    gap: 15px;
+    flex-direction: row;               
+    align-items: center;               
+    gap: 16px;                         
     flex-wrap: wrap;
+    width: 100%;
+    flex-wrap: nowrap !important;
 }
 
 #acciones_carrito label {
     font-weight: 600;
     color: #f8f9fa;
     font-size: 14px;
+    margin: 0;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 /* Control numérico de cantidad */
 #acciones_carrito input[type="number"] {
     width: 70px;
     padding: 8px 10px;
-    background-color: #212529;            /* Fondo control Bootstrap Dark */
+    background-color: #212529;        
     border: 1px solid #495057;
     color: #ffffff;
     border-radius: 6px;
@@ -891,6 +1034,7 @@ section[id^="detalle_prod"] {
     font-size: 14px;
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    flex-shrink: 0;
 }
 
 #acciones_carrito input[type="number"]:focus {
@@ -898,9 +1042,46 @@ section[id^="detalle_prod"] {
     box-shadow: 0 0 0 0.2rem rgba(224, 169, 109, 0.25);
 }
 
-/* Botón Añadir al Carrito (Aspecto btn-success Bootstrap) */
+#acciones_carrito #btn_agr_car_det {
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    
+}
+
+#acciones_carrito #btn_agr_car_det #btn_car_comp {
+    width: auto;                       /* MODIFICACIÓN: No se expande al 100% */
+    margin: 0;
+    padding: 10px 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #198754;
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    transition: background-color 0.2s ease;
+    width: auto !important;
+    max-width: fit-content;
+    white-space: nowrap;
+}
+
+#acciones_carrito #btn_agr_car_det #btn_car_comp:hover {
+    background-color: #157347;
+}
+
+#acciones_carrito #btn_agr_car_det #btn_car_comp p {
+    margin: 0;
+    white-space: nowrap;
+}
+
+/* Botón 'añadir al Carrito' */
 #btn_agregar_carrito {
-    background-color: #198754;            /* Bootstrap $success */
+    background-color: #198754;         
     color: #ffffff;
     border: none;
     padding: 10px 22px;
@@ -984,7 +1165,7 @@ section[id^="detalle_prod"] {
 
 #tarjeta_relacionada p,
 .tarjeta_relacionada p {
-    color: #e0a96d;                       /* Precio de obras relacionadas en dorado */
+    color: #e0a96d;                  
     font-weight: 700;
     font-size: 14px;
     margin-bottom: 10px;
@@ -1206,7 +1387,7 @@ section[id^="contenedor_prod_car"] #numero_prod {
 }
 
 #bloque_pago_car #fila_total {
-    font-size: 17px;
+    font-size: 15px;
     font-weight: bold;
     color: #ffffff;
     padding-top: 6px;
@@ -1221,8 +1402,8 @@ section[id^="contenedor_prod_car"] #numero_prod {
 
 #input_cupon {
     flex: 1;
-    padding: 8px 12px;
-    border-radius: 6px;
+    padding: 5px 10px;
+    border-radius: 10px;
     border: 1px solid #495057;
     background-color: #2b3035;
     color: #ffffff;
@@ -1244,11 +1425,10 @@ section[id^="contenedor_prod_car"] #numero_prod {
     background-color: #495057;
     color: #ffffff;
     border: 1px solid #6c757d;
-    border-radius: 6px;
-    padding: 8px 14px;
+    border-radius: 10px;
+    padding: 5px 14px;
     font-size: 12px;
     cursor: pointer;
-    font-weight: 600;
     transition: background-color 0.2s ease;
 }
 
@@ -1259,17 +1439,16 @@ section[id^="contenedor_prod_car"] #numero_prod {
 /* Botón 'finalizar compra' */
 #bloque_pago_car #btn_confirmar_compra {
     width: 100%;
-    padding: 12px 16px;
-    margin-top: 15px;
-    background-color: #e0a96d; /* Dorado AtelierStudio */
+    padding: 10px 8px;
+    margin-top: 25px;
+    background-color: #e0a96d; 
     color: #111418;
     border: none;
-    border-radius: 6px;
+    border-radius: 10px;
     cursor: pointer;
     letter-spacing: 0.5px;
-    font-weight: 700;
-    font-size: 14px;
-    transition: background-color 0.2s ease, transform 0.1s ease;
+    font-size: 12px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
     display: block;
 }
 
@@ -1403,13 +1582,13 @@ section[id^="contenedor_prod_car"] #numero_prod {
     color: #111418;
     
     border: none;
-    border-radius: 6px;
+    border-radius: 10px;
     width: 160px;
     max-width: 85%;
     padding: 8px 16px;
     margin: 15px auto 20px auto;
-    font-size: 13px;
-    font-weight: 700;
+    font-size: 12px;
+    font-weight: bold;
     cursor: pointer;
     font-family: inherit;
     transition: background-color 0.2s ease;
@@ -1456,7 +1635,7 @@ section[id^="contenedor_prod_car"] #numero_prod {
 
 .input_busq_texto {
     flex: 1;
-    padding: 10px 14px;
+    padding: 5px 14px;
     border-radius: 6px;
     border: 1px solid #495057;
     background-color: #2b3035;
@@ -1480,9 +1659,9 @@ section[id^="contenedor_prod_car"] #numero_prod {
     background-color: #e0a96d;
     color: #111418;
     border: none;
-    border-radius: 6px;
-    padding: 10px 22px;
-    font-size: 13px;
+    border-radius: 10px;
+    padding: 5px 30px;
+    font-size: 12px;
     font-weight: 700;
     cursor: pointer;
     font-family: inherit;
@@ -1495,11 +1674,16 @@ section[id^="contenedor_prod_car"] #numero_prod {
 }
 
 .titulo_res_busq {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 22px;
     color: #ffffff;
     margin-bottom: 8px;
-    text-align: justify;
+    display: block !important;
+    text-align: left !important;
+    text-align-last: left !important;   /* Evita que separe la última línea a los extremos */
+    text-justify: auto !important;
+    letter-spacing: normal !important;
+    word-spacing: normal !important;     /* Evita espacios gigantescos entre palabras */
+    width: 100%;
 }
 
 /* Grilla y tarjetas de resultados */
@@ -1604,7 +1788,7 @@ section[id^="contenedor_prod_car"] #numero_prod {
     margin-top: 0;
     color: #e0a96d;                      
     font-size: 22px;
-    font-weight: 600;
+    text-align: left;
 }
 
 .caja_nuevo_tema p {
@@ -1617,6 +1801,7 @@ section[id^="contenedor_prod_car"] #numero_prod {
 
 /* Formulario de nuevo tema */
 .form_nuevo_post div {
+    text-align: left;
     margin-bottom: 16px;
 }
 
@@ -1663,13 +1848,12 @@ section[id^="contenedor_prod_car"] #numero_prod {
     background-color: #e0a96d;          
     color: #111418;
     border: none;
-    border-radius: 6px;
+    border-radius: 10px;
     cursor: pointer;
-    font-weight: 700;
-    font-size: 14px;
+    font-size: 12px;
     letter-spacing: 0.5px;
     font-family: inherit;
-    transition: background-color 0.2s ease, transform 0.1s ease;
+    transition: background-color 0.5s ease, transform 0.5s ease;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -1685,10 +1869,9 @@ section[id^="contenedor_prod_car"] #numero_prod {
 
 /* Lista de debates */
 .subtitulo_debates {
+    text-align: left;
     font-size: 22px;
-    font-weight: 600;
     margin-bottom: 20px;
-    border-bottom: 1px solid #495057;     /* Línea divisoria sobria */
     padding-bottom: 8px;
     color: #ffffff;
 }
@@ -1744,21 +1927,25 @@ section[id^="contenedor_prod_car"] #numero_prod {
 .cuerpo_debate h4 {
     margin: 0 0 6px 0;
     font-size: 18px;
-    font-weight: 600;
+    text-align: left;
     color: #ffffff;
 }
 
 /* Badge de categoría */
 .badge_categoria {
-    display: inline-block;
+    display: table;
+    margin-right: auto;
+    margin-left: 0;
+
     background-color: rgba(224, 169, 109, 0.15);
     border: 1px solid rgba(224, 169, 109, 0.4);
     color: #e0a96d;
     padding: 3px 10px;
-    border-radius: 4px;
+    border-radius: 8px;
     font-size: 11px;
     font-weight: 600;
     margin-bottom: 10px;
+    text-align: left;
 }
 
 .cuerpo_debate p {
@@ -1845,11 +2032,14 @@ section[id^="contenedor_prod_car"] #numero_prod {
 }
 
 /* Encabezado o títulos de cada caso del blog */
+.contenido_blog h2 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
 .contenido_blog h2,
 .contenido_blog h3 {
     color: #ffffff;
-    font-weight: 600;
-    margin-bottom: 15px;
     text-align: left;
 }
 
@@ -1926,11 +2116,6 @@ section[id^="contenedor_prod_car"] #numero_prod {
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* DETALLE CASO #1 y CASO #2 */
 
-/* ==========================================================================
-   DETALLE DEL BLOG #1 & #2 (Estandarizado con componentes y estilo Bootstrap)
-   ========================================================================== */
-
-/* MODIFICACIÓN: Contenedores generales que respetan el fondo oscuro del bloque general */
 .det_blog1,
 .det_blog2 {
     font-family: inherit;
@@ -1944,10 +2129,6 @@ section[id^="contenedor_prod_car"] #numero_prod {
     flex-direction: column;
 }
 
-/* NOTA: .titulo_det_blog1, .titulo_det_blog2, .pie_pag_det_blog1 y .pie_pag_det_blog2
-   se controlan de forma centralizada desde el bloque general unificado superior */
-
-/* Contenedores principales de lectura */
 .cont_det_blog1,
 .cont_det_blog2 {
     width: 100%;
@@ -1955,13 +2136,13 @@ section[id^="contenedor_prod_car"] #numero_prod {
     margin: 35px auto;
     padding: 0 20px;
     box-sizing: border-box;
-    flex: 1;                              /* Empuja el pie de página hacia el fondo */
+    flex: 1;                 
 }
 
-/* Tarjeta estructurada para cada caso de blog (Estilo Card Dark de Bootstrap) */
+/* Tarjeta estructurada para cada caso de blog */
 .det_caso1,
 .det_caso2 {
-    background-color: #2b3035;            /* Fondo de tarjeta oscura Bootstrap */
+    background-color: #2b3035;    
     border: 1px solid #495057;
     border-radius: 10px;
     padding: 30px;
@@ -1973,18 +2154,25 @@ section[id^="contenedor_prod_car"] #numero_prod {
 /* Títulos de los casos */
 .info_det_blog1 .titulo_det_caso1,
 .info_det_blog2 .titulo_det_caso2 {
-    margin: 0 0 20px 0;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: bold;
     color: #ffffff;
-    line-height: 1.4;
     text-align: left;
+    line-height: 1;
+}
+
+.info_det_blog1 .subtitulo_det_caso1,
+.info_det_blog2 .subtitulo_det_caso2 {
+    font-size: 18px;
+    color: #ffffff;
+    text-align: left;
+    line-height: 1;
 }
 
 /* Subtítulos o acápites secundarios */
 .info_det_blog1 h4,
 .info_det_blog2 h4 {
-    color: #e0a96d;                       /* Acento dorado institucional */
+    color: #e0a96d;      
     font-size: 18px;
     font-weight: 600;
     margin: 25px 0 12px 0;
@@ -2010,7 +2198,7 @@ section[id^="contenedor_prod_car"] #numero_prod {
     max-height: 420px;
     object-fit: cover;
     display: block;
-    margin: 25px auto;                    /* Centradas horizontalmente */
+    margin: 25px auto;               
     border-radius: 8px;
     border: 1px solid #495057;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
@@ -2023,7 +2211,7 @@ section[id^="contenedor_prod_car"] #numero_prod {
     margin: 25px 0;
 }
 
-/* Enlaces inferiores / pies del caso (Volver a blogs o cerrar sesión alineados a la derecha) */
+/* Enlaces inferiores / pies del caso */
 .foot_det_caso1,
 .foot_det_caso2 {
     text-align: right !important;
@@ -2035,7 +2223,7 @@ section[id^="contenedor_prod_car"] #numero_prod {
 
 .foot_det_caso1 a,
 .foot_det_caso2 a {
-    color: #e0a96d !important;            /* Dorado AtelierStudio */
+    color: #e0a96d !important;     
     font-weight: 600;
     font-size: 14px;
     text-decoration: underline;
@@ -2048,6 +2236,23 @@ section[id^="contenedor_prod_car"] #numero_prod {
     color: #f3c28c !important;
 }
 
+.cont_det_caso1 h3,
+.cont_det_blog2 h3{
+    font-size: 15px;
+    text-align: left;
+}
+
+.cont_det_caso1 p,
+.cont_det_blog2 p{
+    font-size: 15px;
+    text-align: justify;
+}
+
+.cont_det_blog2 ul{
+    font-size: 15px;
+    text-align: justify;
+}
+
 /* Responsividad para pantallas móviles */
 @media (max-width: 768px) {
     .det_caso1,
@@ -2057,7 +2262,7 @@ section[id^="contenedor_prod_car"] #numero_prod {
 
     .info_det_blog1 .titulo_det_caso1,
     .info_det_blog2 .titulo_det_caso2 {
-        font-size: 20px;
+        font-size: 22px;
     }
 }
 
@@ -2148,10 +2353,9 @@ section[id^="contenedor_prod_car"] #numero_prod {
     border-bottom: 1px solid #495057;
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 600;
     text-align: center;
-    text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
@@ -2160,7 +2364,7 @@ section[id^="contenedor_prod_car"] #numero_prod {
     color: #adb5bd;
     font-size: 13px;
     font-weight: 500;
-    text-align: left;
+    text-align: right;
     margin-bottom: 20px;
     border-bottom: 1px solid #343a40;
     padding-bottom: 8px;
@@ -2195,7 +2399,7 @@ section[id^="contenedor_prod_car"] #numero_prod {
     font-family: inherit;
     box-sizing: border-box;
     outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 .campo_ayuda input:focus,
@@ -2251,13 +2455,12 @@ section[id^="contenedor_prod_car"] #numero_prod {
     color: #111418;
     background-color: #e0a96d;          
     border: none;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 700;
+    border-radius: 10px;
+    font-size: 12px;
     letter-spacing: 0.5px;
     cursor: pointer;
     font-family: inherit;
-    transition: background-color 0.2s ease, transform 0.1s ease;
+    transition: background-color 0.5s ease, transform 0.5s ease;
 }
 
 .boton_ayuda button:hover {

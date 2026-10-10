@@ -18,7 +18,7 @@ function Nosotros() {
                 {/* Título y logo */}
                 <figure className="titlogo">
                     <img src={logo} alt="Logo de AtelierStudio" />
-                    <h2>Nosotros</h2>
+                    <h2>NOSOTROS</h2>
                 </figure>
 
                 {/* Botones de navegación enlazados */}
