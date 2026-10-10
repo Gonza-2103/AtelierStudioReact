@@ -29,7 +29,6 @@ function Detalle_Producto() {
                 {/* Botones de navegación */}
                 <figure id="btns_nav_det_prod">
                     <button id="nav_btn" onClick={() => navigate('/')}><strong>Portada</strong></button>
-                    <button id="nav_btn" onClick={() => navigate('/productos')}><strong>Productos</strong></button>
                     <button id="nav_btn" onClick={() => navigate('/nosotros')}><strong>Nosotros</strong></button>
                     <button id="nav_btn" onClick={() => navigate('/carrito')}><strong>Carrito</strong></button>
                     <button id="nav_btn" onClick={() => navigate('/busqueda')}><strong>Búsqueda</strong></button>
