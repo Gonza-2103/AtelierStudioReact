@@ -379,9 +379,207 @@ body,
 }
 
 .forgot:hover {
-    background-color: black !important;  /* Fondo negro */
-    color: gold !important;               /* Letras en dorado */
-    text-decoration: underline;               /* Quita el subrayado al estar activo (opcional) */
+    background-color: black !important; 
+    color: gold !important;            
+    text-decoration: underline;              
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* REGISTRO DE USUARIO */
+
+/* padding: 6px;
+    border-radius: 12px;
+    width: 100%;  /* Ocupa el 100% del contenedor padre */
+    /* box-sizing: border-box;  /* Incluye el padding sin desbordarse */
+    /* font-size: 14px; */
+
+.pagina_registro {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-image: url('../assets/fondomadera.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 40px 15px;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: white;
+}
+
+/* Logo de cabecera con las mismas cualidades de login */
+.pagina_registro .logo {
+    display: flex;
+    justify-content: center;
+    width: 250px;
+}
+
+.pagina_registro .logo img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Tarjeta contenedora del formulario */
+.inforegistro {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 35px 30px;
+    box-sizing: border-box;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+}
+
+/* Título */
+.palabra_registro h1 {
+    text-align: center;
+    font-size: 26px;
+    margin: 0 0 20px 0;
+    color: goldenrod;
+    letter-spacing: 1px;
+}
+
+/* Formulario */
+.campos_registro {
+    width: 100%;
+}
+
+.campos_registro div {
+    margin-bottom: 15px;
+}
+
+/* Etiquetas */
+.campos_registro label {
+    display: block;
+    text-align: left;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #e0e0e0;
+}
+
+/* Asteriscos obligatorios */
+.camp_oblig,
+.run_oblig,
+.nomb_oblig,
+.apel_oblig,
+.correo_oblig,
+.contrasena_oblig,
+.conf_contrasena_oblig,
+.region_oblig,
+.comuna_oblig,
+.dire_oblig {
+    color: #ff4d4d;
+    font-weight: bold;
+}
+
+.aviso_obligatorio {
+    background: transparent;
+    color: white !important;
+    font-size: 13px;
+    text-align: left;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+}
+
+/* Inputs y select */
+.campos_registro input,
+.campos_registro select {
+    width: 100%;
+    padding: 12px 12px; 
+    background-color: #ffffff;
+    color: #111;
+    border: 1px solid #aaa;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: inherit;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campos_registro input:focus,
+.campos_registro select:focus {
+    border-color: goldenrod;
+    box-shadow: 0 0 6px rgba(218, 165, 32, 0.5);
+}
+
+/* Textos informativos y de ayuda */
+.texto-ayuda {
+    display: block;
+    color: #ffd700;
+    font-size: 12px;
+    margin-top: 4px;
+    text-align: left;
+}
+
+/* Mensajes de error generados por JavaScript */
+.campos_registro small[class^="error"]:not(:empty) {
+    display: block;
+    color: #ff4d4d;
+    background-color: rgba(255, 0, 0, 0.1);
+    border-left: 3px solid #ff4d4d;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 5px 8px;
+    margin-top: 5px;
+    border-radius: 3px;
+    text-align: left;
+}
+
+/* Botones de acción */
+.botones_registro {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.btn_registrar {
+    width: 100%;
+    padding: 6px;
+    background-color: goldenrod;
+    color: black;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 1px;
+    transition: background-color 0.2s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btn_registrar:hover {
+    background-color: #d49b14;
+}
+
+.botones_registro a {
+    width: 100%;
+    padding: 6px;
+    background: transparent;
+    color: goldenrod;
+    border: 1px solid goldenrod;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    transition: background-color 0.25s ease, color 0.25s ease;
+    box-sizing: border-box;
+}
+
+.botones_registro a:hover {
+    background-color: goldenrod;
+    color: black;
 }
 
 
@@ -1657,9 +1855,12 @@ section[id^="contenedor_prod_car"] #numero_prod {
     color: #f8f9fa;
     box-sizing: border-box;
     text-align: left !important;
-    display: flex;
-    flex-direction: column;
     align-items: stretch !important;
+    min-height: auto !important;    
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
 }
 
 .btns_navegacion_busq {
@@ -1747,11 +1948,13 @@ section[id^="contenedor_prod_car"] #numero_prod {
 
 /* Grilla y tarjetas de resultados */
 .grilla_resultados_busq {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 20px;
-    justify-content: center;
+    display: grid !important;
+    gap: 25px !important;
+    align-content: start !important;
+    width: 100% !important;
+    grid-template-columns: repeat(3, minmax(200px, 240px)) !important;
+    max-width: 800px !important;
+    justify-content: start !important;
 }
 
 .tarjeta_res_busq {
@@ -1759,19 +1962,20 @@ section[id^="contenedor_prod_car"] #numero_prod {
     background-color: #2b3035 !important;
     border: 1px solid #495057;
     color: #f8f9fa;
-    flex: 0 0 200px;
-    width: 200px;
-    min-width: 200px;
-    max-width: 200px;
     padding: 14px;
     border-radius: 10px;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
     transition: transform 0.2s ease, border-color 0.2s ease;
+    width: 240px !important;
+    max-width: 240px !important;
+    min-width: 220px !important;
+    height: auto !important;
+    flex: none !important;              
+    box-sizing: border-box !important;
 }
 
 .tarjeta_res_busq:hover {
@@ -1780,12 +1984,13 @@ section[id^="contenedor_prod_car"] #numero_prod {
 }
 
 .tarjeta_res_busq img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: cover !important;
     border-radius: 6px;
     border: 1px solid #343a40;
     margin-bottom: 10px;
+    display: block !important;
 }
 
 .tarjeta_res_busq h4 {
@@ -1810,6 +2015,16 @@ section[id^="contenedor_prod_car"] #numero_prod {
         margin-left: auto !important;
         margin-right: auto !important;
         display: block !important;   
+    }
+
+    .grilla_resultados_busq {
+        justify-content: center !important;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 280px)) !important;
+    }
+
+    .tarjeta_res_busq {
+        width: 100% !important;
+        max-width: 280px !important;
     }
 }
 
@@ -2033,6 +2248,15 @@ section[id^="contenedor_prod_car"] #numero_prod {
 .pie_debate small {
     color: #adb5bd;
     font-size: 12px;
+}
+
+/* Contenedor vertical de acciones a la derecha del pie del debate */
+.pie_debate {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 15px;
+    width: 100%;
 }
 
 .enlace_responder {

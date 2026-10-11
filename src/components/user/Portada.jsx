@@ -10,8 +10,12 @@ function Portada() {
 
     const handleCerrarSesion = (e) => {
         e.preventDefault();
-        console.log('Cerrar sesión presionado');
-        navigate('/login');
+        const respuesta = window.confirm("¿Estás seguro que le gustaría cerrar sesión?");
+
+        if (respuesta) {
+            console.log('Sesión cerrada por el usuario');
+            navigate('/login');
+        }
     };
 
     return (

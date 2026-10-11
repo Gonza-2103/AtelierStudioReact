@@ -8,11 +8,111 @@ function Contacto() {
     const [nombre, setNombre] = useState('');
     const [correo, setCorreo] = useState('');
     const [comentario, setComentario] = useState('');
+    const [errores, setErrores] = useState({
+        nombre: '',
+        correo: '',
+        comentario: ''
+    });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert('Mensaje enviado exitosamente');
+
+        const nombreVal = nombre.trim();
+        const correoVal = correo.trim().toLowerCase();
+        const comentarioVal = comentario.trim();
+
+        let formularioValido = true;
+        const nuevosErrores = {
+            nombre: '',
+            correo: '',
+            comentario: ''
+        };
+
+        console.log("Validando formulario de ayuda...");
+        console.log("Cantidad de caracteres del nombre: " + nombreVal.length);
+
+        // Validar Nombre (Requerido, máximo 100 caracteres)
+        if (nombreVal === "") {
+            nuevosErrores.nombre = "El nombre es obligatorio.";
+            console.log("Error en Nombre: El campo está vacío.");
+            formularioValido = false;
+        } else if (nombreVal.length > 100) {
+            nuevosErrores.nombre = "El nombre no puede superar los 100 caracteres.";
+            console.log("Error en Nombre: Supera los 100 caracteres.");
+            formularioValido = false;
+        } else {
+            console.log("Nombre válido: " + nombreVal);
+        }
+
+        // Validar Correo (requerido, máximo 100 caracteres y dominios permitidos)
+        const formatoCorreoValido = /^[^\s@]+@(duocuc\.cl|profesor\.duocuc\.cl|gmail\.com)$/.test(correoVal);
+
+        if (correoVal === "") {
+            nuevosErrores.correo = "El correo es obligatorio.";
+            console.log("Error en Correo: El campo está vacío.");
+            formularioValido = false;
+        } else if (correoVal.length > 100) {
+            nuevosErrores.correo = "El correo no puede superar los 100 caracteres.";
+            console.log("Error en Correo: Supera los 100 caracteres.");
+            formularioValido = false;
+        } else if (!formatoCorreoValido) {
+            nuevosErrores.correo = "El correo debe ser @duocuc.cl, @profesor.duocuc.cl o @gmail.com.";
+            console.log("Error en Correo: El formato o dominio no está permitido.");
+            formularioValido = false;
+        } else {
+            console.log("Correo válido: " + correoVal);
+        }
+
+        // Validar Comentario (requerido, máximo 500 caracteres)
+        if (comentarioVal === "") {
+            nuevosErrores.comentario = "El comentario es obligatorio.";
+            console.log("Error en Comentario: El campo está vacío.");
+            formularioValido = false;
+        } else if (comentarioVal.length > 500) {
+            nuevosErrores.comentario = "El comentario no puede superar los 500 caracteres.";
+            console.log("Error en Comentario: Supera los 500 caracteres.");
+            formularioValido = false;
+        } else {
+            console.log("Comentario válido.");
+        }
+
+        console.log("---------------------------------------");
+
+        setErrores(nuevosErrores);
+
+        // Resultado de validaciones
+        if (formularioValido) {
+            console.log("ESTADO: Mensaje enviado correctamente.");
+            alert("Tu mensaje fue enviado correctamente.");
+            
+            // Limpieza del formulario
+            setNombre('');
+            setCorreo('');
+            setComentario('');
+            setErrores({
+                nombre: '',
+                correo: '',
+                comentario: ''
+            });
+        } else {
+            const camposConError = [];
+
+            if (nuevosErrores.nombre !== "") {
+                camposConError.push("- Nombre");
+            }
+            if (nuevosErrores.correo !== "") {
+                camposConError.push("- Correo");
+            }
+            if (nuevosErrores.comentario !== "") {
+                camposConError.push("- Comentario");
+            }
+
+            alert("No se pudo enviar el mensaje. Revisa los siguientes campos:\n\n" + camposConError.join("\n"));
+            console.log("ESTADO: Mensaje rechazado por datos inválidos. Campos con errores: " + camposConError.join(", "));
+        }
     };
+
+    const estiloError = { color: 'red', display: 'block', marginTop: '4px' };
 
     return (
         <div className="ayuda">
@@ -48,23 +148,54 @@ function Contacto() {
                         {/* Nombre */}
                         <div className="campo_ayuda">
                             <label htmlFor="nombreAyuda"><strong>Nombre completo:<span className="obligatorio">*</span></strong></label>
-                            <input type="text" id="nombreAyuda" name="nombreAyuda" placeholder="Ingresa su nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
-                            <small id="errorNombreAyuda"></small>
+                            <input 
+                                type="text" 
+                                id="nombreAyuda" 
+                                name="nombreAyuda" 
+                                placeholder="Ingresa su nombre" 
+                                value={nombre} 
+                                onChange={(e) => {
+                                    setNombre(e.target.value);
+                                    if (errores.nombre) setErrores(prev => ({ ...prev, nombre: '' }));
+                                }} 
+                            />
+                            <small id="errorNombreAyuda" style={estiloError}>{errores.nombre}</small>
                         </div>
 
                         {/* Correo */}
                         <div className="campo_ayuda">
-                            <label htmlFor="correo_ayuda"><strong>Correo electrónico:<span className="obligatorio">*</span></strong></label>
-                            <input type="text" id="correoAyuda" className="correo_ayuda" name="correoAyuda" placeholder="ejemplo@gmail.com" value={correo} onChange={(e) => setCorreo(e.target.value)} />
+                            <label htmlFor="correoAyuda"><strong>Correo electrónico:<span className="obligatorio">*</span></strong></label>
+                            <input 
+                                type="text" 
+                                id="correoAyuda" 
+                                className="correo_ayuda" 
+                                name="correoAyuda" 
+                                placeholder="ejemplo@gmail.com" 
+                                value={correo} 
+                                onChange={(e) => {
+                                    setCorreo(e.target.value);
+                                    if (errores.correo) setErrores(prev => ({ ...prev, correo: '' }));
+                                }} 
+                            />
                             <small className="texto_ayuda">Dominios permitidos: @duocuc.cl, @profesor.duocuc.cl y @gmail.com</small>
-                            <small id="errorCorreoAyuda"></small>
+                            <small id="errorCorreoAyuda" style={estiloError}>{errores.correo}</small>
                         </div>
 
                         {/* Comentario */}
                         <div className="campo_ayuda">
                             <label htmlFor="comentarioAyuda"><strong>Comentario:<span className="obligatorio">*</span></strong></label>
-                            <textarea id="comentarioAyuda" name="comentarioAyuda" rows="6" placeholder="Ingresa aquí su consulta" value={comentario} onChange={(e) => setComentario(e.target.value)} />
-                            <small id="errorComentarioAyuda"></small>
+                            <textarea 
+                                id="comentarioAyuda" 
+                                name="comentarioAyuda" 
+                                rows="6" 
+                                placeholder="Ingresa aquí su consulta" 
+                                value={comentario} 
+                                onChange={(e) => {
+                                    setComentario(e.target.value);
+                                    if (errores.comentario) setErrores(prev => ({ ...prev, comentario: '' }));
+                                }} 
+                            />
+                            <small id="errorComentarioAyuda" style={estiloError}>{errores.comentario}</small>
                         </div>
 
                         {/* Botón */}
