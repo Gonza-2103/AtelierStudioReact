@@ -33,7 +33,7 @@ body {
     min-height: 100%;
     padding: 25px 20px;
     color: white;
-    background-color: #1f1f1f;
+    background-color: #ced4da;
     flex-shrink: 0;
 }
 
@@ -58,7 +58,7 @@ body {
 
 .logo_admin p {
     margin: 5px 0 0;
-    color: #cccccc;
+    color: black;
     font-size: 14px;
 }
 
@@ -74,7 +74,7 @@ body {
 .enlace_admin {
     display: block;
     padding: 12px 15px;
-    color: white;
+    color: #1f1f1f;
     border-radius: 5px;
     text-decoration: none;
 }
@@ -87,7 +87,7 @@ body {
 
 .volver_tienda {
     margin-top: auto;
-    border: 1px solid white;
+    border: 1px solid black;
     text-align: center;
 }
 
@@ -96,6 +96,7 @@ body {
     flex: 1;
     min-width: 0;
     padding: 35px;
+    background-color: #f4f6f9;
 }
 
 /* Encabezado */
