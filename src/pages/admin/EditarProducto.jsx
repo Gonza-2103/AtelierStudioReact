@@ -1,62 +1,74 @@
-import EstructuraAdmin from '../../components/admin/EstructuraAdmin'
 import { useParams, useNavigate } from 'react-router-dom'
+import EstructuraAdmin from '../../components/admin/EstructuraAdmin'
 import FormularioProducto from '../../components/admin/FormularioProducto'
 
 function EditarProducto() {
-
     const { id } = useParams()
     const navigate = useNavigate()
 
-    const productos = JSON.parse(
-        localStorage.getItem('productos') || '[]'
-    )
-
-    const producto = productos.find(
-        p => String(p.id) === id
-    )
-
-    function guardarCambios(datosFormulario) {
-    
-    const codigoRepetido = productos.some(
-        p =>
-            String(p.id) !== id &&
-            p.codigo.toUpperCase() ===
-            datosFormulario.codigo.trim().toUpperCase()
-    )
-
-    if (codigoRepetido) {
-        return false
+    function obtenerProductos() {
+        try {
+            return JSON.parse(localStorage.getItem('productos') || '[]')
+        } catch {
+            return []
+        }
     }
 
-    const productosActualizados = productos.map(p =>
-        String(p.id) === id
-            ? {
-                ...p,
-                ...datosFormulario,
-                precio: Number(datosFormulario.precio),
-                stock: Number(datosFormulario.stock)
-            }
-            : p
+    const productos = obtenerProductos()
+
+    const productoGuardado = productos.find(
+        p => String(p.id) === String(id)
     )
 
-    localStorage.setItem(
-        'productos',
-        JSON.stringify(productosActualizados)
-    )
+    const producto = productoGuardado
+        ? {
+            ...productoGuardado,
+            descripcion: productoGuardado.descripcion || '',
+            imagen: productoGuardado.imagen || '',
+            stockCritico: productoGuardado.stockCritico ?? 0
+        }
+        : null
 
-    navigate('/admin/productos')
-}
+    function guardarCambios(datosFormulario) {
+        const productosActuales = obtenerProductos()
+
+        const codigoRepetido = productosActuales.some(
+            p =>
+                String(p.id) !== String(id) &&
+                String(p.codigo).trim().toUpperCase() ===
+                datosFormulario.codigo.trim().toUpperCase()
+        )
+
+        if (codigoRepetido) {
+            return false
+        }
+
+        const productosActualizados = productosActuales.map(p =>
+            String(p.id) === String(id)
+                ? {
+                    ...p,
+                    ...datosFormulario,
+                    precio: Number(datosFormulario.precio),
+                    stock: Number(datosFormulario.stock),
+                    stockCritico: Number(datosFormulario.stockCritico || 0)
+                }
+                : p
+        )
+
+        localStorage.setItem(
+            'productos',
+            JSON.stringify(productosActualizados)
+        )
+
+        navigate('/admin/productos')
+        return true
+    }
 
     return (
         <EstructuraAdmin>
-
             <section className="seccion_admin">
-
                 <h1>Editar producto</h1>
-
-                <p>
-                    Modificación de la información de una obra.
-                </p>
+                <p>Modificación de la información de una obra.</p>
 
                 <div className="contenedor_formulario">
                     {producto ? (
@@ -69,9 +81,7 @@ function EditarProducto() {
                         <p>Producto no encontrado.</p>
                     )}
                 </div>
-
             </section>
-
         </EstructuraAdmin>
     )
 }
