@@ -9,6 +9,8 @@ function EncabezadoUsuarios() {
                 Administra los usuarios registrados en AtelierStudio.
             </p>
 
+            
+
         </div>
     )
 }

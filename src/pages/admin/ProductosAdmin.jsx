@@ -7,6 +7,8 @@ function ProductosAdmin() {
         <EstructuraAdmin>
             <section className="seccion_admin">
                 <EncabezadoProductos />
+
+
                 <TablaProductos />
             </section>
         </EstructuraAdmin>

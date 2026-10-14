@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react'
 import AccionesProducto from './AccionesProducto'
+import BotonNuevoProducto from './BotonNuevoProducto'
 
 import foto1 from '../../assets/fotoarte1.jpg'
 import foto2 from '../../assets/fotoarte2.jpg'
@@ -140,26 +141,35 @@ function TablaProductos({ productos: productosProp }) {
     })
 
     return (
-        <>
-            <div className="d-flex flex-wrap gap-3 align-items-center mb-3">
-                <input
-                    className="form-control"
-                    style={{ maxWidth: 340 }}
-                    aria-label="Buscar productos"
-                    placeholder="Buscar por código, nombre o categoría"
-                    value={busqueda}
-                    onChange={e => setBusqueda(e.target.value)}
-                />
+    <>
+        {/* Buscador en una fila independiente */}
+        <div className="buscador_productos_admin">
+            <input
+                type="search"
+                className="form-control"
+                aria-label="Buscar productos"
+                placeholder="Buscar por código, nombre o categoría"
+                value={busqueda}
+                onChange={e => setBusqueda(e.target.value)}
+            />
+        </div>
 
-                <label className="filtro_stock_admin">
-                    <input
-                        type="checkbox"
-                        checked={soloCriticos}
-                        onChange={e => setSoloCriticos(e.target.checked)}
-                    />
-                    <span>Solo stock crítico</span>
-                </label>
-            </div>
+        {/* Filtro y botón en la misma fila */}
+        <div className="barra_acciones_productos">
+            <label className="filtro_stock_admin">
+                <input
+                    type="checkbox"
+                    checked={soloCriticos}
+                    onChange={e => setSoloCriticos(e.target.checked)}
+                />
+                <span>Solo stock crítico</span>
+            </label>
+
+            <BotonNuevoProducto />
+        </div>
+
+        {/* Aquí continúa la tabla */}
+            
 
             <div className="table-responsive">
                 <table className="table table-striped table-hover tabla_admin">
@@ -215,6 +225,7 @@ function TablaProductos({ productos: productosProp }) {
                                 </tr>
                             )
                         })}
+                        
 
                         {visibles.length === 0 && (
                             <tr>

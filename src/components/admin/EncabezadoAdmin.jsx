@@ -1,12 +1,17 @@
-function EncabezadoAdmin() {
+
+import BotonNuevoProducto from "./BotonNuevoProducto"
+
+function EncabezadoProductos() {
     return (
-        <header className="encabezado_admin">
+        <div className="encabezado_productos">
             <div>
-                <h1>¡Hola, Administrador!</h1>
-                <p>Bienvenido al panel de gestión de AtelierStudio.</p>
+                <h1>Gestión de productos</h1>
+                <p>
+                    Administra los productos disponibles en AtelierStudio.
+                </p>
             </div>
-        </header>
+        </div>
     )
 }
 
-export default EncabezadoAdmin
+export default EncabezadoProductos

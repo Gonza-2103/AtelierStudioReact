@@ -138,29 +138,34 @@ function UsuariosAdmin() {
 
                 <EncabezadoUsuarios />
 
-                <Link
-                    to="/admin/usuarios/nuevo"
-                    className="btn btn-dark mb-3"
-                >
-                    Nuevo usuario
-                </Link>
+                          
 
-                <div className="mt-4 mb-3">
-                    <label
-                        htmlFor="buscarUsuario"
-                        className="form-label"
+                <div className="buscador_usuarios_admin">
+                        <label
+                            htmlFor="buscarUsuario"
+                            className="form-label"
+                        >
+                            Buscar usuarios
+                        </label>
+
+                        <input
+                            id="buscarUsuario"
+                            className="form-control"
+                            value={busqueda}
+                            onChange={e => setBusqueda(e.target.value)}
+                            placeholder="Nombre o correo"
+                        />
+                    </div>
+
+                <div className="barra_acciones_usuarios">
+                    <Link
+                        to="/admin/usuarios/nuevo"
+                        className="btn btn-dark"
                     >
-                        Buscar usuarios
-                    </label>
-
-                    <input
-                        id="buscarUsuario"
-                        className="form-control"
-                        value={busqueda}
-                        onChange={e => setBusqueda(e.target.value)}
-                        placeholder="Nombre o correo"
-                    />
-                </div>
+                        Nuevo usuario
+                    </Link>
+                </div>                
+                
 
                 <TablaUsuarios
                     usuarios={usuariosFiltrados}

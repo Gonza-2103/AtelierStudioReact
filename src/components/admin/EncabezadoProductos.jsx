@@ -1,5 +1,3 @@
-import BotonNuevoProducto from './BotonNuevoProducto'
-
 function EncabezadoProductos() {
 
     return (
@@ -12,7 +10,6 @@ function EncabezadoProductos() {
                 </p>
             </div>
 
-            <BotonNuevoProducto />
 
         </div>
     )

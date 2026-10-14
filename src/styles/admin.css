@@ -138,6 +138,44 @@ body {
     color: #212529;
 }
 
+/* CONTENIDO PRINCIPAL */
+
+.pagina_admin .contenido_admin {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.pagina_admin .seccion_admin {
+    width: 100%;
+}
+
+
+/* Filtro y botón Nuevo producto en una misma fila */
+.pagina_admin .barra_acciones_productos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 12px;
+    width: 100%;
+    margin: 12px 0 18px;
+}
+
+.pagina_admin .barra_acciones_productos .filtro_stock_admin {
+    margin: 0;
+}
+
+.pagina_admin .barra_acciones_productos .btn_nuevo_admin {
+    width: auto;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+
+
+
 /* =========================================
    ENCABEZADOS
 ========================================= */
@@ -181,11 +219,11 @@ body {
 
 .btn_nuevo_admin {
     display: inline-block;
-    padding: 10px 16px;
+    padding: 10px 12px;
     color: #ffffff;
     background-color: #252525;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 10px;
     font-weight: 500;
     text-decoration: none;
     white-space: nowrap;
@@ -730,6 +768,7 @@ body {
     .pagina_admin .tabla_admin {
         min-width: 650px;
     }
+    
 }
 
 /* =========================================
@@ -799,6 +838,8 @@ body {
     .pagina_admin .tabla_admin {
         min-width: 650px;
     }
+
+   
 }
 
 /* =========================================
@@ -912,4 +953,361 @@ body {
     font-weight: 400;
     color: #333333;
     white-space: nowrap;
+}
+
+/* MENÚ ADMINISTRATIVO HORIZONTAL */
+
+.pagina_admin .cuerpo_admin {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.pagina_admin .menu_admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: none;
+    width: 100%;
+    padding: 15px 24px;
+}
+
+.pagina_admin .navegacion_admin {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex: none;
+    gap: 12px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.pagina_admin .enlace_admin {
+    display: inline-block;
+    width: auto;
+    padding: 10px 18px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.pagina_admin .volver_tienda {
+    margin-top: 0;
+}
+
+/* Filtro de stock y botón Nuevo producto */
+.pagina_admin .barra_acciones_productos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin: 12px 0 18px;
+}
+
+.pagina_admin .barra_acciones_productos .filtro_stock_admin {
+    margin: 0;
+}
+
+.pagina_admin .barra_acciones_productos .btn_nuevo_admin {
+    width: auto;
+    margin: 0;
+    font-size: 13px;
+}
+
+@media (max-width: 576px) {
+    .pagina_admin .barra_acciones_productos {
+        gap: 8px;
+    }
+
+    .pagina_admin .barra_acciones_productos .btn_nuevo_admin {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+}
+
+/* Buscador */
+.pagina_admin .buscador_productos_admin {
+    width: 100%;
+}
+
+.pagina_admin .buscador_productos_admin input {
+    width: 100%;
+    max-width: 100% !important;
+}
+
+/* Filtro y botón en horizontal */
+.pagina_admin .barra_acciones_productos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.pagina_admin .barra_acciones_productos .filtro_stock_admin {
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.pagina_admin .barra_acciones_productos .btn_nuevo_admin {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    margin: 0;
+    padding: 10px 14px;
+    font-size: 13px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Ajustes para celular */
+@media (max-width: 576px) {
+    .pagina_admin .contenido_admin {
+        padding: 12px;
+    }
+
+    .pagina_admin .barra_acciones_productos {
+        gap: 6px;
+    }
+
+    .pagina_admin .barra_acciones_productos .filtro_stock_admin {
+        padding: 8px;
+    }
+
+    .pagina_admin .barra_acciones_productos .filtro_stock_admin span {
+        font-size: 11px;
+    }
+
+    .pagina_admin .barra_acciones_productos .btn_nuevo_admin {
+        padding: 9px 10px;
+        font-size: 11px;
+    }
+}
+/* Buscador de productos */
+.pagina_admin .buscador_productos_admin {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.pagina_admin .buscador_productos_admin input {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Filtro y botón Nuevo producto */
+.pagina_admin .barra_acciones_productos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.pagina_admin .barra_acciones_productos .filtro_stock_admin {
+    margin: 0;
+}
+
+.pagina_admin .barra_acciones_productos .btn_nuevo_admin {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    margin: 0;
+    padding: 10px 14px;
+    font-size: 13px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Ajustes para celular */
+@media (max-width: 576px) {
+    .pagina_admin .barra_acciones_productos {
+        gap: 8px;
+    }
+
+    .pagina_admin .barra_acciones_productos .filtro_stock_admin {
+        padding: 8px;
+    }
+
+    .pagina_admin .barra_acciones_productos .filtro_stock_admin span {
+        font-size: 11px;
+    }
+
+    .pagina_admin .barra_acciones_productos .btn_nuevo_admin {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+}
+
+/* Buscador de usuarios */
+.pagina_admin .buscador_usuarios_admin {
+    width: 100%;
+    margin: 12px 0;
+}
+
+.pagina_admin .buscador_usuarios_admin .form-label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+}
+
+.pagina_admin .buscador_usuarios_admin .form-control {
+    width: 100%;
+}
+
+/* Botón Nuevo usuario alineado a la derecha */
+.pagina_admin .barra_acciones_usuarios {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.pagina_admin .barra_acciones_usuarios .btn {
+    width: auto;
+    padding: 9px 14px;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+/* Celular */
+@media (max-width: 576px) {
+    .pagina_admin .barra_acciones_usuarios .btn {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+}
+
+/* Formularios con etiquetas a la izquierda */
+.pagina_admin .formulario_usuario_horizontal,
+.pagina_admin .formulario_producto_admin {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.pagina_admin .fila_campo_horizontal {
+    display: grid;
+    grid-template-columns: 155px minmax(0, 1fr);
+    column-gap: 15px;
+    align-items: start;
+    width: 100%;
+    margin: 0;
+}
+
+/* Etiquetas */
+.pagina_admin .fila_campo_horizontal > label {
+    margin: 0;
+    padding-top: 9px;
+    font-size: 14px;
+    text-align: left;
+}
+
+/* Campos de entrada */
+.pagina_admin .fila_campo_horizontal > input,
+.pagina_admin .fila_campo_horizontal > select,
+.pagina_admin .fila_campo_horizontal > textarea {
+    width: 100%;
+    min-width: 0;
+}
+
+/* Errores y vista previa debajo del campo */
+.pagina_admin .fila_campo_horizontal > .invalid-feedback,
+.pagina_admin .fila_campo_horizontal > .text-danger,
+.pagina_admin .fila_campo_horizontal > .mt-3 {
+    grid-column: 2;
+}
+
+/* Celular: etiquetas más compactas */
+@media (max-width: 576px) {
+    .pagina_admin .fila_campo_horizontal {
+        grid-template-columns: 95px minmax(0, 1fr);
+        column-gap: 8px;
+    }
+
+    .pagina_admin .fila_campo_horizontal > label {
+        font-size: 12px;
+    }
+
+    .pagina_admin .fila_campo_horizontal input,
+    .pagina_admin .fila_campo_horizontal select,
+    .pagina_admin .fila_campo_horizontal textarea {
+        font-size: 13px;
+    }
+}
+
+/* Inicio del panel administrativo */
+.pagina_admin .contenido_admin {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+/* Separación del encabezado */
+.pagina_admin .encabezado_admin {
+    margin-bottom: 40px;
+    padding: 24px;
+}
+
+/* Distribución de las tarjetas */
+.pagina_admin .resumen_admin {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Tamaño y distribución interior */
+.pagina_admin .tarjeta_admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 220px;
+    padding: 30px 24px;
+    text-align: center;
+}
+
+.pagina_admin .tarjeta_admin h2 {
+    margin: 0 0 16px;
+}
+
+.pagina_admin .tarjeta_admin p {
+    margin: 0 0 24px;
+    line-height: 1.6;
+}
+
+.pagina_admin .tarjeta_admin a {
+    margin-top: auto;
+}
+
+/* Celulares */
+@media (max-width: 576px) {
+    .pagina_admin .contenido_admin {
+        padding: 24px 14px;
+    }
+
+    .pagina_admin .encabezado_admin {
+        margin-bottom: 24px;
+        padding: 16px;
+    }
+
+    .pagina_admin .resumen_admin {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-top: 20px;
+    }
+
+    .pagina_admin .tarjeta_admin {
+        min-height: 180px;
+        padding: 24px 18px;
+    }
 }

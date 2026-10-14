@@ -176,7 +176,7 @@ export function FormularioUsuario({ usuarioInicial = null }) {
             <form
                 onSubmit={guardar}
                 noValidate
-                className="row g-3"
+                className="formulario_usuario_horizontal"
             >
                 {[
                     ['nombre', 'Nombre', 'text'],
@@ -187,7 +187,8 @@ export function FormularioUsuario({ usuarioInicial = null }) {
                         : [])
                 ].map(([nombre, etiqueta, tipo]) => (
                     <div
-                        className="col-12 col-md-6"
+                    className="fila_campo_horizontal"
+
                         key={nombre}
                     >
                         <label

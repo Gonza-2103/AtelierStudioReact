@@ -249,7 +249,7 @@ function FormularioProducto({
             errores[nombre]
 
         return (
-            <div className="mb-3" key={nombre}>
+            <div className="fila_campo_horizontal" key={nombre}>
                 <label
                     htmlFor={'producto-' + nombre}
                     className="form-label"
@@ -301,7 +301,7 @@ function FormularioProducto({
             {campo('codigo', 'Código')}
             {campo('nombre', 'Nombre')}
 
-            <div className="mb-3">
+            <div className="fila_campo_horizontal">
                 <label
                     htmlFor="producto-descripcion"
                     className="form-label"
@@ -330,7 +330,7 @@ function FormularioProducto({
 
             
 
-            <div className="mb-3">
+            <div className="fila_campo_horizontal">
                 <label
                     htmlFor="producto-categoria"
                     className="form-label"
@@ -380,7 +380,7 @@ function FormularioProducto({
             {campo('precio', 'Precio', 'number')}
             {campo('stock', 'Stock', 'number')}
             {campo('stockCritico', 'Stock crítico (opcional)', 'number')}
-            <div className="mb-3">
+            <div className="fila_campo_horizontal">
                 <label
                     htmlFor="producto-imagen"
                     className="form-label"
