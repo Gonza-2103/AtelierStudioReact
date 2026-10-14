@@ -10,15 +10,10 @@ import foto4 from '../../assets/fotoarte4.png';
 function Productos() {
     const navigate = useNavigate();
 
-    //Contadores individuales para los 4 productos iniciales
-    const [cant1, setCant1] = useState(1);
-    const [cant2, setCant2] = useState(1);
-    const [cant3, setCant3] = useState(1);
-    const [cant4, setCant4] = useState(1);
-
-    //Estado para catálogo y productos creados por administrador (id > 4)
+   // Un contador por producto
     const [catalogo, setCatalogo] = useState([]);
-    const [cantidadesExtras, setCantidadesExtras] = useState({});
+    const [cantidades, setCantidades] = useState({});
+
 
     //Catálogo inicial por defecto
     const catalogoPorDefecto = [
@@ -95,39 +90,20 @@ function Productos() {
         return true;
     };
 
-    //Función para obtener stock de un producto
+   // Stock del catálogo actualizado por Administración.
     const obtenerStock = (id) => {
-        const prod = catalogo.find(p => Number(p.id) === id);
-        return prod ? Number(prod.stock) : 10;
-    };
-
-    //Función para sumar con validación de stock y control de invitado
-    const sumarConStock = (id, cantidadActual, setCantidad) => {
-        if (!verificarSesion()) return;
-        const stockDisponible = obtenerStock(id);
-        if (cantidadActual < stockDisponible) {
-            setCantidad(cantidadActual + 1);
-        } else {
-            alert("No hay más unidades disponibles en stock para este producto.");
-        }
-    };
-
-    //Función para restar con control de invitado
-    const restarConSesion = (cantidadActual, setCantidad) => {
-        if (!verificarSesion()) return;
-        if (cantidadActual > 1) {
-            setCantidad(cantidadActual - 1);
-        }
+        const prod = catalogo.find(p => String(p.id) === String(id));
+        return prod ? Number(prod.stock) : 0;
     };
 
     //Lógica para agregar al carrito con validación de sesión y stock
     const agregarAlCarrito = (id, cantidadSeleccionada, setCantidadReset) => {
         if (!verificarSesion()) return;
 
-        const productoDatos = catalogo.find(p => Number(p.id) === id);
+        const productoDatos = catalogo.find(p => String(p.id) === String(id));
         if (!productoDatos) return;
 
-        const stockDisponible = Number(productoDatos.stock) || 10;
+        const stockDisponible = Number(productoDatos.stock) || 0;
         let carrito = [];
         try {
             carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -135,7 +111,7 @@ function Productos() {
             carrito = [];
         }
 
-        const itemExistente = carrito.find(p => Number(p.id) === id);
+        const itemExistente = carrito.find(p => String(p.id) === String(id));
         const cantidadEnCarrito = itemExistente ? itemExistente.cantidad : 0;
 
         if (cantidadEnCarrito + cantidadSeleccionada > stockDisponible) {
@@ -165,10 +141,12 @@ function Productos() {
     //Acción para 'ver detalles'
     const handleVerDetalles = (e) => {
         e.preventDefault();
-        const seleccionado = catalogo.length > 0 ? catalogo[0] : catalogoPorDefecto[0];
+        const seleccionado = catalogo[0];
+        if (!seleccionado) return;
         localStorage.setItem("productoSeleccionado", JSON.stringify(seleccionado));
         navigate('/detalle_producto');
     };
+
 
     return (
         <div id="prod">
@@ -194,109 +172,12 @@ function Productos() {
             {/* Contenido principal de productos */}
             <section id="contenedor_prod">
 
-                {/* PRODUCTO #1 */}
-                <section id="contenedor_prod_1">
-                    <figure id="contador_prod">
-                        <h3>Cuadro 'Mar y Playa'</h3>
-                        <h5 id="categ_prod1">(Fotografía Artística)</h5>
-                        <br />
-                        <h5>Fotografía aérea en plano cenital que captura el contraste entre las aguas turquesas del océano y la orilla de arena blanca, destacando el movimiento de la espuma de las olas rompiendo suavemente en la costa.</h5>
-                        <h5 id="precio_prod1">$45.000</h5>
-                        <img src={foto1} alt="Cuadro Mar y Playa" />
-
-                        <div id="btns_cont_prod">
-                            <button id="btn_restar" onClick={() => restarConSesion(cant1, setCant1)}><strong>&minus;</strong></button>
-                                <span id="numero_prod"><strong>{cant1}</strong></span>
-                            <button id="btn_sumar" onClick={() => sumarConStock(1, cant1, setCant1)}><strong>+</strong></button>
-                        </div>
-
-                        <figure id="btn_agr_car_det">
-                            <button id="btn_car_comp" title="Añadir al carrito" onClick={() => agregarAlCarrito(1, cant1, setCant1)}>
-                                <p>AGREGAR AL CARRITO</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shopping-cart-icon lucide-shopping-cart"><path d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18" /><path d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25" /><circle cx="18" cy="20" r="2" /><circle cx="8" cy="20" r="2" /></svg>
-                            </button>
-                        </figure>
-                    </figure>
-                </section>
-
-                {/* PRODUCTO #2 */}
-                <section id="contenedor_prod_2">
-                    <figure id="contador_prod">
-                        <h3>Retrato 'Caballero con Pipa'</h3>
-                        <h5 id="categ_prod2">(Pintura al Óleo)</h5>
-                        <br />
-                        <h5>Pintura al óleo de estilo expresivo que retrata de perfil a un marinero o pescador de mirada reflexiva, con una pipa humeante en la boca y herramientas de red, con un fondo de playa, cielo azul y mar abierto.</h5>
-                        <h5 id="precio_prod2">$60.000</h5>
-                        <img src={foto2} alt="Retrato Caballero con Pipa" />
-
-                        <div id="btns_cont_prod">
-                            <button id="btn_restar" onClick={() => restarConSesion(cant2, setCant2)}><strong>&minus;</strong></button>
-                                <span id="numero_prod"><strong>{cant2}</strong></span>
-                            <button id="btn_sumar" onClick={() => sumarConStock(2, cant2, setCant2)}><strong>+</strong></button>
-                        </div>
-
-                        <figure id="btn_agr_car_det">
-                            <button id="btn_car_comp" title="Añadir al carrito" onClick={() => agregarAlCarrito(2, cant2, setCant2)}>
-                                <p>AGREGAR AL CARRITO</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shopping-cart-icon lucide-shopping-cart"><path d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18" /><path d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25" /><circle cx="18" cy="20" r="2" /><circle cx="8" cy="20" r="2" /></svg>
-                            </button>
-                        </figure>
-                    </figure>
-                </section>
-
-                {/* PRODUCTO #3 */}
-                <section id="contenedor_prod_3">
-                    <figure id="contador_prod">
-                        <h3>Cuadro 'Paisaje de Montaña'</h3>
-                        <h5 id="categ_prod3">(Pintura al Óleo)</h5>
-                        <br />
-                        <h5>Pintura paisajística tradicional al óleo que muestra una cordillera alpina nevada reflejada en un lago sereno de aguas cristalinas, flanqueado por densos bosques de coníferas bajo un cielo parcialmente nublado.</h5>
-                        <h5 id="precio_prod3">$48.000</h5>
-                        <img src={foto3} alt="Cuadro Paisaje de Montaña" />
-
-                        <div id="btns_cont_prod">
-                            <button id="btn_restar" onClick={() => restarConSesion(cant3, setCant3)}><strong>&minus;</strong></button>
-                                <span id="numero_prod"><strong>{cant3}</strong></span>
-                            <button id="btn_sumar" onClick={() => sumarConStock(3, cant3, setCant3)}><strong>+</strong></button>
-                        </div>
-
-                        <figure id="btn_agr_car_det">
-                            <button id="btn_car_comp" title="Añadir al carrito" onClick={() => agregarAlCarrito(3, cant3, setCant3)}>
-                                <p>AGREGAR AL CARRITO</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shopping-cart-icon lucide-shopping-cart"><path d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18" /><path d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25" /><circle cx="18" cy="20" r="2" /><circle cx="8" cy="20" r="2" /></svg>
-                            </button>
-                        </figure>
-                    </figure>
-                </section>
-
-                {/* PRODUCTO #4 */}
-                <section id="contenedor_prod_4">
-                    <figure id="contador_prod">
-                        <h3>Retrato 'Gato entre Sombras'</h3>
-                        <h5 id="categ_prod4">(Acuarela y Técnica Mixta)</h5>
-                        <br />
-                        <h5>Acuarela luminosa que ilustra a un gato atigrado de pelaje naranja y blanco sentado en un escalón de piedra, envuelto en un marcado juego de luces solares directas y sombras violáceas proyectadas por la vegetación.</h5>
-                        <h5 id="precio_prod4">$72.000</h5>
-                        <img src={foto4} alt="Retrato Gato entre Sombras" />
-
-                        <div id="btns_cont_prod">
-                            <button id="btn_restar" onClick={() => restarConSesion(cant4, setCant4)}><strong>&minus;</strong></button>
-                                <span id="numero_prod"><strong>{cant4}</strong></span>
-                            <button id="btn_sumar" onClick={() => sumarConStock(4, cant4, setCant4)}><strong>+</strong></button>
-                        </div>
-
-                        <figure id="btn_agr_car_det">
-                            <button id="btn_car_comp" title="Añadir al carrito" onClick={() => agregarAlCarrito(4, cant4, setCant4)}>
-                                <p>AGREGAR AL CARRITO</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shopping-cart-icon lucide-shopping-cart"><path d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18" /><path d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25" /><circle cx="18" cy="20" r="2" /><circle cx="8" cy="20" r="2" /></svg>
-                            </button>
-                        </figure>
-                    </figure>
-                </section>
-
-                {/* PRODUCTOS NUEVOS AGREGADOS POR EL ADMINISTRADOR (id > 4) */}
-                {catalogo.filter(p => Number(p.id) > 4).map((producto) => {
-                    const cantExtra = cantidadesExtras[producto.id] || 1;
+               
+                {/* Todos los productos usan los datos compartidos con Administración */}
+                {catalogo.map((producto) => {
+                    const cantidad = cantidades[producto.id] || 1;
+                    const imagenesIniciales = { 1: foto1, 2: foto2, 3: foto3, 4: foto4 };
+                    const imagen = producto.imagen || imagenesIniciales[producto.id];
                     return (
                         <section key={producto.id} id={`contenedor_prod_${producto.id}`}>
                             <figure id="contador_prod">
@@ -304,39 +185,34 @@ function Productos() {
                                 <h5 id={`categ_prod${producto.id}`}>({producto.categoria || 'Sin categoría'})</h5>
                                 <br />
                                 <h5>{producto.descripcion}</h5>
-                                <h5 id={`precio_prod${producto.id}`}>${Number(producto.precio).toLocaleString('es-CL')}</h5>
-                                {producto.imagen && <img src={producto.imagen} alt={producto.nombre} />}
+                                <h5 id={`precio_prod${producto.id}`}>
+                                    ${Number(producto.precio).toLocaleString('es-CL')}
+                                </h5>
+                                {imagen && <img src={imagen} alt={producto.nombre} />}
 
                                 <div id="btns_cont_prod">
-                                    <button 
-                                        id="btn_restar" 
-                                        onClick={() => {
-                                            if (!verificarSesion()) return;
-                                            setCantidadesExtras({ ...cantidadesExtras, [producto.id]: Math.max(1, cantExtra - 1) });
-                                        }}>
-                                        <strong>&minus;</strong>
-                                    </button>
-                                    <span id="numero_prod"><strong>{cantExtra}</strong></span>
-                                    <button 
-                                        id="btn_sumar" 
-                                        onClick={() => {
-                                            if (!verificarSesion()) return;
-                                            const stockDisp = Number(producto.stock) || 10;
-                                            if (cantExtra < stockDisp) {
-                                                setCantidadesExtras({ ...cantidadesExtras, [producto.id]: cantExtra + 1 });
-                                            } else {
-                                                alert("No hay más unidades disponibles en stock para este producto.");
-                                            }
-                                        }}>
-                                        <strong>+</strong>
-                                    </button>
+                                    <button id="btn_restar" onClick={() => {
+                                        if (!verificarSesion()) return;
+                                        setCantidades(actual => ({
+                                            ...actual,
+                                            [producto.id]: Math.max(1, cantidad - 1)
+                                        }));
+                                    }}><strong>&minus;</strong></button>
+                                    <span id="numero_prod"><strong>{cantidad}</strong></span>
+                                    <button id="btn_sumar" onClick={() => {
+                                        if (!verificarSesion()) return;
+                                        if (cantidad < obtenerStock(producto.id)) {
+                                            setCantidades(actual => ({ ...actual, [producto.id]: cantidad + 1 }));
+                                        } else {
+                                            alert('No hay más unidades disponibles en stock para este producto.');
+                                        }
+                                    }}><strong>+</strong></button>
                                 </div>
 
                                 <figure id="btn_agr_car_det">
-                                    <button 
-                                        id="btn_car_comp" 
-                                        title="Añadir al carrito" 
-                                        onClick={() => agregarAlCarrito(producto.id, cantExtra, () => setCantidadesExtras({ ...cantidadesExtras, [producto.id]: 1 }))}>
+                                    <button id="btn_car_comp" title="Añadir al carrito"
+                                        onClick={() => agregarAlCarrito(producto.id, cantidad,
+                                            () => setCantidades(actual => ({ ...actual, [producto.id]: 1 })))}>
                                         <p>AGREGAR AL CARRITO</p>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shopping-cart-icon lucide-shopping-cart"><path d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18" /><path d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25" /><circle cx="18" cy="20" r="2" /><circle cx="8" cy="20" r="2" /></svg>
                                     </button>
@@ -347,7 +223,7 @@ function Productos() {
                 })}
 
             </section>
-
+              
             {/* Enlace para ver detalle de productos */}
             <a href="#" id="btn_ver_det" onClick={handleVerDetalles}>VER DETALLES &#128270;</a>
 
