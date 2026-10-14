@@ -156,6 +156,51 @@ function FormularioProducto({
         setErrorGeneral('')
     }
 
+    function manejarImagen(e) {
+        const archivo = e.target.files[0]
+
+        if (!archivo) return
+
+        const tiposPermitidos = [
+            'image/jpeg',
+            'image/png',
+            'image/webp'
+        ]
+
+        if (!tiposPermitidos.includes(archivo.type)) {
+            setErrorGeneral('Selecciona una imagen JPG, PNG o WebP.')
+            e.target.value = ''
+            return
+        }
+
+        if (archivo.size > 500 * 1024) {
+            setErrorGeneral('La imagen no puede superar los 500 KB.')
+            e.target.value = ''
+            return
+        }
+
+        const lector = new FileReader()
+
+        lector.onload = () => {
+            setFormulario(actual => ({
+                ...actual,
+                imagen: lector.result
+            }))
+
+            setTocados(actual => ({
+                ...actual,
+                imagen: true
+            }))
+
+            setErrorGeneral('')
+        }
+
+        lector.onerror = () => {
+            setErrorGeneral('No se pudo leer la imagen.')
+        }
+
+        lector.readAsDataURL(archivo)
+    }
     function manejarEnvio(e) {
         e.preventDefault()
         setEnviado(true)
@@ -335,7 +380,38 @@ function FormularioProducto({
             {campo('precio', 'Precio', 'number')}
             {campo('stock', 'Stock', 'number')}
             {campo('stockCritico', 'Stock crítico (opcional)', 'number')}
-            {campo('imagen', 'Ruta o URL de imagen')}
+            <div className="mb-3">
+                <label
+                    htmlFor="producto-imagen"
+                    className="form-label"
+                >
+                    Imagen del producto
+                </label>
+
+                <input
+                    id="producto-imagen"
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp"
+                    className="form-control"
+                    onChange={manejarImagen}
+                />
+
+                {formulario.imagen && (
+                    <div className="mt-3">
+                        <p className="small">Vista previa:</p>
+
+                        <img
+                            src={formulario.imagen}
+                            alt="Vista previa del producto"
+                            style={{
+                                width: '180px',
+                                height: '180px',
+                                objectFit: 'contain'
+                            }}
+                        />
+                    </div>
+                )}
+            </div>
 
             <button
                 type="submit"
