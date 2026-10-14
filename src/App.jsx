@@ -18,6 +18,8 @@ import Login from './components/user/Login';
 import Registro_Usuario from './components/user/Registro_Usuario';
 import DetalleProducto from './pages/admin/DetalleProducto';
 import DetalleUsuario from './pages/admin/DetalleUsuario'
+import NuevoUsuario from './pages/admin/NuevoUsuario';
+import EditarUsuario from './pages/admin/EditarUsuario';
 
 //Rutas de administración existentes 
 import InicioAdmin from './pages/admin/InicioAdmin';
@@ -49,13 +51,13 @@ function App() {
             {/* Rutas de administración */}
             <Route path="/admin" element={<InicioAdmin />} />
             <Route path="/admin/productos" element={<ProductosAdmin />} />
+            <Route path="/admin/productos/editar/:id" element={<EditarProducto />}/>
             <Route path="/admin/usuarios" element={<UsuariosAdmin />} />
-            <Route path="/admin/usuarios/editar" element={<NuevoProducto />} />
             <Route path="/admin/productos/nuevo" element={<NuevoProducto />} />
-            <Route path="/admin/productos/editar/:id" element={<EditarProducto />} />
             <Route path="/admin/productos/detalle/:id" element={<DetalleProducto />} /> 
-            <Route path="/admin/usuarios/detalle/:id" element={<DetalleUsuario />}
-/>
+            <Route path="/admin/usuarios/detalle/:id" element={<DetalleUsuario />} />       
+            <Route path="/admin/usuarios/nuevo" element={<NuevoUsuario />} />
+            <Route path="/admin/usuarios/editar/:id" element={<EditarUsuario />} />
         </Routes>
     );
 }
