@@ -1,5 +1,6 @@
-/* - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* CONFIGURACIÓN GENERAL */
+/* =========================================
+   CONFIGURACIÓN GENERAL
+========================================= */
 
 * {
     box-sizing: border-box;
@@ -11,332 +12,510 @@ body {
     background-color: #f2f2f2;
 }
 
-/* Página administrativa */
+/* =========================================
+   ESTRUCTURA DEL PANEL ADMINISTRATIVO
+========================================= */
+
 .pagina_admin {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     min-height: 100vh;
+    background-color: #f5f6f8;
+    color: #212529;
 }
 
 .cuerpo_admin {
     display: flex;
-    flex-direction: row;
-    width: 100%;
     flex: 1;
+    width: 100%;
+    min-width: 0;
+    align-items: stretch;
 }
 
 /* Menú lateral */
+
 .menu_admin {
     display: flex;
     flex-direction: column;
-    width: 250px;
-    min-height: 100%;
-    padding: 25px 20px;
-    color: white;
-    background-color: #ced4da;
-    flex-shrink: 0;
+    flex: 0 0 205px;
+    width: 205px;
+    min-height: 0;
+    padding: 24px 14px;
+    background-color: #dededc;
+    color: #252525;
 }
 
 /* Logo */
+
 .logo_admin {
-    padding-bottom: 25px;
-    border-bottom: 1px solid #555;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #c4c4c4;
     text-align: center;
 }
 
 .logo_admin img {
     display: block;
-    width: 110px;
+    width: 85px;
+    max-width: 100%;
     height: auto;
     margin: 0 auto 10px;
 }
 
 .logo_admin h2 {
     margin: 0;
-    font-size: 22px;
+    font-size: 17px;
+    font-weight: 600;
 }
 
 .logo_admin p {
     margin: 5px 0 0;
-    color: black;
-    font-size: 14px;
+    color: #555;
+    font-size: 12px;
 }
 
 /* Navegación */
+
 .navegacion_admin {
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 30px;
+    gap: 7px;
+    margin-top: 22px;
 }
 
 .enlace_admin {
     display: block;
-    padding: 12px 15px;
-    color: #1f1f1f;
-    border-radius: 5px;
+    padding: 10px 12px;
+    color: #303030;
+    border-radius: 6px;
     text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.2s;
 }
 
 .enlace_admin:hover,
 .enlace_activo {
-    color: black;
+    color: #1f1f1f;
     background-color: #ffffff;
 }
 
 .volver_tienda {
     margin-top: auto;
-    border: 1px solid black;
+    border: 1px solid #aaa;
     text-align: center;
 }
 
 /* Contenido principal */
+
 .contenido_admin {
     flex: 1;
+    width: 0;
     min-width: 0;
-    padding: 35px;
-    background-color: #f4f6f9;
+    padding: 24px;
+    background-color: #f5f6f8;
 }
 
-/* Encabezado */
-.encabezado_admin {
-    padding: 25px;
-    margin-bottom: 30px;
-    color: black;
-    background-color: white;
-    border-left: 6px solid #1f1f1f;
-    border-radius: 6px;
+.seccion_admin {
+    width: 100%;
+    min-width: 0;
 }
 
-.encabezado_admin h1 {
-    margin: 0 0 8px;
-    font-size: 30px;
+/* Colores de textos */
+
+.pagina_admin .contenido_admin,
+.pagina_admin .seccion_admin,
+.pagina_admin .contenedor_formulario,
+.pagina_admin .contenedor_usuarios {
+    color: #212529;
 }
 
-.encabezado_admin p {
-    margin: 0;
-    color: #555;
+.pagina_admin h1,
+.pagina_admin h2,
+.pagina_admin h3,
+.pagina_admin p,
+.pagina_admin label,
+.pagina_admin strong {
+    color: #212529;
 }
 
-/* Resumen */
-.resumen_admin {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 25px;
-}
+/* =========================================
+   ENCABEZADOS
+========================================= */
 
-/* Tarjetas */
-.tarjeta_admin {
-    padding: 25px;
-    color: black;
-    background-color: white;
-    border: 1px solid #dddddd;
+.encabezado_admin,
+.encabezado_lista_admin {
+    padding: 16px 20px;
+    margin-bottom: 22px;
+    color: #252525;
+    background-color: #ffffff;
+    border-left: 4px solid #333333;
     border-radius: 8px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.10);
 }
 
-.tarjeta_admin h2 {
-    margin-top: 0;
+.encabezado_admin h1,
+.encabezado_lista_admin h1 {
+    margin: 0 0 6px;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 1.25;
 }
 
-.tarjeta_admin p {
-    min-height: 50px;
-    color: #444;
-    line-height: 1.5;
+.encabezado_admin p,
+.encabezado_lista_admin p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
 }
 
-.tarjeta_admin a {
-    display: inline-block;
-    padding: 10px 18px;
-    color: white;
-    background-color: #1f1f1f;
-    border-radius: 5px;
-    text-decoration: none;
-    flex: 1;
-    width: 190px;  /* Define el mismo largo fijo para ambos */
-    text-align: center;  /* Centra el texto dentro del botón */
-    box-sizing: border-box;
-}
+/* Encabezado de listados */
 
-.tarjeta_admin a:hover {
-    background-color: #555555;
-}
-
-#pie_pag {
-    justify-content: center;  /* Centra el contenido */
-    background-color: #1f1f1f;
-    background-size: cover;  /* Cubre el ancho del header */
-    background-position: center;  /* Centra la imagen */
-    background-repeat: no-repeat;  /* No repite el fondo */
-    padding-bottom: 1px !important; /* Espacio casi nulo al fondo del header */
-    overflow: hidden;  /* Oculta desbordamientos */
-    color: white;
-
-    /* Medidas fijas para que no cambie su estructura */
-    width: 100%;  /* Ocupa el 100% del ancho */
-    min-height: 110px;  /* Asegura una altura mínima constante */
-    padding: 20px 30px;  /* Padding moderado que no aplasta el contenido */
-    box-sizing: border-box;  /* Respeta los límites sin desbordar la pantalla */
-
-    /* Alineación centrada */
-    display: flex;  /* Activa 'Flexbox' */
-    align-items: center;  /* Centra horizontalmente los bloques */
-    flex-direction: column;  /* Pone los botones DEBAJO del logo */
-    justify-content: center;  /* Centra verticalmente */
-}
-
-#pie_pag p {
-    margin: 0;  /* Elimina el espacio exterior entre párrafos */
-    line-height: 2;  /* Reduce el interlineado vertical al mínimo */
-}
-
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* ADMIN */
-
-
-
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - */
-/* PRODUCTOS ADMIN */
-
-/* Encabezado de los listados */
 .encabezado_lista_admin {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 20px;
-    padding: 25px;
-    margin-bottom: 25px;
-    background-color: white;
-    border-left: 6px solid #1f1f1f;
-    border-radius: 6px;
-}
-
-.encabezado_lista_admin h1 {
-    margin: 0 0 5px;
-}
-
-.encabezado_lista_admin p {
-    margin: 0;
-    color: #555;
+    gap: 16px;
 }
 
 /* Botón nuevo producto */
+
 .btn_nuevo_admin {
     display: inline-block;
-    padding: 12px 20px;
-    color: white;
-    background-color: #1f1f1f;
-    border-radius: 5px;
-    font-weight: bold;
+    padding: 10px 16px;
+    color: #ffffff;
+    background-color: #252525;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
     text-decoration: none;
     white-space: nowrap;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    letter-spacing: 0.5px;
 }
 
 .btn_nuevo_admin:hover {
-    background-color: #555;
+    color: #ffffff;
+    background-color: #555555;
 }
 
-/* Contenedor de la tabla */
-.contenedor_tabla_admin {
-    overflow-x: auto;
-    padding: 20px;
-    background-color: white;
-    border: 1px solid #ddd;
+/* =========================================
+   RESUMEN DEL ADMINISTRADOR
+========================================= */
+
+.resumen_admin {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, 260px), 1fr)
+    );
+    gap: 20px;
+}
+
+/* Tarjetas */
+
+.tarjeta_admin {
+    padding: 22px;
+    color: #212529;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
     border-radius: 8px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.10);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.tarjeta_admin h2 {
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.tarjeta_admin p {
+    min-height: 50px;
+    color: #444444;
+    line-height: 1.5;
+}
+
+.tarjeta_admin a {
+    display: inline-block;
+    width: auto;
+    min-width: 150px;
+    max-width: 100%;
+    padding: 10px 18px;
+    color: #ffffff;
+    background-color: #1f1f1f;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.tarjeta_admin a:hover {
+    color: #ffffff;
+    background-color: #555555;
+}
+
+/* =========================================
+   TABLAS DE PRODUCTOS Y USUARIOS
+========================================= */
+
+/* Contenedor original */
+
+.contenedor_tabla_admin {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Contenedor Bootstrap */
+
+.pagina_admin .table-responsive {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    margin-top: 16px;
 }
 
 /* Tabla */
-.tabla_admin {
+
+.pagina_admin .tabla_admin {
     width: 100%;
+    min-width: 0;
     border-collapse: collapse;
+    table-layout: auto;
+    font-size: 13px;
 }
 
-.tabla_admin th,
-.tabla_admin td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
+.pagina_admin .tabla_admin th,
+.pagina_admin .tabla_admin td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #dddddd;
+    vertical-align: middle;
     text-align: left;
+    line-height: 1.4;
+    white-space: normal;
 }
 
-.tabla_admin th {
-    color: white;
+.pagina_admin .tabla_admin th {
+    color: #ffffff;
     background-color: #1f1f1f;
+    white-space: nowrap;
 }
 
-.tabla_admin tbody tr:nth-child(even) {
+.pagina_admin .tabla_admin tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-.tabla_admin tbody tr:hover {
+.pagina_admin .tabla_admin tbody tr:hover {
     background-color: #e7e7e7;
 }
 
-/* Mensaje cuando no existen productos */
+/* Nombre del producto */
+
+.pagina_admin .tabla_admin td:nth-child(2) {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+/* Columna de acciones */
+
+.pagina_admin .tabla_admin td:last-child {
+    width: 120px;
+    min-width: 110px;
+    white-space: normal;
+}
+
+/* Botones de acciones */
+
+.pagina_admin .tabla_admin td:last-child .btn {
+    display: block;
+    width: 100%;
+    margin: 4px 0 !important;
+    padding: 6px;
+    font-size: 12px;
+    text-align: center;
+    white-space: normal;
+}
+
+/* Mensaje de tabla vacía */
+
 .mensaje_vacio_admin {
     margin: 25px 0 5px;
-    color: #666;
+    color: #666666;
     text-align: center;
 }
 
-/* Acciones de la tabla */
+/* =========================================
+   ACCIONES DE PRODUCTOS Y USUARIOS
+========================================= */
+
 .acciones_tabla_admin {
     display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
     flex-direction: column;
     align-items: stretch;
+    gap: 6px;
 }
 
 .acciones_tabla_admin button {
+    width: 100%;
     padding: 7px 10px;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
     text-align: center;
+    cursor: pointer;
 }
+
+/* Botón mostrar */
 
 .btn_mostrar_producto,
 .btn_mostrar_usuario {
-    color: white;
-    background-color: #2563eb;
-}
-
-.btn_editar_producto,
-.btn_editar_usuario {
-    color: black;
-    background-color: #facc15;
-}
-
-.btn_eliminar_producto,
-.btn_eliminar_usuario {
-    color: white;
-    background-color: #dc2626;
+    color: #ffffff;
+    background-color: #555555;
 }
 
 .btn_mostrar_producto:hover,
 .btn_mostrar_usuario:hover {
-    background-color: #1d4ed8;
+    background-color: #333333;
+}
+
+/* Botón editar */
+
+.btn_editar_producto,
+.btn_editar_usuario {
+    color: #212529;
+    background-color: #dddddd;
 }
 
 .btn_editar_producto:hover,
 .btn_editar_usuario:hover {
-    background-color: #eab308;
+    background-color: #cccccc;
+}
+
+/* Botón eliminar */
+
+.btn_eliminar_producto,
+.btn_eliminar_usuario {
+    color: #ffffff;
+    background-color: #a34848;
 }
 
 .btn_eliminar_producto:hover,
 .btn_eliminar_usuario:hover {
-    background-color: #b91c1c;
+    background-color: #823636;
 }
 
-/* Mensajes de validación de formularios */
+/* Botones Bootstrap */
+
+.pagina_admin .tabla_admin .btn-outline-secondary {
+    color: #454545;
+    border-color: #a9a9a9;
+    background-color: #ffffff;
+}
+
+.pagina_admin .tabla_admin .btn-outline-secondary:hover {
+    color: #ffffff;
+    background-color: #555555;
+    border-color: #555555;
+}
+
+.pagina_admin .tabla_admin .btn-outline-danger {
+    color: #a34848;
+    border-color: #c98c8c;
+    background-color: #ffffff;
+}
+
+.pagina_admin .tabla_admin .btn-outline-danger:hover {
+    color: #ffffff;
+    background-color: #a34848;
+}
+
+/* =========================================
+   FORMULARIOS ADMINISTRATIVOS
+========================================= */
+
+/* Contenedores existentes */
+
+.contenedor_formulario_admin,
+.contenedor_formulario {
+    width: 100%;
+    max-width: 700px;
+    padding: 28px;
+    margin: 20px auto;
+    color: #212529;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Formulario */
+
+.formulario_admin,
+.formulario_producto_admin {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Campos */
+
+.campo_admin {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo_admin label,
+.formulario_producto_admin label {
+    color: #222222;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.campo_admin input,
+.campo_admin select,
+.campo_admin textarea,
+.formulario_producto_admin input,
+.formulario_producto_admin select,
+.formulario_producto_admin textarea {
+    width: 100%;
+    padding: 10px 12px;
+    color: #222222;
+    background-color: #ffffff;
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.campo_admin textarea,
+.formulario_producto_admin textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.campo_admin input:focus,
+.campo_admin select:focus,
+.campo_admin textarea:focus,
+.formulario_producto_admin input:focus,
+.formulario_producto_admin select:focus,
+.formulario_producto_admin textarea:focus {
+    border-color: #1f1f1f;
+    outline: 2px solid rgba(31, 31, 31, 0.15);
+}
+
+/* Títulos del formulario */
+
+.formulario_admin h2,
+.formulario_producto_admin h2 {
+    margin-bottom: 12px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* Validaciones */
+
 .formulario_admin .campo_admin small[id^="error"] {
     display: block;
     margin-top: 5px;
@@ -345,111 +524,61 @@ body {
     font-weight: 600;
 }
 
-/* Asteriscos de campos obligatorios */
+.formulario_producto_admin .invalid-feedback,
+.formulario_producto_admin .text-danger {
+    font-size: 12px;
+}
+
+/* Asteriscos */
+
 .campo_requerido_admin,
 .aviso_obligatorio_admin span {
     color: #d00000;
 }
 
-/* Contenedor de formularios y detalles */
-.contenedor_formulario_admin {
-    max-width: 850px;
-    padding: 30px;
-    margin: 0 auto;
-    background-color: white;
-    border: 1px solid #dddddd;
-    border-radius: 8px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.10);
-}
-
-
-/* Formulario administrativo */
-
-.formulario_admin {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-/* Campos del formulario */
-.campo_admin {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.campo_admin label {
-    color: #222222;
-}
-
-.campo_admin input,
-.campo_admin select,
-.campo_admin textarea {
-    width: 100%;
-    padding: 11px 12px;
-    color: #222222;
-    background-color: white;
-    border: 1px solid #aaaaaa;
-    border-radius: 5px;
-    font-family: inherit;
-    font-size: 15px;
-}
-
-.campo_admin textarea {
-    resize: vertical;
-}
-
-.campo_admin input:focus,
-.campo_admin select:focus,
-.campo_admin textarea:focus {
-    border-color: #1f1f1f;
-    outline: 2px solid rgba(31, 31, 31, 0.15);
-}
-
 /* Textos de ayuda */
+
 .texto_ayuda_admin {
     color: #666666;
     font-size: 12px;
 }
 
-/* Aviso de campos obligatorios */
 .aviso_obligatorio_admin {
     margin: 0;
     color: #555555;
     font-size: 14px;
 }
 
-/* Botones de formularios y detalles */
+/* Botones del formulario */
+
 .botones_formulario_admin {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 12px;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .botones_formulario_admin button,
 .botones_formulario_admin a {
     display: inline-block;
+    flex: 1;
+    width: 180px;
+    max-width: 200px;
     padding: 11px 18px;
     border: none;
     border-radius: 6px;
     font-family: inherit;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 600;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    flex: 1;  /* Hace que ambos se repartan el ancho en partes iguales */
-    max-width: 200px;
-    width: 220px;
-    box-sizing: border-box;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    letter-spacing: 0.5px;
 }
 
 .botones_formulario_admin button {
-    color: white;
+    color: #ffffff;
     background-color: #1f1f1f;
 }
 
@@ -466,14 +595,17 @@ body {
     background-color: #cccccc;
 }
 
-/* Detalle del usuario */
+/* =========================================
+   DETALLES DE PRODUCTOS Y USUARIOS
+========================================= */
+
 .detalle_usuario_admin {
     margin: 0 0 25px;
 }
 
 .detalle_usuario_admin div {
     display: grid;
-    grid-template-columns: 190px 1fr;
+    grid-template-columns: 190px minmax(0, 1fr);
     gap: 15px;
     padding: 13px 0;
     border-bottom: 1px solid #dddddd;
@@ -489,39 +621,79 @@ body {
     overflow-wrap: anywhere;
 }
 
-
 #detalleImagenProducto {
+    display: block;
     width: 300px;
     max-width: 100%;
     height: auto;
-    display: block;
     margin-bottom: 20px;
     border-radius: 8px;
 }
 
+/* Contenedor de usuarios */
 
+.contenedor_usuarios {
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+}
 
-/* Diseño para pantallas pequeñas */
+/* =========================================
+   PIE DE PÁGINA
+========================================= */
+
+#pie_pag {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 110px;
+    padding: 20px 30px;
+    color: #ffffff;
+    background-color: #1f1f1f;
+    text-align: center;
+    overflow: hidden;
+}
+
+#pie_pag p {
+    margin: 0;
+    color: #ffffff;
+    line-height: 1.8;
+}
+
+/* =========================================
+   RESPONSIVE - TABLET
+========================================= */
+
 @media (max-width: 900px) {
 
     .cuerpo_admin {
-        flex-direction: column; /* <--- AGREGAR AQUÍ */
-    }
-
-    .pagina_admin {
         flex-direction: column;
     }
 
     .menu_admin {
+        flex: none;
         width: 100%;
         min-height: auto;
+        padding: 15px;
+    }
+
+    .logo_admin img {
+        width: 65px;
+    }
+
+    .logo_admin h2 {
+        font-size: 16px;
     }
 
     .navegacion_admin {
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;  /* Centra los enlaces horizontalmente */
-        align-items: center;  /* Alinea verticalmente los botones */
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 15px;
     }
 
     .volver_tienda {
@@ -530,52 +702,82 @@ body {
 
     .contenido_admin {
         width: 100%;
-        padding: 20px;
+        padding: 18px;
+    }
+
+    .encabezado_admin,
+    .encabezado_lista_admin {
+        padding: 18px;
+    }
+
+    .encabezado_admin h1,
+    .encabezado_lista_admin h1 {
+        font-size: 22px;
     }
 
     .resumen_admin {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(min(100%, 240px), 1fr)
+        );
+    }
+
+    .contenedor_formulario_admin,
+    .contenedor_formulario {
+        padding: 22px;
+    }
+
+    .pagina_admin .tabla_admin {
+        min-width: 650px;
+    }
+}
+
+/* =========================================
+   RESPONSIVE - CELULAR
+========================================= */
+
+@media (max-width: 576px) {
+
+    .contenido_admin {
+        padding: 12px;
+    }
+
+    .menu_admin {
+        padding: 12px;
+    }
+
+    .navegacion_admin {
+        gap: 5px;
+    }
+
+    .enlace_admin {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .encabezado_admin,
+    .encabezado_lista_admin {
+        padding: 16px;
     }
 
     .encabezado_lista_admin {
-        display: flex;                   /* Coloca el texto y el botón en fila */
-        justify-content: space-between;  /* Envía el texto a la izquierda y el botón a la derecha */
-        align-items: center;
-        flex-wrap: wrap;  /* Permite que el botón baje ordenadamente sin salirse */
-        gap: 15px;  /* Espacio de separación cuando el botón baja a la siguiente línea */
-        width: 100%;
-        height: auto !important;     /* Quita cualquier altura fija previa para que el fondo/borde cubra todo */
-        box-sizing: border-box;
-    }   
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-    .encabezado_lista_admin div {
-    flex: 1 1 200px;  /* Permite que el bloque del título se adapte sin expulsar al botón */
+    .encabezado_admin h1,
+    .encabezado_lista_admin h1 {
+        font-size: 21px;
     }
 
     .btn_nuevo_admin {
-        width: auto;
+        width: 100%;
         text-align: center;
     }
 
-    
-
-    /* Asteriscos de campos obligatorios */
-    .campo_requerido_admin,
-    .aviso_obligatorio_admin span {
-        color: #d00000;
-    }
-
-    /* Mensajes de validación */
-    .formulario_admin small[id^="error"] {
-        display: block;
-        margin-top: 5px;
-        color: #d00000;
-        font-size: 14px;
-        font-weight: 600;
-    }
-
-    .contenedor_formulario_admin {
-        padding: 20px;
+    .contenedor_formulario_admin,
+    .contenedor_formulario {
+        padding: 16px;
     }
 
     .detalle_usuario_admin div {
@@ -585,20 +787,129 @@ body {
 
     .botones_formulario_admin {
         flex-direction: column;
-        align-items: center;  /* Centra los botones en pantalla dividida */
-        gap: 12px;
+        align-items: stretch;
     }
 
     .botones_formulario_admin button,
     .botones_formulario_admin a {
         width: 100%;
-        max-width: 260px;       /* Mantiene a ambos con el mismo largo exacto */
-        text-align: center;
-    }
-}
-    .botones_formulario_admin {
-        flex-direction: column;
-        align-items: center;    /* Centra los botones en pantalla dividida */
-        gap: 12px;
+        max-width: none;
     }
 
+    .pagina_admin .tabla_admin {
+        min-width: 650px;
+    }
+}
+
+/* =========================================
+   AJUSTES DE TAMAÑO DEL PANEL ADMIN
+========================================= */
+
+/* Encabezados de las páginas */
+.pagina_admin .encabezado_admin,
+.pagina_admin .encabezado_lista_admin {
+    padding: 14px 18px;
+    margin-bottom: 16px;
+}
+
+.pagina_admin .encabezado_admin h1,
+.pagina_admin .encabezado_lista_admin h1 {
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 5px;
+}
+
+.pagina_admin .encabezado_admin p,
+.pagina_admin .encabezado_lista_admin p {
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+/* Tarjetas del inicio */
+.pagina_admin .resumen_admin {
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(min(100%, 240px), 1fr)
+    );
+    gap: 16px;
+}
+
+.pagina_admin .tarjeta_admin {
+    padding: 18px;
+}
+
+.pagina_admin .tarjeta_admin h2 {
+    font-size: 18px;
+    margin: 0 0 8px;
+}
+
+.pagina_admin .tarjeta_admin p {
+    font-size: 13px;
+    line-height: 1.4;
+    min-height: 0;
+    margin: 0 0 14px;
+}
+
+.pagina_admin .tarjeta_admin a {
+    display: inline-block;
+    width: auto;
+    min-width: 0;
+    padding: 8px 14px;
+    font-size: 13px;
+    line-height: 1.3;
+    text-decoration: none;
+}
+
+
+/* Filtro de stock crítico */
+.pagina_admin .form-check {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 10px 0;
+    padding-left: 0;
+}
+
+.pagina_admin .form-check-input {
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.pagina_admin .form-check-label {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+
+/* Filtro de stock crítico */
+
+.pagina_admin .filtro_stock_admin {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0;
+    padding: 8px 12px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.pagina_admin .filtro_stock_admin input {
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.pagina_admin .filtro_stock_admin span {
+    font-size: 13px;
+    font-weight: 400;
+    color: #333333;
+    white-space: nowrap;
+}

@@ -5,7 +5,7 @@ function BotonNuevoProducto() {
     return (
         <Link
             to="/admin/productos/nuevo"
-            className="boton_admin"
+            className="btn btn-dark"
         >
             Nuevo producto
         </Link>

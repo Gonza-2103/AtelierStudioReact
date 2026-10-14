@@ -25,8 +25,7 @@ function EditarProducto() {
     )
 
     if (codigoRepetido) {
-        alert('Ya existe otro producto con ese código')
-        return
+        return false
     }
 
     const productosActualizados = productos.map(p =>
