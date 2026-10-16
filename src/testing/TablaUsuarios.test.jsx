@@ -1,30 +1,42 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
-import TablaUsuarios from '../components/admin/TablaUsuarios';
+import { render, screen, fireEvent } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
+import { describe, it, expect, vi } from 'vitest'
+import TablaUsuarios from '../components/admin/TablaUsuarios'
 
-//Evalúa el despliegue de la lista de cuentas de usuario y perfiles registrados.
- 
-describe('Pruebas Unitarias: Componente TablaUsuarios', () => {
-    const usuariosSimulados = [
-        { id: 1, run: '19011022K', nombre: 'Daniela', correo: 'daniela.munoz@admin.cl', rol: 'Administrador' }
-    ];
+describe('Pruebas Unitarias: TablaUsuarios', () => {
+    const usuarios = [{
+        id: 1,
+        nombre: 'Daniela',
+        apellidos: 'Muñoz',
+        correo: 'daniela.munoz@admin.cl',
+        rol: 'Administrador'
+    }]
 
-    // Caso de Prueba 1: Verifica los encabezados de la tabla de usuarios
-    it('CP-TABUSU-01: Debe renderizar las columnas principales (RUT/RUN, Correo, Rol)', () => {
-        render(<TablaUsuarios usuarios={usuariosSimulados} />);
+    it('Muestra los datos del usuario y el enlace a su detalle', () => {
+        render(<MemoryRouter><TablaUsuarios usuarios={usuarios} /></MemoryRouter>)
+        expect(screen.getByText('Daniela Muñoz')).toBeInTheDocument()
+        expect(screen.getByText('daniela.munoz@admin.cl')).toBeInTheDocument()
+        expect(screen.getByText('Administrador')).toBeInTheDocument()
+        expect(screen.getByRole('link', { name: /ver detalle/i }))
+            .toHaveAttribute('href', '/admin/usuarios/detalle/1')
+    })
 
-        expect(screen.getByText(/RUT|RUN/i)).toBeInTheDocument();
-        expect(screen.getByText(/Correo/i)).toBeInTheDocument();
-        expect(screen.getByText(/Rol/i)).toBeInTheDocument();
-    });
+    it('Muestra un mensaje si la lista está vacía', () => {
+        render(<MemoryRouter><TablaUsuarios usuarios={[]} /></MemoryRouter>)
+        expect(screen.getByText('No se encontraron usuarios.')).toBeInTheDocument()
+    })
 
-    // Caso de Prueba 2: Verifica las celdas con los datos de cuentas
-    it('CP-TABUSU-02: Debe mostrar los datos del usuario en la fila correspondiente', () => {
-        render(<TablaUsuarios usuarios={usuariosSimulados} />);
+    it('Llama a alEditar con el usuario seleccionado', () => {
+        const alEditar = vi.fn()
+        render(<MemoryRouter><TablaUsuarios usuarios={usuarios} alEditar={alEditar} /></MemoryRouter>)
+        fireEvent.click(screen.getByRole('button', { name: 'Editar' }))
+        expect(alEditar).toHaveBeenCalledWith(usuarios[0])
+    })
 
-        expect(screen.getByText('19011022K')).toBeInTheDocument();
-        expect(screen.getByText('daniela.munoz@admin.cl')).toBeInTheDocument();
-    });
-
-});
+    it('Llama a alEliminar con el ID del usuario', () => {
+        const alEliminar = vi.fn()
+        render(<MemoryRouter><TablaUsuarios usuarios={usuarios} alEliminar={alEliminar} /></MemoryRouter>)
+        fireEvent.click(screen.getByRole('button', { name: 'Eliminar' }))
+        expect(alEliminar).toHaveBeenCalledWith(1)
+    })
+})

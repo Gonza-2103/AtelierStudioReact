@@ -14,6 +14,7 @@ describe('Pruebas Unitarias: Componente EncabezadoUsuarios', () => {
         <BrowserRouter>
             <EncabezadoUsuarios />
         </BrowserRouter>
+        
         );
 
         expect(screen.getByText(/Gestión de Usuarios/i)).toBeInTheDocument();
@@ -27,7 +28,7 @@ describe('Pruebas Unitarias: Componente EncabezadoUsuarios', () => {
         </BrowserRouter>
         );
 
-        expect(screen.getByText(/Control de cuentas y roles registrados/i)).toBeInTheDocument();
+        expect(screen.getByText(/Administra los usuarios registrados en AtelierStudio/i)).toBeInTheDocument();
     });
 
 });

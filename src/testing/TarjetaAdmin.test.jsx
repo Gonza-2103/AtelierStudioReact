@@ -1,25 +1,48 @@
+
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
+import { MemoryRouter } from 'react-router-dom';
 import TarjetaAdmin from '../components/admin/TarjetaAdmin';
 
-//Evalúa las tarjetas de métricas o estadísticas del Dashboard.
+// Evalúa las tarjetas de acceso del panel de administración.
 
 describe('Pruebas Unitarias: Componente TarjetaAdmin', () => {
 
-    // Caso de Prueba 1: Verifica la visualización del título y el valor cuantitativo
-    it('CP-TARJADM-01: Debe renderizar el título indicador y la cifra numérica enviada por props', () => {
-        render(<TarjetaAdmin titulo="Total Productos" valor="15" />);
+    // Caso 1: Verifica el título y la descripción.
+    it('CP-TARJADM-01: Debe mostrar el título y la descripción de la tarjeta', () => {
+        render(
+            <MemoryRouter>
+                <TarjetaAdmin
+                    titulo="Total Productos"
+                    descripcion="Administrar productos registrados"
+                    enlace="/admin/productos"
+                    textoEnlace="Ver productos"
+                />
+            </MemoryRouter>
+        );
 
         expect(screen.getByText('Total Productos')).toBeInTheDocument();
-        expect(screen.getByText('15')).toBeInTheDocument();
+        expect(screen.getByText('Administrar productos registrados')).toBeInTheDocument();
     });
 
-    // Caso de Prueba 2: Verifica la descripción adicional o subtítulo de la tarjeta
-    it('CP-TARJADM-02: Debe mostrar la leyenda explicativa o subtítulo secundario', () => {
-        render(<TarjetaAdmin titulo="Usuarios" valor="8" descripcion="Registrados activamente" />);
+    // Caso 2: Verifica que el enlace tenga la ruta correcta.
+    it('CP-TARJADM-02: Debe mostrar el enlace de navegación correcto', () => {
+        render(
+            <MemoryRouter>
+                <TarjetaAdmin
+                    titulo="Usuarios"
+                    descripcion="Administrar usuarios registrados"
+                    enlace="/admin/usuarios"
+                    textoEnlace="Ver usuarios"
+                />
+            </MemoryRouter>
+        );
 
-        expect(screen.getByText('Registrados activamente')).toBeInTheDocument();
+        const enlace = screen.getByRole('link', { name: 'Ver usuarios' });
+
+        expect(enlace).toBeInTheDocument();
+        expect(enlace).toHaveAttribute('href', '/admin/usuarios');
     });
 
 });

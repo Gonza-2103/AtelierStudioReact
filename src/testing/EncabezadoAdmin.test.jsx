@@ -12,11 +12,11 @@ describe('Pruebas Unitarias: Componente EncabezadoAdmin', () => {
     it('CP-ENCADM-01: Debe renderizar el título del panel de administración', () => {
         render(
         <BrowserRouter>
-            <EncabezadoAdmin titulo="Panel de Administración" />
+            <EncabezadoAdmin titulo="Gestión de productos" />
         </BrowserRouter>
         );
 
-        expect(screen.getByText(/Panel de Administración/i)).toBeInTheDocument();
+        expect(screen.getByText(/Gestión de productos/i)).toBeInTheDocument();
     });
 
     // Caso de Prueba 2: Verifica la identificación del perfil con rol administrativo
@@ -27,7 +27,7 @@ describe('Pruebas Unitarias: Componente EncabezadoAdmin', () => {
         </BrowserRouter>
         );
 
-        expect(screen.getByText(/Administrador/i)).toBeInTheDocument();
+        expect(screen.getByText(/Administra los productos disponibles en AtelierStudio/i)).toBeInTheDocument();
     });
 
 });

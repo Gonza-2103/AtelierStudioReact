@@ -1,32 +1,68 @@
+
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { describe, it, expect, vi } from 'vitest';
 import AccionesProducto from '../components/admin/AccionesProducto';
 
-// Evalúa la disponibilidad de los botones de acción rápida y el envío de sus eventos callback.
- 
+// Evalúa los enlaces de navegación y la eliminación de productos.
+
 describe('Pruebas Unitarias: Componente AccionesProducto', () => {
 
-    // Caso de Prueba 1: Verifica el renderizado visual de los botones Editar y Eliminar
-    it('CP-ACCPROD-01: Debe renderizar los botones de Editar y Eliminar en la fila del producto', () => {
-        render(<AccionesProducto onEditar={() => {}} onEliminar={() => {}} />);
+    // Caso 1: Verifica los enlaces y sus rutas
+    it('CP-ACCPROD-01: Debe mostrar las acciones con las rutas correctas del producto', () => {
 
-        expect(screen.getByRole('button', { name: /editar/i })).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: /eliminar/i })).toBeInTheDocument();
+        render(
+            <MemoryRouter>
+                <AccionesProducto id={1} alEliminar={vi.fn()} />
+            </MemoryRouter>
+        );
+
+        const enlaceDetalle = screen.getByRole('link', {
+            name: 'Ver detalle'
+        });
+
+        const enlaceEditar = screen.getByRole('link', {
+            name: 'Editar'
+        });
+
+        expect(enlaceDetalle).toBeInTheDocument();
+        expect(enlaceDetalle).toHaveAttribute(
+            'href',
+            '/admin/productos/detalle/1'
+        );
+
+        expect(enlaceEditar).toBeInTheDocument();
+        expect(enlaceEditar).toHaveAttribute(
+            'href',
+            '/admin/productos/editar/1'
+        );
+
+        expect(screen.getByRole('button', {
+            name: 'Eliminar'
+        })).toBeInTheDocument();
     });
 
-    // Caso de Prueba 2: Verifica la ejecución de los handlers al hacer clic
-    it('CP-ACCPROD-02: Debe ejecutar las funciones callback enviadas por props al hacer clic', () => {
-        const onEditarMock = vi.fn();
-        const onEliminarMock = vi.fn();
+    // Caso 2: Verifica la ejecución de la función de eliminación
+    it('CP-ACCPROD-02: Debe llamar a alEliminar con el ID del producto', () => {
 
-        render(<AccionesProducto onEditar={onEditarMock} onEliminar={onEliminarMock} />);
+        const alEliminarMock = vi.fn();
 
-        fireEvent.click(screen.getByRole('button', { name: /editar/i }));
-        expect(onEditarMock).toHaveBeenCalledTimes(1);
+        render(
+            <MemoryRouter>
+                <AccionesProducto
+                    id={5}
+                    alEliminar={alEliminarMock}
+                />
+            </MemoryRouter>
+        );
 
-        fireEvent.click(screen.getByRole('button', { name: /eliminar/i }));
-        expect(onEliminarMock).toHaveBeenCalledTimes(1);
+        fireEvent.click(screen.getByRole('button', {
+            name: 'Eliminar'
+        }));
+
+        expect(alEliminarMock).toHaveBeenCalledTimes(1);
+        expect(alEliminarMock).toHaveBeenCalledWith(5);
     });
 
 });

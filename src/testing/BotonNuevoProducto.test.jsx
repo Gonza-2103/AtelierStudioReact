@@ -1,28 +1,46 @@
+
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import BotonNuevoProducto from '../components/admin/BotonNuevoProducto';
 
-//Evalúa el botón activador del modal o formulario de creación de productos.
- 
+// Evalúa el enlace para crear un nuevo producto.
+
 describe('Pruebas Unitarias: Componente BotonNuevoProducto', () => {
 
-    // Caso de Prueba 1: Verifica la renderización del botón de creación
-    it('CP-BTNPROD-01: Debe renderizar el botón para agregar un nuevo producto', () => {
-        render(<BotonNuevoProducto onClick={() => {}} />);
+    // Caso 1: Verifica que se muestre el enlace.
+    it('CP-BTNPROD-01: Debe mostrar la opción para crear un producto', () => {
+        render(
+            <MemoryRouter>
+                <BotonNuevoProducto />
+            </MemoryRouter>
+        );
 
-        expect(screen.getByRole('button', { name: /nuevo producto/i })).toBeInTheDocument();
+        const enlace = screen.getByRole('link', { name: /nuevo producto/i });
+
+        expect(enlace).toBeInTheDocument();
+        expect(enlace).toHaveAttribute('href', '/admin/productos/nuevo');
     });
 
-    // Caso de Prueba 2: Verifica la activación del evento onClick
-    it('CP-BTNPROD-02: Debe gatillar la función de apertura al ser presionado por el administrador', () => {
-        const onClickMock = vi.fn();
-        render(<BotonNuevoProducto onClick={onClickMock} />);
+    // Caso 2: Verifica la navegación al hacer clic.
+    it('CP-BTNPROD-02: Debe navegar al formulario de nuevo producto', () => {
+        render(
+            <MemoryRouter initialEntries={['/admin/productos']}>
+                <BotonNuevoProducto />
 
-        const boton = screen.getByRole('button', { name: /nuevo producto/i });
-        fireEvent.click(boton);
+                <Routes>
+                    <Route
+                        path="/admin/productos/nuevo"
+                        element={<h1>Formulario nuevo producto</h1>}
+                    />
+                </Routes>
+            </MemoryRouter>
+        );
 
-        expect(onClickMock).toHaveBeenCalledTimes(1);
+        fireEvent.click(screen.getByRole('link', { name: /nuevo producto/i }));
+
+        expect(screen.getByText('Formulario nuevo producto')).toBeInTheDocument();
     });
 
 });

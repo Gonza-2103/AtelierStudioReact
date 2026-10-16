@@ -27,7 +27,7 @@ describe('Pruebas Unitarias: Componente EncabezadoProductos', () => {
         </BrowserRouter>
         );
 
-        expect(screen.getByText(/Administra las obras disponibles/i)).toBeInTheDocument();
+        expect(screen.getByText(/Administra los productos disponibles/i)).toBeInTheDocument();
     });
 
 });
