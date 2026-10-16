@@ -21,6 +21,8 @@ describe('Pruebas Unitarias: Componente Carrito', () => {
 
     //2. Verifica que un usuario invitado no pueda aplicar cupones de descuento
     it('CP-CAR-02: Debe impedir aplicar cupón a un invitado no autenticado', () => {
+
+        //Simula que el usuario hace clic en "Cancelar" ante el aviso
         const confirmSpy = vi.spyOn(window, 'confirm').mockImplementation(() => false);
 
         render(
@@ -32,8 +34,9 @@ describe('Pruebas Unitarias: Componente Carrito', () => {
         const btnCupon = screen.getByRole('button', { name: /APLICAR/i });
         fireEvent.click(btnCupon);
 
+        //Se comprueba que el diálogo modal fue invocado con el texto de restricción
         expect(confirmSpy).toHaveBeenCalledWith(
-        expect.stringContaining('Para realizar esta acción debes iniciar sesión')
+            expect.stringContaining('Para realizar esta acción debes iniciar sesión')
         );
     });
 });

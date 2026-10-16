@@ -1,7 +1,6 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   test: {
@@ -11,6 +10,16 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
+      exclude: [
+        'src/assets/**',
+        'src/styles/**',
+        'src/testing/**',
+        'node_modules/**',
+        '**/*.css',
+        '**/*.png',
+        '**/*.jpg',
+        '**/*.jpeg'
+      ]
     },
   },
 });
