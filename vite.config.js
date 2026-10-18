@@ -1,5 +1,5 @@
-import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
@@ -7,9 +7,13 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/testing/setupTests.js',
+    watch: false,
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'json', 'html'],
+      // 'text' y 'text-summary' aseguran la impresión en consola
+      reporter: ['text', 'text-summary', 'json', 'html'],
+      // OBLIGATORIO: Fuerza a Vitest a imprimir la tabla de cobertura aunque haya tests fallidos
+      reportOnFailure: true,
       exclude: [
         'src/assets/**',
         'src/styles/**',
@@ -19,7 +23,7 @@ export default defineConfig({
         '**/*.png',
         '**/*.jpg',
         '**/*.jpeg'
-      ]
+      ],
     },
   },
 });
