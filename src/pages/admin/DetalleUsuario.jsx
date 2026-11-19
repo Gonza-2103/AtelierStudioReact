@@ -1,24 +1,35 @@
-
+import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import EstructuraAdmin from '../../components/admin/EstructuraAdmin'
 
 function DetalleUsuario() {
     const { id } = useParams()
+    const [usuario, setUsuario] = useState(null)
+    const [cargando, setCargando] = useState(true)
 
-    let usuarios = []
+    useEffect(() => {
+        let activo = true
 
-    try {
-        const guardados = JSON.parse(
-            localStorage.getItem('usuarios') || '[]'
-        )
-        usuarios = Array.isArray(guardados) ? guardados : []
-    } catch {
-        usuarios = []
-    }
+        async function cargar() {
+            try {
+                const respuesta = await fetch(`${import.meta.env.VITE_API_BASE_URL}/usuarios/${id}`)
 
-    const usuario = usuarios.find(
-        u => String(u.id) === String(id)
-    )
+                if (respuesta.ok && activo) {
+                    setUsuario(await respuesta.json())
+                }
+            } catch (error) {
+                console.error('Error al cargar el usuario:', error)
+            } finally {
+                if (activo) setCargando(false)
+            }
+        }
+
+        cargar()
+
+        return () => {
+            activo = false
+        }
+    }, [id])
 
     return (
         <EstructuraAdmin>

@@ -15,12 +15,7 @@ function UsuariosAdmin() {
    useEffect(() => {
         const obtenerUsuarios = async () => {
             try {
-                const token = localStorage.getItem('token')
-                const respuesta = await fetch(`${import.meta.env.VITE_API_BASE_URL}/v1/usuarios`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                })
+                const respuesta = await fetch(`${import.meta.env.VITE_API_BASE_URL}/usuarios`)
                 
                 if (respuesta.ok) {
                     const datos = await respuesta.json()
@@ -39,12 +34,8 @@ function UsuariosAdmin() {
     async function eliminar(id) {
         if (window.confirm('¿Eliminar este usuario?')) {
             try {
-                const token = localStorage.getItem('token')
-                const respuesta = await fetch(`${import.meta.env.VITE_API_BASE_URL}/v1/usuarios/${id}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
+                const respuesta = await fetch(`${import.meta.env.VITE_API_BASE_URL}/usuarios/${id}`, {
+                    method: 'DELETE'
                 })
 
                 if (respuesta.ok) {

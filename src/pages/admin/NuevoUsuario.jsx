@@ -100,111 +100,59 @@ export function FormularioUsuario({ usuarioInicial = null }) {
 
     // Crear o actualizar un usuario
     async function guardar(e) {
-        e.preventDefault()
-        setEnviado(true)
+    e.preventDefault()
+    setEnviado(true)
+    setError('')
 
-        // Evitar guardar si existen errores
-        if (Object.values(errores).some(Boolean)) {
-            return
-        }
-
-        const datos = {
-            nombre: formulario.nombre.trim(),
-            apellidos: formulario.apellidos.trim(),
-            correo: formulario.correo.trim().toLowerCase(),
-            rol: formulario.rol
-        }
-
-        // La contraseña solo se envía al crear
-        if (!editando) {
-            datos.contrasena = formulario.contrasena
-        }
-
-        try {
-            const token = localStorage.getItem('token')
-            let respuesta
-
-            if (editando) {
-                respuesta = await fetch(`${import.meta.env.VITE_API_BASE_URL}/v1/usuarios/${usuarioInicial.id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify(datos)
-                })
-            } else {
-                respuesta = await fetch(`${import.meta.env.VITE_API_BASE_URL}/v1/usuarios`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify(datos)
-                })
-            }
-
-            if (respuesta.ok) {
-                navigate('/admin/usuarios')
-            } else {
-                setError('No se pudo guardar el usuario. Revisa si el correo ya existe.')
-            }
-        } catch (error) {
-            console.error('Error al guardar:', error)
-            setError('Error de conexión con el servidor')
-        }
+    if (Object.values(errores).some(Boolean)) {
+        return
     }
 
-        // Obtener usuarios guardados
-        let usuarios = []
+    const datos = {
+        nombre: formulario.nombre.trim(),
+        apellidos: formulario.apellidos.trim(),
+        correo: formulario.correo.trim().toLowerCase(),
+        rol: formulario.rol
+    }
 
-        try {
-            const guardados = JSON.parse(
-                localStorage.getItem('usuarios') || '[]'
-            )
+    if (!editando) {
+        datos.contrasena = formulario.contrasena
+    }
 
-            usuarios = Array.isArray(guardados) ? guardados : []
-        } catch {
-            usuarios = []
-        }
-
-        // Validar que el correo no esté repetido
-       const correoRepetido = usuarios.some(usuario =>
-            usuario.correo?.trim().toLowerCase() === datos.correo &&
-            (!editando || String(usuario.id) !== String(usuarioInicial.id))
+    try {
+        const respuesta = await fetch(
+            editando
+                ? `${import.meta.env.VITE_API_BASE_URL}/usuarios/${usuarioInicial.id}`
+                : `${import.meta.env.VITE_API_BASE_URL}/usuarios`,
+            {
+                method: editando ? 'PUT' : 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(datos)
+            }
         )
 
-        if (correoRepetido) {
-            setError('Ya existe un usuario con ese correo.')
+        if (!respuesta.ok) {
+            let mensaje = editando
+                ? 'No se pudo guardar el usuario.'
+                : 'No se pudo crear el usuario.'
+
+            try {
+                const cuerpo = await respuesta.json()
+                if (cuerpo?.MENSAJE) mensaje = cuerpo.MENSAJE
+            } catch {
+                // respuesta sin JSON
+            }
+
+            setError(mensaje)
             return
         }
 
-        if (editando) {
-            // Editar usuario sin modificar su contraseña
-            usuarios = usuarios.map(usuario =>
-                String(usuario.id) === String(usuarioInicial.id)
-                    ? {
-                        ...usuario,
-                        nombre: datos.nombre,
-                        apellidos: datos.apellidos,
-                        correo: datos.correo,
-                        rol: datos.rol
-                    }
-                    : usuario
-            )
-        } else {
-            // Crear un usuario nuevo
-            usuarios.push({
-                ...datos,
-                id: Date.now()
-            })
-        }
-
-        localStorage.setItem('usuarios', JSON.stringify(usuarios))
-
-        // Volver al listado
         navigate('/admin/usuarios')
+    } catch (error) {
+        console.error('Error al guardar el usuario:', error)
+        setError('No se pudo conectar con la API de usuarios.')
     }
+}
 
     return (
         <div className="contenedor_formulario">
@@ -335,6 +283,7 @@ function NuevoUsuario() {
             </section>
         </EstructuraAdmin>
     )
+}
 }
 
 export default NuevoUsuario
