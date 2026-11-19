@@ -12,16 +12,19 @@ function UsuariosAdmin() {
     const [busqueda, setBusqueda] = useState('')
 
     // 2. useEffect hace la petición al backend en EC2 al cargar la página
-    useEffect(() => {
+   useEffect(() => {
         const obtenerUsuarios = async () => {
             try {
-                // Lee la variable del archivo .env
-                // Asegúrate de que '/usuarios' sea la ruta correcta de tu Java
-                const respuesta = await fetch(`${import.meta.env.VITE_API_BASE_URL}/usuarios`)
+                const token = localStorage.getItem('token')
+                const respuesta = await fetch(`${import.meta.env.VITE_API_BASE_URL}/v1/usuarios`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
                 
                 if (respuesta.ok) {
                     const datos = await respuesta.json()
-                    setUsuarios(datos) // Guardamos los datos reales de la base de datos
+                    setUsuarios(datos)
                 } else {
                     console.error('Error en la respuesta del backend')
                 }
@@ -33,12 +36,26 @@ function UsuariosAdmin() {
         obtenerUsuarios()
     }, [])
 
-    // Eliminar usuario (Nota: Esto solo lo borra de la pantalla, 
-    // idealmente aquí también deberías hacer un fetch con método DELETE)
-    function eliminar(id) {
+    async function eliminar(id) {
         if (window.confirm('¿Eliminar este usuario?')) {
-            const lista = usuarios.filter(usuario => usuario.id !== id)
-            setUsuarios(lista)
+            try {
+                const token = localStorage.getItem('token')
+                const respuesta = await fetch(`${import.meta.env.VITE_API_BASE_URL}/v1/usuarios/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
+
+                if (respuesta.ok) {
+                    const lista = usuarios.filter(usuario => usuario.id !== id)
+                    setUsuarios(lista)
+                } else {
+                    alert('No se pudo eliminar el usuario')
+                }
+            } catch (error) {
+                console.error('Error al eliminar:', error)
+            }
         }
     }
 

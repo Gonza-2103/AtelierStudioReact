@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import EstructuraAdmin from '../../components/admin/EstructuraAdmin'
@@ -100,7 +99,7 @@ export function FormularioUsuario({ usuarioInicial = null }) {
     }
 
     // Crear o actualizar un usuario
-    function guardar(e) {
+    async function guardar(e) {
         e.preventDefault()
         setEnviado(true)
 
@@ -110,11 +109,51 @@ export function FormularioUsuario({ usuarioInicial = null }) {
         }
 
         const datos = {
-            ...formulario,
             nombre: formulario.nombre.trim(),
             apellidos: formulario.apellidos.trim(),
-            correo: formulario.correo.trim().toLowerCase()
+            correo: formulario.correo.trim().toLowerCase(),
+            rol: formulario.rol
         }
+
+        // La contraseña solo se envía al crear
+        if (!editando) {
+            datos.contrasena = formulario.contrasena
+        }
+
+        try {
+            const token = localStorage.getItem('token')
+            let respuesta
+
+            if (editando) {
+                respuesta = await fetch(`${import.meta.env.VITE_API_BASE_URL}/v1/usuarios/${usuarioInicial.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(datos)
+                })
+            } else {
+                respuesta = await fetch(`${import.meta.env.VITE_API_BASE_URL}/v1/usuarios`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(datos)
+                })
+            }
+
+            if (respuesta.ok) {
+                navigate('/admin/usuarios')
+            } else {
+                setError('No se pudo guardar el usuario. Revisa si el correo ya existe.')
+            }
+        } catch (error) {
+            console.error('Error al guardar:', error)
+            setError('Error de conexión con el servidor')
+        }
+    }
 
         // Obtener usuarios guardados
         let usuarios = []
@@ -285,7 +324,7 @@ export function FormularioUsuario({ usuarioInicial = null }) {
             </form>
         </div>
     )
-}
+
 
 // Página para crear un usuario
 function NuevoUsuario() {
