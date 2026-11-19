@@ -272,6 +272,7 @@ export function FormularioUsuario({ usuarioInicial = null }) {
             </form>
         </div>
     )
+}
 
 
 // Página para crear un usuario
@@ -283,7 +284,6 @@ function NuevoUsuario() {
             </section>
         </EstructuraAdmin>
     )
-}
 }
 
 export default NuevoUsuario
