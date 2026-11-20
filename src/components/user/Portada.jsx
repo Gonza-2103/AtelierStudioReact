@@ -1,22 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/user.css';
+import BotonCerrarSesion from './BotonCerrarSesion';
 import logo from '../../assets/atelierstudiologo.png';
 import foto1 from '../../assets/fotoreferenciaportada.jpg';
 import foto2 from '../../assets/foto2referenciaportada.jpg';
 
 function Portada() {
     const navigate = useNavigate();
-
-    const handleCerrarSesion = (e) => {
-        e.preventDefault();
-        const respuesta = window.confirm("¿Estás seguro que le gustaría cerrar sesión?");
-
-        if (respuesta) {
-            console.log('Sesión cerrada por el usuario');
-            navigate('/login');
-        }
-    };
 
     return (
         <div id="port">
@@ -40,6 +31,8 @@ function Portada() {
                     <button id="nav_btn" onClick={() => navigate('/blogs')}><strong>Blogs</strong></button>
                     <button id="nav_btn" onClick={() => navigate('/contacto')}><strong>Contacto</strong></button>
                 </figure>
+
+                <BotonCerrarSesion />
             </header>
 
             <main id="contenido_port">
@@ -67,22 +60,6 @@ function Portada() {
 
                 <img src={foto2} alt="Referencia Portada 2" />
 
-                <br />
-                <hr style={{ borderColor: 'white' }} />
-
-                <footer className="btn_cerrar_sesion">
-                    <p>
-                        <strong>
-                            <a
-                              href="#"
-                              id="btnCerrarSesion"
-                              onClick={handleCerrarSesion}
-                              style={{ color: 'goldenrod', textDecoration: 'underline' }}>
-                              Cerrar sesión &#x23FB;
-                            </a>
-                        </strong>
-                    </p>
-                </footer>
             </main>
 
           {/* Pie de página informativo */}

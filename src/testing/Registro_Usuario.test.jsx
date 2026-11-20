@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { describe, it, expect, vi } from 'vitest';
 import Registro_Usuario from '../components/user/Registro_Usuario';
@@ -34,6 +34,11 @@ describe('Pruebas Unitarias: Componente Registro_Usuario', () => {
         fireEvent.change(screen.getByPlaceholderText('ejemplo@gmail.com'), { target: { value: 'gonzalo@gmail.com' } });
         fireEvent.change(screen.getByPlaceholderText('Entre 8 y 10 caracteres'), { target: { value: 'clave1234' } });
         fireEvent.change(screen.getByPlaceholderText('Repite tu contraseña'), { target: { value: 'otraclave' } });
+        fireEvent.change(screen.getByPlaceholderText('Calle #número, depto. #número'), { target: { value: 'Av. Libertad 1234' } });
+
+        const selects = screen.getAllByRole('combobox');
+        fireEvent.change(selects[0], { target: { value: 'Región de Valparaíso' } });
+        fireEvent.change(selects[1], { target: { value: 'Viña del Mar' } });
 
         fireEvent.click(screen.getByRole('button', { name: /REGISTRAR/i }));
         expect(alertSpy).toHaveBeenCalledWith('No es posible registrar: las contraseñas no coinciden.');
@@ -71,8 +76,13 @@ describe('Pruebas Unitarias: Componente Registro_Usuario', () => {
     });
 
     //5. Flujo de registro exitoso completo y guardado en localStorage (Cubre líneas 215-321)
-    it('CP-REG-05: Debe registrar al usuario satisfactoriamente cuando todos los datos son válidos', () => {
+    it('CP-REG-05: Debe registrar al usuario satisfactoriamente cuando todos los datos son válidos', async () => {
         const alertSpy = vi.spyOn(window, 'alert').mockImplementation(() => {});
+        vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+            ok: true,
+            status: 201,
+            json: async () => ({ id: 10, nombre: 'Gonzalo', rol: 'Cliente' })
+        }));
         render(
             <BrowserRouter>
                 <Registro_Usuario />
@@ -95,7 +105,9 @@ describe('Pruebas Unitarias: Componente Registro_Usuario', () => {
 
         fireEvent.click(screen.getByRole('button', { name: /REGISTRAR/i }));
 
-        expect(alertSpy).toHaveBeenCalledWith('¡Usuario registrado con exito!');
+        await waitFor(() => {
+            expect(alertSpy).toHaveBeenCalledWith('¡Usuario registrado con exito!');
+        });
         const guardado = JSON.parse(localStorage.getItem('usuarioRegistrado'));
         expect(guardado.run).toBe('19011022K');
     });

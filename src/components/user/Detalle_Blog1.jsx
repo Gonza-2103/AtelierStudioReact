@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import BotonCerrarSesion from './BotonCerrarSesion';
 import '../../styles/user.css';
 import logo from '../../assets/atelierstudiologo.png';
 import pigmentos from '../../assets/pigmentos.jpeg';
@@ -26,6 +27,7 @@ function Detalle_Blog1() {
                     <button className="nav_btn" onClick={() => navigate('/foro')}><strong>Foro</strong></button>
                     <button className="nav_btn" onClick={() => navigate('/contacto')}><strong>Contacto</strong></button>
                 </figure>
+                <BotonCerrarSesion />
             </header>
 
             <main className="cont_det_blog1">

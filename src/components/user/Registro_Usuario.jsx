@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/user.css';
 import logo from '../../assets/atelierstudiologo.png';
+import { crearUsuario } from '../../services/usuariosApi';
 
 function Registro_Usuario() {
     const navigate = useNavigate();
@@ -164,7 +165,7 @@ function Registro_Usuario() {
     };
 
     //Validación y registro adaptado de registro_usuario.js
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const runVal = formData.run.trim();
@@ -298,27 +299,39 @@ function Registro_Usuario() {
 
         setErrores(nuevosErrores);
 
-        //Registro exitoso
+        //Registro exitoso: el backend solo guarda nombre, apellidos, correo, contraseña y rol
         if (formularioValido) {
-            const usuarioGuardado = {
-                run: runVal,
-                nombre: nombreVal,
-                apellidos: apellidosVal,
-                correo: correoVal,
-                clave: claveVal,
-                telefono: telefonoVal,
-                fechaNacimiento: formData.fechaNacimiento,
-                region: regionVal,
-                comuna: comunaVal,
-                direccion: direccionVal
-            };
+            try {
+                const creado = await crearUsuario({
+                    nombre: nombreVal,
+                    apellidos: apellidosVal,
+                    correo: correoVal.toLowerCase(),
+                    contrasena: claveVal,
+                    rol: 'Cliente'
+                });
 
-            //Guarda el perfil activo para sesión, foro y despacho en carrito
-            localStorage.setItem("usuarioRegistrado", JSON.stringify(usuarioGuardado));
-            localStorage.setItem("usuarioActivo", JSON.stringify(usuarioGuardado));
+                const usuarioGuardado = {
+                    id: creado?.id,
+                    run: runVal,
+                    nombre: nombreVal,
+                    apellidos: apellidosVal,
+                    correo: correoVal.toLowerCase(),
+                    telefono: telefonoVal,
+                    fechaNacimiento: formData.fechaNacimiento,
+                    region: regionVal,
+                    comuna: comunaVal,
+                    direccion: direccionVal,
+                    rol: 'Cliente'
+                };
 
-            alert("¡Usuario registrado con exito!");
-            navigate('/login');
+                localStorage.setItem("usuarioRegistrado", JSON.stringify(usuarioGuardado));
+                localStorage.setItem("usuarioActivo", JSON.stringify(usuarioGuardado));
+
+                alert("¡Usuario registrado con exito!");
+                navigate('/login');
+            } catch (error) {
+                alert(error.message || "No se pudo conectar con la API de usuarios.");
+            }
         }
     };
 

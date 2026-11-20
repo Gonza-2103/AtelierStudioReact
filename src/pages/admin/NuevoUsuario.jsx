@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import EstructuraAdmin from '../../components/admin/EstructuraAdmin'
+import { actualizarUsuario, crearUsuario } from '../../services/usuariosApi'
 
 // Formulario reutilizado para crear y editar usuarios
 export function FormularioUsuario({ usuarioInicial = null }) {
@@ -120,37 +121,16 @@ export function FormularioUsuario({ usuarioInicial = null }) {
     }
 
     try {
-        const respuesta = await fetch(
-            editando
-                ? `${import.meta.env.VITE_API_BASE_URL}/usuarios/${usuarioInicial.id}`
-                : `${import.meta.env.VITE_API_BASE_URL}/usuarios`,
-            {
-                method: editando ? 'PUT' : 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(datos)
-            }
-        )
-
-        if (!respuesta.ok) {
-            let mensaje = editando
-                ? 'No se pudo guardar el usuario.'
-                : 'No se pudo crear el usuario.'
-
-            try {
-                const cuerpo = await respuesta.json()
-                if (cuerpo?.MENSAJE) mensaje = cuerpo.MENSAJE
-            } catch {
-                // respuesta sin JSON
-            }
-
-            setError(mensaje)
-            return
+        if (editando) {
+            await actualizarUsuario(usuarioInicial.id, datos)
+        } else {
+            await crearUsuario(datos)
         }
 
         navigate('/admin/usuarios')
     } catch (error) {
         console.error('Error al guardar el usuario:', error)
-        setError('No se pudo conectar con la API de usuarios.')
+        setError(error.message || 'No se pudo conectar con la API de usuarios.')
     }
 }
 
@@ -273,7 +253,6 @@ export function FormularioUsuario({ usuarioInicial = null }) {
         </div>
     )
 }
-
 
 // Página para crear un usuario
 function NuevoUsuario() {
