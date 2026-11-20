@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import EstructuraAdmin from '../../components/admin/EstructuraAdmin'
+import { obtenerUsuario } from '../../services/usuariosApi'
 
 function DetalleUsuario() {
     const { id } = useParams()
@@ -12,10 +13,10 @@ function DetalleUsuario() {
 
         async function cargar() {
             try {
-                const respuesta = await fetch(`${import.meta.env.VITE_API_BASE_URL}/usuarios/${id}`)
+                const datos = await obtenerUsuario(id)
 
-                if (respuesta.ok && activo) {
-                    setUsuario(await respuesta.json())
+                if (activo) {
+                    setUsuario(datos)
                 }
             } catch (error) {
                 console.error('Error al cargar el usuario:', error)

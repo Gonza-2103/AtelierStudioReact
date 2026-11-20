@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import EstructuraAdmin from '../../components/admin/EstructuraAdmin'
 import EncabezadoUsuarios from '../../components/admin/EncabezadoUsuarios'
 import TablaUsuarios from '../../components/admin/TablaUsuarios'
+import { eliminarUsuario, listarUsuarios } from '../../services/usuariosApi'
 
 function UsuariosAdmin() {
     const navigate = useNavigate()
@@ -15,14 +16,8 @@ function UsuariosAdmin() {
    useEffect(() => {
         const obtenerUsuarios = async () => {
             try {
-                const respuesta = await fetch(`${import.meta.env.VITE_API_BASE_URL}/usuarios`)
-                
-                if (respuesta.ok) {
-                    const datos = await respuesta.json()
-                    setUsuarios(datos)
-                } else {
-                    console.error('Error en la respuesta del backend')
-                }
+                const datos = await listarUsuarios()
+                setUsuarios(datos)
             } catch (error) {
                 console.error('Error de conexión con el backend:', error)
             }
@@ -34,18 +29,12 @@ function UsuariosAdmin() {
     async function eliminar(id) {
         if (window.confirm('¿Eliminar este usuario?')) {
             try {
-                const respuesta = await fetch(`${import.meta.env.VITE_API_BASE_URL}/usuarios/${id}`, {
-                    method: 'DELETE'
-                })
-
-                if (respuesta.ok) {
-                    const lista = usuarios.filter(usuario => usuario.id !== id)
-                    setUsuarios(lista)
-                } else {
-                    alert('No se pudo eliminar el usuario')
-                }
+                await eliminarUsuario(id)
+                const lista = usuarios.filter(usuario => usuario.id !== id)
+                setUsuarios(lista)
             } catch (error) {
                 console.error('Error al eliminar:', error)
+                alert(error.message || 'No se pudo eliminar el usuario')
             }
         }
     }

@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/user.css';
 import logo from '../../assets/atelierstudiologo.png';
+import { guardarSesion, iniciarSesion } from '../../services/usuariosApi';
 
 function Login() {
     const navigate = useNavigate();
@@ -18,24 +19,6 @@ function Login() {
         "@admin.cl"
     ];
 
-    //Usuarios predeterminados del sistema
-    const usuariosPredeterminados = [
-        {
-            nombre: "Daniela",
-            apellidos: "Muñoz",
-            correo: "daniela.munoz@admin.cl",
-            contrasena: "holiholi",
-            rol: "Administrador"
-        },
-        {
-            nombre: "Camila",
-            apellidos: "Fernández",
-            correo: "camila.fernandez@gmail.com",
-            contrasena: "nanonano",
-            rol: "Cliente"
-        }
-    ];
-
     //Manejador del botón con ícono de escudo (Acceso Administrador)
     const handleAccesoAdmin = () => {
         const esAdmin = window.confirm("Área restringida. ¿Confirmas que eres administrador del sistema?");
@@ -50,7 +33,7 @@ function Login() {
     };
 
     //Envío y validación del formulario de login
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const correoLimpio = correo.trim().toLowerCase();
@@ -75,58 +58,18 @@ function Login() {
             return;
         }
 
-        //4. Cargar usuarios guardados en localStorage
-        let usuariosGuardados = [];
         try {
-            usuariosGuardados = JSON.parse(localStorage.getItem("usuarios")) || [];
-        } catch (err) {
-            usuariosGuardados = [];
-        }
+            const data = await iniciarSesion(correoLimpio, claveLimpia);
+            const sesion = guardarSesion(data.token, data.usuario);
 
-        let usuarioRegistradoIndividual = null;
-        try {
-            usuarioRegistradoIndividual = JSON.parse(localStorage.getItem("usuarioRegistrado"));
-        } catch (err) {
-            usuarioRegistradoIndividual = null;
-        }
-
-        if (usuarioRegistradoIndividual) {
-            usuariosGuardados.push(usuarioRegistradoIndividual);
-        }
-
-        //5. Unificar usuarios del sistema y registrados
-        const todosLosUsuarios = [...usuariosPredeterminados, ...usuariosGuardados];
-
-        //6. Búsqueda flexible de coincidencias
-        let usuarioEncontrado = null;
-        for (let i = 0; i < todosLosUsuarios.length; i++) {
-            const u = todosLosUsuarios[i];
-            if (!u || !u.correo) continue;
-
-            const correoBD = u.correo.trim().toLowerCase();
-            const claveBD = (u.contrasena || u.clave || u.password || u.contraseña || "").trim();
-
-            if (correoBD === correoLimpio && claveBD === claveLimpia) {
-                usuarioEncontrado = u;
-                break;
+            if (sesion.rol === "Administrador" || correoLimpio.endsWith("@admin.cl")) {
+                sessionStorage.removeItem("modoAdminActivado");
+                navigate('/admin');
+            } else {
+                navigate('/');
             }
-        }
-
-        if (!usuarioEncontrado) {
-            alert("Correo o contraseña incorrectos.");
-            return;
-        }
-
-        //7. Guardar sesión activa (tanto en sessionStorage como en localStorage para sincronía)
-        sessionStorage.setItem("usuarioActivo", JSON.stringify(usuarioEncontrado));
-        localStorage.setItem("usuarioActivo", JSON.stringify(usuarioEncontrado));
-
-        //8. Redirección según rol
-        if (usuarioEncontrado.rol === "Administrador" || correoLimpio.endsWith("@admin.cl")) {
-            sessionStorage.removeItem("modoAdminActivado");
-            navigate('/admin');
-        } else {
-            navigate('/');
+        } catch (error) {
+            alert(error.message || "Correo o contraseña incorrectos.");
         }
     };
 

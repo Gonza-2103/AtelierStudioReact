@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BotonCerrarSesion from './BotonCerrarSesion';
 import '../../styles/user.css';
 import logo from '../../assets/atelierstudiologo.png';
 import geraldinne from '../../assets/geraldinne.jpg';
@@ -189,6 +190,7 @@ function Foro() {
                     <button className="nav_btn" onClick={() => navigate('/blogs')}><strong>Blogs</strong></button>
                     <button className="nav_btn" onClick={() => navigate('/contacto')}><strong>Contacto</strong></button>
                 </figure>
+                <BotonCerrarSesion />
             </header>
 
             {/* Contenido principal */}

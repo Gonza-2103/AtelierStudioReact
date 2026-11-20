@@ -2,26 +2,23 @@ import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import EstructuraAdmin from '../../components/admin/EstructuraAdmin'
 import { FormularioUsuario } from './NuevoUsuario'
+import { obtenerUsuario } from '../../services/usuariosApi'
 
 function EditarUsuario() {
     const { id } = useParams()
     const [usuario, setUsuario] = useState(null)
 
    useEffect(() => {
-        const obtenerUsuario = async () => {
+        const cargarUsuario = async () => {
             try {
-                const respuesta = await fetch(`${import.meta.env.VITE_API_BASE_URL}/usuarios/${id}`)
-
-                if (respuesta.ok) {
-                    const datos = await respuesta.json()
-                    setUsuario(datos)
-                }
+                const datos = await obtenerUsuario(id)
+                setUsuario(datos)
             } catch (error) {
                 console.error('Error al obtener el usuario:', error)
             }
         }
 
-        obtenerUsuario()
+        cargarUsuario()
     }, [id])
 
     return (
