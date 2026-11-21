@@ -1,175 +1,114 @@
-
 import { useEffect, useState } from 'react'
 import AccionesProducto from './AccionesProducto'
 import BotonNuevoProducto from './BotonNuevoProducto'
 
-import foto1 from '../../assets/fotoarte1.jpg'
-import foto2 from '../../assets/fotoarte2.jpg'
-import foto3 from '../../assets/fotoarte3.png'
-import foto4 from '../../assets/fotoarte4.png'
-
-// Productos originales de la tienda
-const iniciales = [
-    {
-        id: 1,
-        codigo: 'ART001',
-        nombre: "Cuadro 'Mar y Playa'",
-        descripcion: 'Fotografía aérea en plano cenital que captura el contraste entre las aguas turquesas del océano y la orilla de arena blanca, destacando el movimiento de la espuma de las olas rompiendo suavemente en la costa.',
-        categoria: 'Fotografía Artística',
-        precio: 45000,
-        stock: 10,
-        stockCritico: 2,
-        imagen: foto1
-    },
-    {
-        id: 2,
-        codigo: 'ART002',
-        nombre: "Retrato 'Caballero con Pipa'",
-        descripcion: 'Pintura al óleo de estilo expresivo que retrata de perfil a un marinero o pescador de mirada reflexiva, con una pipa humeante en la boca y herramientas de red, con un fondo de playa, cielo azul y mar abierto.',
-        categoria: 'Pintura al Óleo',
-        precio: 60000,
-        stock: 8,
-        stockCritico: 2,
-        imagen: foto2
-    },
-    {
-        id: 3,
-        codigo: 'ART003',
-        nombre: "Cuadro 'Paisaje de Montaña'",
-        descripcion: 'Pintura paisajística tradicional al óleo que muestra una cordillera alpina nevada reflejada en un lago sereno de aguas cristalinas, flanqueado por densos bosques de coníferas bajo un cielo parcialmente nublado.',
-        categoria: 'Pintura al Óleo',
-        precio: 48000,
-        stock: 6,
-        stockCritico: 2,
-        imagen: foto3
-    },
-    {
-        id: 4,
-        codigo: 'ART004',
-        nombre: "Retrato 'Gato entre Sombras'",
-        descripcion: 'Acuarela luminosa que ilustra a un gato atigrado de pelaje naranja y blanco sentado en un escalón de piedra, envuelto en un marcado juego de luces solares directas y sombras violáceas proyectadas por la vegetación.',
-        categoria: 'Acuarela y Técnica Mixta',
-        precio: 72000,
-        stock: 6,
-        stockCritico: 2,
-        imagen: foto4
-    }
-]
-
-function obtenerProductos() {
-    try {
-        const guardados = JSON.parse(
-            localStorage.getItem('productos') || 'null'
-        )
-
-        // Primera carga: usar los cuatro productos originales
-        if (guardados === null) {
-            return iniciales
-        }
-
-        if (!Array.isArray(guardados)) {
-            return iniciales
-        }
-
-        // Conservar los productos ya guardados
-        // y completar los datos que les falten
-        return guardados.map(producto => {
-            const original = iniciales.find(
-                p => p.codigo === producto.codigo
-            )
-
-            if (!original) {
-                return producto
-            }
-
-            return {
-                ...original,
-                ...producto,
-                descripcion: producto.descripcion || original.descripcion,
-                imagen: producto.imagen || original.imagen,
-                
-            }
-        })
-    } catch {
-        return iniciales
-    }
-}
+const API_URL = import.meta.env.VITE_API_PRODUCTOS_URL
 
 function TablaProductos({ productos: productosProp }) {
-    const [productos, setProductos] = useState(obtenerProductos)
+    const [productos, setProductos] = useState([])
+    const [cargando, setCargando] = useState(productosProp === undefined)
+    const [error, setError] = useState('')
     const [busqueda, setBusqueda] = useState('')
     const [soloCriticos, setSoloCriticos] = useState(false)
 
     useEffect(() => {
-        if (productosProp === undefined) {
-            localStorage.setItem(
-                'productos',
-                JSON.stringify(productos)
-            )
+        if (productosProp !== undefined) {
+            return
         }
-    }, [productos, productosProp])
+
+        async function cargarProductos() {
+            try {
+                setCargando(true)
+                setError('')
+                const respuesta = await fetch(`${API_URL}/productos`)
+
+                if (!respuesta.ok) {
+                    throw new Error(`Error HTTP: ${respuesta.status}`)
+                }
+
+                const datos = await respuesta.json()
+                setProductos(Array.isArray(datos) ? datos : [])
+            } catch (err) {
+                console.error('Error al cargar productos desde AWS:', err)
+                setError('No se pudieron cargar los productos desde el servidor.')
+            } finally {
+                setCargando(false)
+            }
+        }
+
+        cargarProductos()
+    }, [productosProp])
 
     const listado = productosProp ?? productos
 
-    function eliminarProducto(id) {
+    async function eliminarProducto(id) {
         if (!window.confirm('¿Eliminar este producto?')) {
             return
         }
 
-        setProductos(actuales =>
-            actuales.filter(p => String(p.id) !== String(id))
-        )
+        try {
+            const respuesta = await fetch(`${API_URL}/productos/${id}`, {
+                method: 'DELETE'
+            })
+
+            if (!respuesta.ok) {
+                throw new Error(`Error HTTP: ${respuesta.status}`)
+            }
+
+            setProductos(actuales =>
+                actuales.filter(p => String(p.id) !== String(id))
+            )
+        } catch (err) {
+            console.error('Error al eliminar producto:', err)
+            setError('No se pudo eliminar el producto en el servidor.')
+        }
     }
 
     const visibles = listado.filter(producto => {
-        const texto = `
-            ${producto.codigo}
-            ${producto.nombre}
-            ${producto.categoria}
-        `.toLowerCase()
+        const codigo = producto.codigo ?? `ID-${producto.id}`
+        const nombre = producto.titulo ?? producto.nombre ?? ''
+        const categoria = producto.tecnica ?? producto.categoria ?? ''
 
-        const coincide = texto.includes(
-            busqueda.toLowerCase().trim()
-        )
+        const texto = `${codigo} ${nombre} ${categoria}`.toLowerCase()
+        const coincide = texto.includes(busqueda.toLowerCase().trim())
 
-        const stockCritico = Number(producto.stockCritico ?? 0)
-
-        const critico = stockCritico > 0 &&
-            Number(producto.stock) <= stockCritico
+        const stockCritico = Number(producto.stockCritico ?? 2)
+        const critico = stockCritico > 0 && Number(producto.stock) <= stockCritico
 
         return coincide && (!soloCriticos || critico)
     })
 
     return (
-    <>
-        {/* Buscador en una fila independiente */}
-        <div className="buscador_productos_admin">
-            <input
-                type="search"
-                className="form-control"
-                aria-label="Buscar productos"
-                placeholder="Buscar por código, nombre o categoría"
-                value={busqueda}
-                onChange={e => setBusqueda(e.target.value)}
-            />
-        </div>
-
-        {/* Filtro y botón en la misma fila */}
-        <div className="barra_acciones_productos">
-            <label className="filtro_stock_admin">
+        <>
+            <div className="buscador_productos_admin">
                 <input
-                    type="checkbox"
-                    checked={soloCriticos}
-                    onChange={e => setSoloCriticos(e.target.checked)}
+                    type="search"
+                    className="form-control"
+                    aria-label="Buscar productos"
+                    placeholder="Buscar por código, título o técnica"
+                    value={busqueda}
+                    onChange={e => setBusqueda(e.target.value)}
                 />
-                <span>Solo stock crítico</span>
-            </label>
+            </div>
 
-            <BotonNuevoProducto />
-        </div>
+            <div className="barra_acciones_productos">
+                <label className="filtro_stock_admin">
+                    <input
+                        type="checkbox"
+                        checked={soloCriticos}
+                        onChange={e => setSoloCriticos(e.target.checked)}
+                    />
+                    <span>Solo stock crítico</span>
+                </label>
 
-        {/* Aquí continúa la tabla */}
-            
+                <BotonNuevoProducto />
+            </div>
+
+            {error && (
+                <div className="alert alert-danger" role="alert">
+                    {error}
+                </div>
+            )}
 
             <div className="table-responsive">
                 <table className="table table-striped table-hover tabla_admin">
@@ -186,53 +125,50 @@ function TablaProductos({ productos: productosProp }) {
                     </thead>
 
                     <tbody>
-                        {visibles.map(producto => {
-                            const stockCritico = Number(
-                                producto.stockCritico ?? 0
-                            )
-
-                            const esCritico = stockCritico > 0 &&
-                                Number(producto.stock) <= stockCritico
-
-                            return (
-                                <tr key={producto.id}>
-                                    <td>{producto.codigo}</td>
-                                    <td>{producto.nombre}</td>
-                                    <td>{producto.categoria}</td>
-
-                                    <td>
-                                        ${Number(producto.precio).toLocaleString('es-CL')}
-                                    </td>
-
-                                    <td>{producto.stock}</td>
-
-                                    <td>
-                                        {esCritico ? (
-                                            <span className="badge text-bg-warning">
-                                                Stock crítico
-                                            </span>
-                                        ) : (
-                                            'Disponible'
-                                        )}
-                                    </td>
-
-                                    <td>
-                                        <AccionesProducto
-                                            id={producto.id}
-                                            alEliminar={eliminarProducto}
-                                        />
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                        
-
-                        {visibles.length === 0 && (
+                        {cargando ? (
                             <tr>
-                                <td colSpan="7">
-                                    No se encontraron productos.
-                                </td>
+                                <td colSpan="7">Cargando productos desde AWS...</td>
                             </tr>
+                        ) : visibles.length === 0 ? (
+                            <tr>
+                                <td colSpan="7">No se encontraron productos.</td>
+                            </tr>
+                        ) : (
+                            visibles.map(producto => {
+                                const codigo = producto.codigo ?? `ID-${producto.id}`
+                                const nombre = producto.titulo ?? producto.nombre ?? ''
+                                const categoria = producto.tecnica ?? producto.categoria ?? ''
+                                const stockCritico = Number(producto.stockCritico ?? 2)
+                                const esCritico =
+                                    stockCritico > 0 && Number(producto.stock) <= stockCritico
+
+                                return (
+                                    <tr key={producto.id}>
+                                        <td>{codigo}</td>
+                                        <td>{nombre}</td>
+                                        <td>{categoria}</td>
+                                        <td>
+                                            ${Number(producto.precio ?? 0).toLocaleString('es-CL')}
+                                        </td>
+                                        <td>{producto.stock}</td>
+                                        <td>
+                                            {esCritico ? (
+                                                <span className="badge text-bg-warning">
+                                                    Stock crítico
+                                                </span>
+                                            ) : (
+                                                'Disponible'
+                                            )}
+                                        </td>
+                                        <td>
+                                            <AccionesProducto
+                                                id={producto.id}
+                                                alEliminar={eliminarProducto}
+                                            />
+                                        </td>
+                                    </tr>
+                                )
+                            })
                         )}
                     </tbody>
                 </table>
