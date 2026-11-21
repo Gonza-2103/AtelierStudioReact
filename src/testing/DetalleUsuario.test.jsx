@@ -4,7 +4,7 @@ import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import DetalleUsuario from '../pages/admin/DetalleUsuario';
 
-// Evalúa la ficha administrativa de detalle de un usuario y su navegación de retorno
+//Evalúa la ficha administrativa de detalle de un usuario y su navegación de retorno
 describe('Pruebas Unitarias: Página DetalleUsuario', () => {
 
     const usuarioMock = {
@@ -26,7 +26,7 @@ describe('Pruebas Unitarias: Página DetalleUsuario', () => {
         ));
     });
 
-    // 1. Verifica que se muestre la información del usuario seleccionado
+    //1. Verifica que se muestre la información del usuario seleccionado
     it('CP-DETUSU-01: Debe renderizar el detalle del usuario por ID', async () => {
         render(
             <MemoryRouter initialEntries={['/admin/usuarios/1']}>
@@ -41,7 +41,7 @@ describe('Pruebas Unitarias: Página DetalleUsuario', () => {
         });
     });
 
-    // 2. Verifica el botón o enlace para volver al listado de usuarios
+    //2. Verifica el botón o enlace para volver al listado de usuarios
     it('CP-DETUSU-02: Debe responder al clic en el botón de retorno al listado', () => {
         render(
             <MemoryRouter initialEntries={['/admin/usuarios/1']}>

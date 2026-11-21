@@ -4,10 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import NuevoProducto from '../pages/admin/NuevoProducto';
 
-// Evalúa la creación de productos y ambas ramas de localStorage en NuevoProducto.jsx
+//Evalúa la creación de productos y ambas ramas de localStorage en NuevoProducto.jsx
 describe('Pruebas Unitarias: Página NuevoProducto', () => {
 
-    // Función auxiliar para llenar todos los campos del FormularioProducto y enviarlo
+    //Función auxiliar para llenar todos los campos del FormularioProducto y enviarlo
     function completarYEnviarFormulario(container, prefijo = 'Obra') {
         const inputsTexto = screen.queryAllByRole('textbox');
         inputsTexto.forEach((input, idx) => {
@@ -38,7 +38,7 @@ describe('Pruebas Unitarias: Página NuevoProducto', () => {
         vi.restoreAllMocks();
     });
 
-    // 1. Verifica que se renderice el título y el formulario de creación
+    //1. Verifica que se renderice el título y el formulario de creación
     it('CP-NPROD-01: Debe renderizar el encabezado y los campos del formulario de producto', () => {
         render(
             <BrowserRouter>
@@ -50,7 +50,7 @@ describe('Pruebas Unitarias: Página NuevoProducto', () => {
         expect(screen.getAllByRole('textbox').length).toBeGreaterThan(0);
     });
 
-    // 2. Rama falsy de línea 11: localStorage NO tiene 'productos' (null -> [])
+    //2. Rama falsy de línea 11: localStorage NO tiene 'productos' (null -> [])
     it('CP-NPROD-02: Debe guardar el primer producto cuando localStorage está vacío (null)', async () => {
         localStorage.removeItem('productos');
 
@@ -69,7 +69,7 @@ describe('Pruebas Unitarias: Página NuevoProducto', () => {
         });
     });
 
-    // 3. Rama truthy de línea 11: localStorage YA tiene productos guardados
+    //3. Rama truthy de línea 11: localStorage YA tiene productos guardados
     it('CP-NPROD-03: Debe agregar el producto conservando los ya existentes en localStorage', async () => {
         localStorage.setItem('productos', JSON.stringify([
             { id: 1, codigo: 'ART001', nombre: 'Obra Previa', precio: 25000, stock: 5, categoria: 'Óleo' }
@@ -89,7 +89,7 @@ describe('Pruebas Unitarias: Página NuevoProducto', () => {
         });
     });
 
-    // 4. Envío con campos vacíos (validación del formulario)
+    //4. Envío con campos vacíos (validación del formulario)
     it('CP-NPROD-04: Debe mantener la vista si se intenta enviar el formulario vacío', () => {
         const { container } = render(
             <BrowserRouter>

@@ -4,7 +4,7 @@ import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import DetalleProducto from '../pages/admin/DetalleProducto';
 
-// Evalúa la visualización administrativa del detalle de un producto, casos sin coincidencia y retorno
+//Evalúa la visualización administrativa del detalle de un producto, casos sin coincidencia y retorno
 describe('Pruebas Unitarias: Página DetalleProducto (Admin)', () => {
 
     const productoMock = {
@@ -27,7 +27,7 @@ describe('Pruebas Unitarias: Página DetalleProducto (Admin)', () => {
         ));
     });
 
-    // 1. Verifica la carga y renderizado completo de los datos del producto por ID
+    //1. Verifica la carga y renderizado completo de los datos del producto por ID
     it('CP-DETPROADM-01: Debe renderizar la ficha administrativa con los datos del producto por ID', async () => {
         render(
             <MemoryRouter initialEntries={['/admin/productos/1']}>
@@ -42,7 +42,7 @@ describe('Pruebas Unitarias: Página DetalleProducto (Admin)', () => {
         });
     });
 
-    // 2. Verifica el manejo de la rama condicional cuando el producto no existe
+    //2. Verifica el manejo de la rama condicional cuando el producto no existe
     it('CP-DETPROADM-02: Debe gestionar correctamente cuando el ID del producto no existe', async () => {
         localStorage.setItem('productos', JSON.stringify([]));
         vi.stubGlobal('fetch', vi.fn(() =>
@@ -67,7 +67,7 @@ describe('Pruebas Unitarias: Página DetalleProducto (Admin)', () => {
         });
     });
 
-    // 3. Verifica la interacción con los botones y enlaces de retorno o edición
+    //3. Verifica la interacción con los botones y enlaces de retorno o edición
     it('CP-DETPROADM-03: Debe responder a los clics en el botón de volver y acciones de la vista', async () => {
         render(
             <MemoryRouter initialEntries={['/admin/productos/1']}>

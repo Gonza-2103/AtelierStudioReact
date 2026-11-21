@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import NuevoUsuario from '../pages/admin/NuevoUsuario';
 
-// Evalúa la creación de usuarios desde el panel administrativo
+//Evalúa la creación de usuarios desde el panel administrativo
 describe('Pruebas Unitarias: Página NuevoUsuario', () => {
 
     beforeEach(() => {
@@ -16,7 +16,7 @@ describe('Pruebas Unitarias: Página NuevoUsuario', () => {
         ));
     });
 
-    // 1. Verifica que se renderice el formulario de nuevo usuario
+    //1. Verifica que se renderice el formulario de nuevo usuario
     it('CP-NUSU-01: Debe renderizar el encabezado y los campos de creación de usuario', () => {
         render(
             <BrowserRouter>
@@ -29,7 +29,7 @@ describe('Pruebas Unitarias: Página NuevoUsuario', () => {
         expect(inputs.length).toBeGreaterThan(0);
     });
 
-    // 2. Verifica la interacción de envío del formulario
+    //2. Verifica la interacción de envío del formulario
     it('CP-NUSU-02: Debe permitir completar datos y presionar el botón de guardado', () => {
         const alertSpy = vi.spyOn(window, 'alert').mockImplementation(() => {});
 

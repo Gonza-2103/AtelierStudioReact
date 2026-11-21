@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import * as usuariosApi from '../services/usuariosApi';
 
-// Evalúa la capa de servicios HTTP y gestión de sesión en usuariosApi.js
+//Evalúa la capa de servicios HTTP y gestión de sesión en usuariosApi.js
 describe('Pruebas Unitarias: Servicio usuariosApi', () => {
 
     beforeEach(() => {
@@ -10,7 +10,7 @@ describe('Pruebas Unitarias: Servicio usuariosApi', () => {
         vi.restoreAllMocks();
     });
 
-    // 1. Verifica el inicio de sesión y operaciones exitosas (200 OK) junto con guardado de sesión
+    //1. Verifica el inicio de sesión y operaciones exitosas (200 OK) junto con guardado de sesión
     it('CP-UAPI-01: Debe resolver correctamente el inicio de sesión, guardar la sesión y consultar funciones exportadas con respuesta 200 OK', async () => {
         const respuestaMock = {
             token: 'jwt-token-prueba-123',
@@ -41,7 +41,7 @@ describe('Pruebas Unitarias: Servicio usuariosApi', () => {
             expect(haySesion).toBeTruthy();
         }
 
-        // Ejecuta el resto de funciones CRUD/sesión que existan en el módulo para cubrir líneas y ramas
+        //Ejecuta el resto de funciones CRUD/sesión que existan en el módulo para cubrir líneas y ramas
         if (typeof usuariosApi.obtenerUsuarios === 'function') {
             await usuariosApi.obtenerUsuarios();
         }
@@ -67,9 +67,10 @@ describe('Pruebas Unitarias: Servicio usuariosApi', () => {
         expect(fetch).toHaveBeenCalled();
     });
 
-    // 2. Verifica el manejo de errores HTTP (401 Unauthorized) y fallos de red en fetch
+    //2. Verifica el manejo de errores HTTP (401 Unauthorized) y fallos de red en fetch
     it('CP-UAPI-02: Debe lanzar o gestionar errores cuando el backend responde 401 o falla la conexión de red', async () => {
-        // Caso A: Respuesta HTTP con error 401 (credenciales inválidas)
+        
+        //Caso A: Respuesta HTTP con error 401 (credenciales inválidas)
         vi.stubGlobal('fetch', vi.fn(() =>
             Promise.resolve({
                 ok: false,
@@ -95,7 +96,7 @@ describe('Pruebas Unitarias: Servicio usuariosApi', () => {
             }
         }
 
-        // Caso B: Error de red (servidor caído)
+        //Caso B: Error de red (servidor caído)
         vi.stubGlobal('fetch', vi.fn(() => Promise.reject(new Error('Network Error'))));
 
         if (typeof usuariosApi.iniciarSesion === 'function') {

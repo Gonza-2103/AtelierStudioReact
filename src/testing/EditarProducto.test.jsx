@@ -59,7 +59,7 @@ describe('Pruebas Unitarias: Página EditarProducto', () => {
         }
     });
 
-    // 3. [AGREGADO] Modifica todos los inputs (texto, número, select) y envía el formulario completo (Cubre líneas 33-64)
+    //3. Modifica todos los inputs (texto, número, select) y envía el formulario completo 
     it('CP-EPROD-03: Debe actualizar todos los campos del formulario y ejecutar el evento submit exitosamente', async () => {
         const alertSpy = vi.spyOn(window, 'alert').mockImplementation(() => {});
 
@@ -75,19 +75,19 @@ describe('Pruebas Unitarias: Página EditarProducto', () => {
             expect(screen.getByText(/Editar Producto|Modificar Producto/i)).toBeInTheDocument();
         });
 
-        // Modificamos todos los inputs de texto y textareas
+        //Modificamos todos los inputs de texto y textareas
         const inputsTexto = screen.queryAllByRole('textbox');
         inputsTexto.forEach((input, index) => {
             fireEvent.change(input, { target: { value: `Valor Editado ${index + 1}` } });
         });
 
-        // Modificamos los inputs numéricos (precio, stock)
+        //Modificamos los inputs numéricos (precio, stock)
         const inputsNumero = screen.queryAllByRole('spinbutton');
         inputsNumero.forEach((input) => {
             fireEvent.change(input, { target: { value: '25000' } });
         });
 
-        // Modificamos los selects (categoría) si existen
+        //Modificamos los selects (categoría) si existen
         const selects = screen.queryAllByRole('combobox');
         selects.forEach((select) => {
             const primeraOpcion = select.querySelector('option:last-child');
@@ -104,7 +104,7 @@ describe('Pruebas Unitarias: Página EditarProducto', () => {
         expect(alertSpy).toBeDefined();
     });
 
-    // 4. [AGREGADO] Envía el formulario con campos vacíos para cubrir ramas de validación
+    //4. Envía el formulario con campos vacíos para cubrir ramas de validación
     it('CP-EPROD-04: Debe gestionar la validación cuando se intenta guardar con campos vacíos', async () => {
         const alertSpy = vi.spyOn(window, 'alert').mockImplementation(() => {});
 
@@ -133,7 +133,7 @@ describe('Pruebas Unitarias: Página EditarProducto', () => {
         expect(alertSpy).toBeDefined();
     });
 
-    // 5. [AGREGADO] Maneja el caso en que el producto no existe en localStorage ni en la API (Cubre línea 13 y rama 404)
+    //5. Maneja el caso en que el producto no existe en localStorage ni en la API
     it('CP-EPROD-05: Debe gestionar correctamente cuando el ID del producto a editar no existe o falla la API', async () => {
         localStorage.setItem('productos', JSON.stringify([]));
         vi.stubGlobal('fetch', vi.fn(() =>
@@ -157,7 +157,7 @@ describe('Pruebas Unitarias: Página EditarProducto', () => {
         });
     });
 
-    // 6. [AGREGADO] Ejecuta el botón de cancelar / volver y todos los controles de navegación
+    //6. Ejecuta el botón de cancelar / volver y todos los controles de navegación
     it('CP-EPROD-06: Debe responder a los botones de cancelar o volver al listado de productos', async () => {
         render(
             <MemoryRouter initialEntries={['/admin/productos/editar/1']}>
