@@ -7,15 +7,6 @@ const productosApi = axios.create({
     }
 });
 
-// Interceptor: si existe un token JWT guardado, lo adjunta automáticamente
-productosApi.interceptors.request.use((config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-});
-
 // Funciones CRUD exportadas para toda la aplicación
 export const obtenerProductos = async () => {
     const { data } = await productosApi.get('/productos');
