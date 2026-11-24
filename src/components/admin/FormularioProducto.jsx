@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 
 const categorias = [
@@ -33,7 +32,7 @@ function validar(campo, valor, datos, productos, idActual) {
 
             if (productos.some(p =>
                 String(p.id) !== String(idActual ?? '') &&
-                String(p.codigo).trim().toUpperCase() === texto.toUpperCase()
+                String(p.codigo ?? '').trim().toUpperCase() === texto.toUpperCase()
             )) {
                 return 'Ya existe un producto con este código.'
             }
@@ -53,7 +52,6 @@ function validar(campo, valor, datos, productos, idActual) {
             return texto.length > 500
                 ? 'La descripción no puede superar los 500 caracteres.'
                 : ''
-
 
         case 'categoria':
             return categorias.includes(texto) ||
@@ -89,7 +87,8 @@ function validar(campo, valor, datos, productos, idActual) {
 function FormularioProducto({
     alGuardar,
     onSubmit,
-    productoInicial = null
+    productoInicial = null,
+    productosExistentes = []
 }) {
     const [formulario, setFormulario] = useState(() => ({
         ...vacio,
@@ -101,20 +100,6 @@ function FormularioProducto({
     const [errorGeneral, setErrorGeneral] = useState('')
 
     const editar = Boolean(productoInicial)
-
-    function obtenerProductos() {
-        try {
-            const datos = JSON.parse(
-                localStorage.getItem('productos') || '[]'
-            )
-
-            return Array.isArray(datos) ? datos : []
-        } catch {
-            return []
-        }
-    }
-
-    const productos = obtenerProductos()
 
     const campos = [
         'codigo',
@@ -134,7 +119,7 @@ function FormularioProducto({
                 campo,
                 formulario[campo],
                 formulario,
-                productos,
+                productosExistentes,
                 productoInicial?.id
             )
         ])
@@ -201,7 +186,8 @@ function FormularioProducto({
 
         lector.readAsDataURL(archivo)
     }
-    function manejarEnvio(e) {
+
+    async function manejarEnvio(e) {
         e.preventDefault()
         setEnviado(true)
 
@@ -228,11 +214,11 @@ function FormularioProducto({
                 : Number(formulario.stockCritico)
         }
 
-        const resultado = alGuardar?.(datos)
+        const resultado = await alGuardar?.(datos)
 
         if (resultado === false) {
             setErrorGeneral(
-                'No se pudo guardar: revisa si el código está repetido.'
+                'No se pudo guardar el producto en el servidor.'
             )
             return
         }
@@ -328,8 +314,6 @@ function FormularioProducto({
                     )}
             </div>
 
-            
-
             <div className="fila_campo_horizontal">
                 <label
                     htmlFor="producto-categoria"
@@ -380,6 +364,7 @@ function FormularioProducto({
             {campo('precio', 'Precio', 'number')}
             {campo('stock', 'Stock', 'number')}
             {campo('stockCritico', 'Stock crítico (opcional)', 'number')}
+
             <div className="fila_campo_horizontal">
                 <label
                     htmlFor="producto-imagen"

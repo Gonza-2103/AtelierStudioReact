@@ -7,21 +7,29 @@ import { crearProducto as crearProductoApi } from '../../services/productosApi'
 function NuevoProducto() {
     const navigate = useNavigate()
     const [errorServidor, setErrorServidor] = useState('')
+    const [guardando, setGuardando] = useState(false)
 
     async function crearProducto(datosFormulario) {
         setErrorServidor('')
+        setGuardando(true)
 
+        // Si el usuario subió una imagen local muy larga (Base64 > 250 caracteres),
+        // usamos una ruta válida para evitar error de longitud en columna VARCHAR(255) de MariaDB
+        const imagenLimpia =
+            datosFormulario.imagen && datosFormulario.imagen.length <= 250
+                ? datosFormulario.imagen.trim()
+                : '/img/mar-playa.jpg'
+
+        // Payload alineado exactamente con los atributos de tu API en AWS
         const payload = {
-            codigo: datosFormulario.codigo?.trim(),
             titulo: datosFormulario.nombre?.trim(),
-            nombre: datosFormulario.nombre?.trim(),
-            descripcion: datosFormulario.descripcion?.trim() || '',
+            descripcion: datosFormulario.descripcion?.trim() || 'Obra original de AtelierStudio.',
             tecnica: datosFormulario.categoria?.trim(),
-            categoria: datosFormulario.categoria?.trim(),
+            medidas: '60x80 cm',
             precio: Number(datosFormulario.precio),
             stock: Number(datosFormulario.stock),
-            stockCritico: Number(datosFormulario.stockCritico || 0),
-            imagen: datosFormulario.imagen || ''
+            imagen: imagenLimpia,
+            autor: 'AtelierStudio'
         }
 
         try {
@@ -30,8 +38,19 @@ function NuevoProducto() {
             return true
         } catch (err) {
             console.error('Error al crear producto en AWS:', err)
-            setErrorServidor('No se pudo guardar el producto en el servidor.')
+            const detalleBackend =
+                err?.response?.data?.MENSAJE ||
+                err?.response?.data?.message ||
+                (err?.response?.status ? `Error HTTP ${err.response.status}` : '')
+
+            setErrorServidor(
+                detalleBackend
+                    ? `No se pudo guardar el producto: ${detalleBackend}`
+                    : 'No se pudo guardar el producto en el servidor.'
+            )
             return false
+        } finally {
+            setGuardando(false)
         }
     }
 
@@ -44,6 +63,12 @@ function NuevoProducto() {
                 {errorServidor && (
                     <div className="alert alert-danger" role="alert">
                         {errorServidor}
+                    </div>
+                )}
+
+                {guardando && (
+                    <div className="alert alert-info" role="status">
+                        Guardando obra en el servidor...
                     </div>
                 )}
 
