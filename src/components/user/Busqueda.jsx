@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BotonCerrarSesion from './BotonCerrarSesion';
+import { obtenerProductos } from '../../services/productosApi';
 import '../../styles/user.css';
 import logo from '../../assets/atelierstudiologo.png';
 import foto1 from '../../assets/fotoarte1.jpg';
@@ -11,7 +12,7 @@ import foto4 from '../../assets/fotoarte4.png';
 function Busqueda() {
     const navigate = useNavigate();
 
-    //Catálogo por defecto usando los imports de imágenes de React
+    // Catálogo por defecto (respaldo si el servidor no responde)
     const catalogoPorDefecto = [
         {
             id: 1,
@@ -63,13 +64,13 @@ function Busqueda() {
         }
     ];
 
-    //Estados para búsqueda, catálogo completo, lista filtrada y filtro activo
+    // Estados para búsqueda, catálogo completo, lista filtrada y filtro activo
     const [catalogo, setCatalogo] = useState([]);
     const [productosFiltrados, setProductosFiltrados] = useState([]);
     const [texto, setTexto] = useState('');
     const [filtroActivo, setFiltroActivo] = useState('todas');
 
-    //Función auxiliar para quitar acentos, tildes y mayúsculas
+    // Función auxiliar para quitar acentos, tildes y mayúsculas
     const normalizarTexto = (valor) => {
         return (valor || "")
             .toString()
@@ -79,47 +80,50 @@ function Busqueda() {
             .trim();
     };
 
-    //Inicialización y lectura de localStorage
+    // Inicialización y lectura desde el backend en AWS mediante Axios
     useEffect(() => {
-        let guardados = null;
-        try {
-            guardados = JSON.parse(localStorage.getItem("productos"));
-        } catch (e) {
-            guardados = null;
+        async function cargarProductosBusqueda() {
+            const imagenesMap = {
+                1: foto1,
+                2: foto2,
+                3: foto3,
+                4: foto4
+            };
+
+            try {
+                const datos = await obtenerProductos();
+                if (Array.isArray(datos) && datos.length > 0) {
+                    const catalogoPreparado = datos.map(p => ({
+                        ...p,
+                        nombre: p.titulo ?? p.nombre ?? 'Obra sin título',
+                        categoria: p.tecnica ?? p.categoria ?? 'Sin categoría',
+                        imagen: p.imagen || imagenesMap[p.id] || foto1
+                    }));
+                    setCatalogo(catalogoPreparado);
+                    setProductosFiltrados(catalogoPreparado);
+                    return;
+                }
+            } catch (e) {
+                console.error('Error cargando productos para búsqueda desde AWS:', e);
+            }
+
+            setCatalogo(catalogoPorDefecto);
+            setProductosFiltrados(catalogoPorDefecto);
         }
 
-        if (!guardados || guardados.length === 0 || !guardados[0].categoria) {
-            guardados = catalogoPorDefecto;
-            localStorage.setItem("productos", JSON.stringify(catalogoPorDefecto));
-        }
-
-        //Mapea para asegurar que las imágenes importadas se vean correctamente en React
-        const imagenesMap = {
-            1: foto1,
-            2: foto2,
-            3: foto3,
-            4: foto4
-        };
-
-        const catalogoPreparado = guardados.map(p => ({
-            ...p,
-            imagen: imagenesMap[p.id] || p.imagen
-        }));
-
-        setCatalogo(catalogoPreparado);
-        setProductosFiltrados(catalogoPreparado);
+        cargarProductosBusqueda();
     }, []);
 
-    //Acción para ver detalle de producto (guardando en localStorage como el JS original)
+    // Acción para ver detalle de producto
     const verDetalle = (prod) => {
         localStorage.setItem("productoSeleccionado", JSON.stringify(prod));
         navigate('/detalle_producto');
     };
 
-    //Ejecución de búsqueda por texto (botón "BUSCAR")
+    // Ejecución de búsqueda por texto (botón "BUSCAR")
     const manejarBusquedaTexto = () => {
         const termino = normalizarTexto(texto);
-        setFiltroActivo('');  //Desactiva la selección del menú lateral
+        setFiltroActivo('');
 
         if (termino === "") {
             setProductosFiltrados(catalogo);
@@ -143,7 +147,7 @@ function Busqueda() {
         setProductosFiltrados(resultados);
     };
 
-    //Manejador de filtros laterales
+    // Manejador de filtros laterales
     const aplicarFiltroLateral = (tipo) => {
         setFiltroActivo(tipo);
 
@@ -359,4 +363,3 @@ function Busqueda() {
 }
 
 export default Busqueda;
-

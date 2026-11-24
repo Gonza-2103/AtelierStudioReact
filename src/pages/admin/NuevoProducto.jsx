@@ -1,52 +1,56 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import EstructuraAdmin from '../../components/admin/EstructuraAdmin'
 import FormularioProducto from '../../components/admin/FormularioProducto'
-import { useNavigate } from 'react-router-dom'
+import { crearProducto as crearProductoApi } from '../../services/productosApi'
 
 function NuevoProducto() {
     const navigate = useNavigate()
+    const [errorServidor, setErrorServidor] = useState('')
 
-    function guardarProducto(datosFormulario) {
+    async function crearProducto(datosFormulario) {
+        setErrorServidor('')
 
-    const productosGuardados = localStorage.getItem('productos')
-    const productos = productosGuardados
-        ? JSON.parse(productosGuardados)
-        : []
+        const payload = {
+            codigo: datosFormulario.codigo?.trim(),
+            titulo: datosFormulario.nombre?.trim(),
+            nombre: datosFormulario.nombre?.trim(),
+            descripcion: datosFormulario.descripcion?.trim() || '',
+            tecnica: datosFormulario.categoria?.trim(),
+            categoria: datosFormulario.categoria?.trim(),
+            precio: Number(datosFormulario.precio),
+            stock: Number(datosFormulario.stock),
+            stockCritico: Number(datosFormulario.stockCritico || 0),
+            imagen: datosFormulario.imagen || ''
+        }
 
-    const nuevoProducto = {
-        ...datosFormulario,
-        id: Date.now(),
-        precio: Number(datosFormulario.precio),
-        stock: Number(datosFormulario.stock)
+        try {
+            await crearProductoApi(payload)
+            navigate('/admin/productos')
+            return true
+        } catch (err) {
+            console.error('Error al crear producto en AWS:', err)
+            setErrorServidor('No se pudo guardar el producto en el servidor.')
+            return false
+        }
     }
-
-    productos.push(nuevoProducto)
-
-    localStorage.setItem(
-        'productos',
-        JSON.stringify(productos)
-    )
-
-    navigate('/admin/productos')
-}
 
     return (
         <EstructuraAdmin>
-
             <section className="seccion_admin">
-
                 <h1>Nuevo producto</h1>
+                <p>Registro de una nueva obra en el catálogo.</p>
 
-                <p>
-                    Completa la información para registrar
-                    una nueva obra en AtelierStudio.
-                </p>
+                {errorServidor && (
+                    <div className="alert alert-danger" role="alert">
+                        {errorServidor}
+                    </div>
+                )}
 
                 <div className="contenedor_formulario">
-                    <FormularioProducto alGuardar={guardarProducto} />
+                    <FormularioProducto alGuardar={crearProducto} />
                 </div>
-
             </section>
-
         </EstructuraAdmin>
     )
 }

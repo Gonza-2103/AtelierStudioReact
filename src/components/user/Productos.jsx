@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BotonCerrarSesion from './BotonCerrarSesion';
+import { obtenerProductos } from '../../services/productosApi';
 import '../../styles/user.css';
 import logo from '../../assets/atelierstudiologo.png';
 import foto1 from '../../assets/fotoarte1.jpg';
@@ -11,12 +12,11 @@ import foto4 from '../../assets/fotoarte4.png';
 function Productos() {
     const navigate = useNavigate();
 
-   // Un contador por producto
+    // Un contador por producto
     const [catalogo, setCatalogo] = useState([]);
     const [cantidades, setCantidades] = useState({});
 
-
-    //Catálogo inicial por defecto
+    // Catálogo inicial por defecto (respaldo si el servidor no responde)
     const catalogoPorDefecto = [
         {
             id: 1,
@@ -60,24 +60,32 @@ function Productos() {
         }
     ];
 
-    //Cargar y sincronizar con localStorage
+    // Cargar catálogo desde el backend en AWS mediante Axios
     useEffect(() => {
-        let guardados = null;
-        try {
-            guardados = JSON.parse(localStorage.getItem("productos"));
-        } catch (e) {
-            guardados = null;
+        async function cargarCatalogoAWS() {
+            const imagenesPorDefecto = { 1: foto1, 2: foto2, 3: foto3, 4: foto4 };
+            try {
+                const datos = await obtenerProductos();
+                if (Array.isArray(datos) && datos.length > 0) {
+                    const normalizados = datos.map(p => ({
+                        ...p,
+                        nombre: p.titulo ?? p.nombre ?? 'Obra sin título',
+                        categoria: p.tecnica ?? p.categoria ?? 'Sin categoría',
+                        imagen: p.imagen || imagenesPorDefecto[p.id] || foto1
+                    }));
+                    setCatalogo(normalizados);
+                    return;
+                }
+            } catch (error) {
+                console.error('Error cargando catálogo desde AWS, usando respaldo:', error);
+            }
+            setCatalogo(catalogoPorDefecto);
         }
 
-        if (!guardados || guardados.length === 0) {
-            guardados = catalogoPorDefecto;
-            localStorage.setItem("productos", JSON.stringify(catalogoPorDefecto));
-        }
-
-        setCatalogo(guardados);
+        cargarCatalogoAWS();
     }, []);
 
-    //Verificación de autenticación para invitados
+    // Verificación de autenticación para invitados
     const verificarSesion = () => {
         const usuario = JSON.parse(sessionStorage.getItem("usuarioActivo")) || 
                         JSON.parse(localStorage.getItem("usuarioActivo"));
@@ -91,13 +99,13 @@ function Productos() {
         return true;
     };
 
-   // Stock del catálogo actualizado por Administración.
+    // Stock del catálogo actualizado por Administración
     const obtenerStock = (id) => {
         const prod = catalogo.find(p => String(p.id) === String(id));
         return prod ? Number(prod.stock) : 0;
     };
 
-    //Lógica para agregar al carrito con validación de sesión y stock
+    // Lógica para agregar al carrito con validación de sesión y stock
     const agregarAlCarrito = (id, cantidadSeleccionada, setCantidadReset) => {
         if (!verificarSesion()) return;
 
@@ -139,7 +147,7 @@ function Productos() {
         if (setCantidadReset) setCantidadReset(1);
     };
 
-    //Acción para 'ver detalles'
+    // Acción para 'ver detalles'
     const handleVerDetalles = (e) => {
         e.preventDefault();
         const seleccionado = catalogo[0];
@@ -147,7 +155,6 @@ function Productos() {
         localStorage.setItem("productoSeleccionado", JSON.stringify(seleccionado));
         navigate('/detalle_producto');
     };
-
 
     return (
         <div id="prod">
@@ -174,8 +181,7 @@ function Productos() {
             {/* Contenido principal de productos */}
             <section id="contenedor_prod">
 
-               
-                {/* Todos los productos usan los datos compartidos con Administración */}
+                {/* Todos los productos obtenidos desde AWS */}
                 {catalogo.map((producto) => {
                     const cantidad = cantidades[producto.id] || 1;
                     const imagenesIniciales = { 1: foto1, 2: foto2, 3: foto3, 4: foto4 };
@@ -240,4 +246,3 @@ function Productos() {
 }
 
 export default Productos;
-

@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import AccionesProducto from './AccionesProducto'
 import BotonNuevoProducto from './BotonNuevoProducto'
-
-const API_URL = import.meta.env.VITE_API_PRODUCTOS_URL
+import { obtenerProductos, eliminarProducto as eliminarProductoApi } from '../../services/productosApi'
 
 function TablaProductos({ productos: productosProp }) {
     const [productos, setProductos] = useState([])
@@ -20,13 +19,7 @@ function TablaProductos({ productos: productosProp }) {
             try {
                 setCargando(true)
                 setError('')
-                const respuesta = await fetch(`${API_URL}/productos`)
-
-                if (!respuesta.ok) {
-                    throw new Error(`Error HTTP: ${respuesta.status}`)
-                }
-
-                const datos = await respuesta.json()
+                const datos = await obtenerProductos()
                 setProductos(Array.isArray(datos) ? datos : [])
             } catch (err) {
                 console.error('Error al cargar productos desde AWS:', err)
@@ -47,14 +40,7 @@ function TablaProductos({ productos: productosProp }) {
         }
 
         try {
-            const respuesta = await fetch(`${API_URL}/productos/${id}`, {
-                method: 'DELETE'
-            })
-
-            if (!respuesta.ok) {
-                throw new Error(`Error HTTP: ${respuesta.status}`)
-            }
-
+            await eliminarProductoApi(id)
             setProductos(actuales =>
                 actuales.filter(p => String(p.id) !== String(id))
             )

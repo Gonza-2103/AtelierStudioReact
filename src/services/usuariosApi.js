@@ -1,4 +1,10 @@
+import axios from 'axios'
+
 const BASE = import.meta.env.VITE_API_BASE_URL
+
+const apiUsuarios = axios.create({
+    baseURL: BASE
+})
 
 export function obtenerToken() {
     return sessionStorage.getItem('token') || localStorage.getItem('token') || ''
@@ -38,36 +44,37 @@ function cabeceras(json = false) {
     return headers
 }
 
-async function mensajeError(respuesta, fallback) {
-    try {
-        const cuerpo = await respuesta.json()
+function extraerMensajeError(error, fallback) {
+    const cuerpo = error?.response?.data
 
-        if (cuerpo?.MENSAJE) {
-            return cuerpo.MENSAJE
-        }
+    if (cuerpo?.MENSAJE) {
+        return cuerpo.MENSAJE
+    }
 
-        if (cuerpo?.detalles && typeof cuerpo.detalles === 'object') {
-            return Object.values(cuerpo.detalles).join(' ')
-        }
-    } catch {
-        // respuesta sin JSON
+    if (cuerpo?.detalles && typeof cuerpo.detalles === 'object') {
+        return Object.values(cuerpo.detalles).join(' ')
     }
 
     return fallback
 }
 
 async function solicitar(ruta, opciones, fallback) {
-    const respuesta = await fetch(`${BASE}${ruta}`, opciones)
+    try {
+        const respuesta = await apiUsuarios({
+            url: ruta,
+            method: opciones.method || 'GET',
+            headers: opciones.headers,
+            data: opciones.body ? JSON.parse(opciones.body) : undefined
+        })
 
-    if (!respuesta.ok) {
-        throw new Error(await mensajeError(respuesta, fallback))
+        if (respuesta.status === 204) {
+            return null
+        }
+
+        return respuesta.data
+    } catch (error) {
+        throw new Error(extraerMensajeError(error, fallback))
     }
-
-    if (respuesta.status === 204) {
-        return null
-    }
-
-    return respuesta.json()
 }
 
 function credencialBasic(correo, contrasena) {
@@ -81,37 +88,32 @@ function credencialBasic(correo, contrasena) {
 
 export async function iniciarSesion(correo, contrasena) {
     try {
-        const login = await fetch(`${BASE}/api/v1/auth/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ correo, contrasena })
+        const login = await apiUsuarios.post('/api/v1/auth/login', {
+            correo,
+            contrasena
         })
-
-        if (login.ok) {
-            return login.json()
-        }
-
-        const cuerpo = await login.json()
+        return login.data
+    } catch (error) {
+        const cuerpo = error?.response?.data
         if (cuerpo?.MENSAJE) {
             throw new Error(cuerpo.MENSAJE)
         }
-    } catch (error) {
-        if (error?.message && error.message !== 'Failed to fetch') {
-            throw error
+        // Si hubo respuesta HTTP sin MENSAJE o error de red, intenta el respaldo Basic
+        if (error?.response && error.response.status !== 404) {
+            throw new Error(extraerMensajeError(error, 'Correo o contraseña incorrectos.'))
         }
     }
 
     try {
-        const perfil = await fetch(
-            `${BASE}/api/usuarios/correo/${encodeURIComponent(correo)}`,
-            { headers: { Authorization: `Basic ${credencialBasic(correo, contrasena)}` } }
+        const perfil = await apiUsuarios.get(
+            `/api/usuarios/correo/${encodeURIComponent(correo)}`,
+            {
+                headers: {
+                    Authorization: `Basic ${credencialBasic(correo, contrasena)}`
+                }
+            }
         )
-
-        if (!perfil.ok) {
-            throw new Error('Correo o contraseña incorrectos.')
-        }
-
-        return { usuario: await perfil.json() }
+        return { usuario: perfil.data }
     } catch {
         throw new Error('Correo o contraseña incorrectos.')
     }
